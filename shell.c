@@ -51,7 +51,7 @@ void	get_env_path(char **home, char **env, char *path)
 	}
 }
 
-int 	exec_cd(char **args, char **env) 
+int 	exec_cd(char **args, char **env)
 {
 	char path[MAXPATHLEN];
 	char *home;
@@ -170,7 +170,7 @@ void	init_prompt(char **line, char ***args, char ***env, int *status)
 	ft_putstr_fd("\033[31mshell$> \033[0m", 1);
 	// ft_putstr_fd("\033[0m", 1);
 
-	*line = get_cmdline();
+	*line = get_cmdline(); // !!! wait return !!!
 	*args = ft_split(*line, ' ');
 	*status = sh_execute(*args, *env);
 
@@ -201,12 +201,10 @@ int		main(int ac, char **av, char **env)
 	char	**args;
 	char	*line;
 
-	init_prompt(&line, &args, &env, &status);
-
+	status = 1;
 	while (status > 0)
 	{
 		init_prompt(&line, &args, &env, &status);
 	}
-	// start_shell();
 	return (0);
 }
