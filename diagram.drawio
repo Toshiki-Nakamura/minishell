@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e" modified="2020-11-25T05:37:56.565Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="f7veIXzxMEPKcJ4ChNt7" version="13.10.1" type="embed">
+    <diagram id="8rXn6J1F0hXc0jveFzcs" name="ページ1">
+        <mxGraphModel dx="795" dy="1923" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="minishell 設計" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=32;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="-1150" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="main.c&lt;br&gt;&lt;br&gt;int sh_launch(char **args, char **env)&lt;br&gt;int sh_execute(char **args, char **env)&lt;br&gt;char *get_cmdline()&lt;br&gt;void tab_free(char **tab)&lt;br&gt;void input_prompt(char **line, char ***args, char ***env, int *status);" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="-1060" width="370" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="string.c&lt;br&gt;&lt;br&gt;void ft_putendl_fd(char *s, int fd)&lt;br&gt;char *ft_join(char *s, char c)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="-1090" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="command.c&lt;br&gt;&lt;br&gt;int get_env_path(char **home, char **env, char *path)&lt;br&gt;int exec_cd(char **args, char **env)&lt;br&gt;int exec_env(char **args, char **env)" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="-945" width="300" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="380" y="-760" as="sourcePoint"/>
+                        <mxPoint x="430" y="-810" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="list.c&lt;br&gt;&lt;br&gt;int add_list(void *content);&lt;br&gt;t_list *get_last(t_list **head);&lt;br&gt;t_list *search(void *target);" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="-790" width="246" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;h1&gt;共通リスト&lt;/h1&gt;&lt;p&gt;typedef struct s_list {&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; void *data;&lt;br&gt;&amp;nbsp; &amp;nbsp; t_list *next;&lt;br&gt;} t_list;&lt;br&gt;&lt;br&gt;// dataポインタに入る構造体の例&lt;br&gt;typedef struct s_env_param {&lt;br&gt;&amp;nbsp; &amp;nbsp; char *key;&lt;br&gt;&amp;nbsp; &amp;nbsp; char *value;&lt;br&gt;} t_env_param;&lt;br&gt;&lt;br&gt;typedef struct s_user_command {&lt;br&gt;&amp;nbsp; &amp;nbsp; char *command;&lt;br&gt;} t_user_command;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;br&gt;構造体ポインタをcontentに設定する。&lt;br&gt;ex)&amp;nbsp; 環境変数 { &quot;USER&quot;, &quot;skohraku&quot; }&amp;nbsp;&lt;br&gt;実施済みコマンド { &quot;git clone https://github.com/xxx&quot; }&lt;br&gt;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="30" y="-769" width="370" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="list_env_param.c&lt;br&gt;&lt;br&gt;char *get_value(t_list *head, char *key);&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="-655" width="240" height="115" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
