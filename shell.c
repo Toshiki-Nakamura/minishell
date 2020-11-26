@@ -98,7 +98,9 @@ int		sh_execute(char **args, char **env)
 	{
 		char path[MAXPATHLEN] = {0};
 		getcwd(path, MAXPATHLEN);
-		printf("%s\n", path);
+		write(1, path, (ft_strlen(path)));
+		write(1, "\n", 1);
+		//printf("%s\n", path);
 		return (1);
 	}
 	if (ft_strncmp(args[0], "env", 4) == 0)
