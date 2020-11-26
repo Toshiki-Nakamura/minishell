@@ -1,4 +1,5 @@
+minishell
 *.o
+*.d
 *.a
 *.txt
-a.out

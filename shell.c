@@ -11,7 +11,7 @@
 int		sh_launch(char **args, char **env)
 {
 	pid_t pid;
-	pid_t wpid;
+	//pid_t wpid;
 	int status;
 
 	pid = fork();
@@ -76,6 +76,7 @@ int		exec_env(char **args, char **env)
 {
 	int i;
 
+	(void)args;
 	i = -1;
 	while (env[++i])
 	{
@@ -86,8 +87,6 @@ int		exec_env(char **args, char **env)
 
 int		sh_execute(char **args, char **env)
 {
-	int i;
-
 	if (args[0] == NULL) {
 		return 1;
 	}
@@ -201,6 +200,8 @@ int		main(int ac, char **av, char **env)
 	char	**args;
 	char	*line;
 
+	(void)ac;
+	(void)av;
 	status = 1;
 	while (status > 0)
 	{
