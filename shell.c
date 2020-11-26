@@ -117,14 +117,15 @@ int		sh_execute(char **args, char **env)
 char	*ft_join(char *s, char c)
 {
 	char	*new;
-	int		i;
+	size_t	i;
 
 	if (!(new = malloc(ft_strlen(s) + 2)))
 		return (NULL);
-	i = -1;
-	while (++i < ft_strlen(s))
+	i = 0;
+	while (i < ft_strlen(s))
 	{
 		new[i] = s[i];
+		i++;
 	}
 	new[i] = c;
 	new[i + 1] = '\0';
