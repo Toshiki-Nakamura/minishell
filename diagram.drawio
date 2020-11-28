@@ -1,6 +1,6 @@
-<mxfile host="65bd71144e" modified="2020-11-27T14:59:23.128Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="sR3USlQ1Ml4ukMN_Yxxk" version="13.6.5">
+<mxfile host="65bd71144e" modified="2020-11-28T05:17:13.390Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="v-_EeEkiTHeDBnAnU-oU" version="13.6.5">
     <diagram id="8rXn6J1F0hXc0jveFzcs" name="構成図">
-        <mxGraphModel dx="728" dy="1517" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="728" dy="1587" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="8" value="string.c&lt;br&gt;&lt;br&gt;void ft_putendl_fd(char *s, int fd)&lt;br&gt;char *ft_join(char *s, char c)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="340" y="-1110" width="200" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="&lt;u&gt;コマンド&lt;br&gt;&lt;/u&gt;void exec_exit(char **args)&lt;br&gt;int exec_cd(char **args, char **env, int fd)&lt;br&gt;int exec_env(char **args, char **env, int fd)&lt;br&gt;int exec_pwd(int fd)&lt;br&gt;int exec_echo(char **args, char **env, int fd)&lt;br&gt;int exec_unset()&lt;br&gt;int exec_export()&lt;br&gt;※　char **env =&amp;gt; t_list **envl ?" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="9" value="&lt;u&gt;コマンド&lt;br&gt;&lt;/u&gt;void exec_exit(char **args)&lt;br&gt;int exec_cd(char **args, char **env, int fd)&lt;br&gt;int exec_env(char **args, char **env, int fd)&lt;br&gt;int exec_pwd(int fd)&lt;br&gt;int exec_echo(char **args, char **env, int fd)&lt;br&gt;int exec_unset()&lt;br&gt;int exec_export()&lt;br&gt;※　char **env =&amp;gt; t_list **env (グローバル変数?)&amp;nbsp;" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="460" y="-590" width="310" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="" style="endArrow=classic;html=1;entryX=0.48;entryY=-0.027;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="23" target="9" edge="1">
@@ -85,7 +85,7 @@
                 <mxCell id="29" value="&lt;u&gt;ユーザーコマンド&lt;/u&gt;&lt;br&gt;&lt;br&gt;history用のクラス&lt;br&gt;ユーザーが入力したコマンドを保持。&lt;br&gt;&lt;br&gt;static t_list **top;&lt;br&gt;int add_command(char *cmd);&lt;br&gt;char *prev_command();&lt;br&gt;char *next_command();" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="445" y="-150" width="335" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;fontColor=#F0F0F0;" edge="1" parent="1" source="9" target="9">
+                <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;fontColor=#F0F0F0;" parent="1" source="9" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
