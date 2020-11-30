@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:03:50 by skohraku         ###   ########.fr       */
+/*   Created: 2020/11/30 13:41:41 by skohraku          #+#    #+#             */
+/*   Updated: 2020/11/30 13:42:16 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#ifndef PROMPT_H
+# define PROMPT_H
 
-int		main(int ac, char **av, char **env)
-{
-	int		status;
-	char	**args;
-	char	*line;
+void	input_prompt(char **line, char ***args, char ***env, int *status);
 
-	(void)ac;
-	(void)av;
-	status = 1;
-	// init_env_list?
-	while (status > 0)
-	{
-		input_prompt(&line, &args, &env, &status);
-	}
-	return (0);
-}
+#endif

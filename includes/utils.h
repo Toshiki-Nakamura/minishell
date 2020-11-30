@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:03:50 by skohraku         ###   ########.fr       */
+/*   Created: 2020/11/30 13:43:02 by skohraku          #+#    #+#             */
+/*   Updated: 2020/11/30 13:43:26 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int		main(int ac, char **av, char **env)
-{
-	int		status;
-	char	**args;
-	char	*line;
+int		ft_strncmp_ex(const char *s1, const char *s2, size_t n);
+void	tab_free(char **tab);
+int		tab_size(char **tab);
+char	*ft_join(char *s, char c);
 
-	(void)ac;
-	(void)av;
-	status = 1;
-	// init_env_list?
-	while (status > 0)
-	{
-		input_prompt(&line, &args, &env, &status);
-	}
-	return (0);
-}
+#endif

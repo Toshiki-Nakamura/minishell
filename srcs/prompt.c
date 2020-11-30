@@ -1,26 +1,19 @@
-#include "../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prompt.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
+/*   Updated: 2020/11/30 14:04:23 by skohraku         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static char	*ft_join(char *s, char c)
-{
-	char	*new;
-	size_t	i;
-
-	if (!(new = malloc(ft_strlen(s) + 2)))
-		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		new[i] = s[i];
-		i++;
-	}
-	new[i] = c;
-	new[i + 1] = '\0';
-	if (s != NULL)
-	{
-		free(s);
-	}
-	return (new);
-}
+#include <stdlib.h>
+#include "libft.h"
+#include "utils.h"
+#include "executor.h"
 
 static char	*get_cmd_line(void)
 {

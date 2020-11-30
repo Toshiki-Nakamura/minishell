@@ -1,4 +1,19 @@
-#include "../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/30 13:51:19 by skohraku          #+#    #+#             */
+/*   Updated: 2020/11/30 13:53:23 by skohraku         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <string.h>
+#include <errno.h>
+#include <sys/param.h>
+#include "libft.h"
 
 static void	get_env_path(char **home, char **env, char *path)
 {

@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:03:50 by skohraku         ###   ########.fr       */
+/*   Created: 2020/11/30 13:45:46 by skohraku          #+#    #+#             */
+/*   Updated: 2020/11/30 14:02:44 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prompt.h"
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
 
-int		main(int ac, char **av, char **env)
-{
-	int		status;
-	char	**args;
-	char	*line;
+int		sh_execute(char **args, char **env, int fd);
+int		sh_launch(char **args, char **env);
 
-	(void)ac;
-	(void)av;
-	status = 1;
-	// init_env_list?
-	while (status > 0)
-	{
-		input_prompt(&line, &args, &env, &status);
-	}
-	return (0);
-}
+#endif

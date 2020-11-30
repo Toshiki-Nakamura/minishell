@@ -1,4 +1,17 @@
-#include "../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/30 13:58:24 by skohraku          #+#    #+#             */
+/*   Updated: 2020/11/30 14:05:38 by skohraku         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+#include "libft.h"
 
 void	tab_free(char **tab)
 {
@@ -37,4 +50,26 @@ int		ft_strncmp_ex(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_join(char *s, char c)
+{
+	char	*new;
+	size_t	i;
+
+	if (!(new = malloc(ft_strlen(s) + 2)))
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		new[i] = s[i];
+		i++;
+	}
+	new[i] = c;
+	new[i + 1] = '\0';
+	if (s != NULL)
+	{
+		free(s);
+	}
+	return (new);
 }
