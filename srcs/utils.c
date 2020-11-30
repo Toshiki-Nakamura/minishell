@@ -6,29 +6,29 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:58:24 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:05:38 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/11/30 14:35:28 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-void	tab_free(char **tab)
+void	array_free(char **array)
 {
 	int i;
 
 	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
+	while (array[i])
+		free(array[i++]);
+	free(array);
 }
 
-int		tab_size(char **tab)
+int		array_size(char **array)
 {
 	int i;
 
 	i = 0;
-	while (tab[i])
+	while (array[i])
 		i++;
 	return (i);
 }

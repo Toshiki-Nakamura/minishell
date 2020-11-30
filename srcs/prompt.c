@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:04:23 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/11/30 14:35:57 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 	*status = sh_execute(*args, *env, fd);
 
 	if (*args != NULL)
-		tab_free(*args);
+		array_free(*args);
 	if (*line != NULL)
 		free(*line);
 }

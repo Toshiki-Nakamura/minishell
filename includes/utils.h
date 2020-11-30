@@ -14,8 +14,8 @@
 # define UTILS_H
 
 int		ft_strncmp_ex(const char *s1, const char *s2, size_t n);
-void	tab_free(char **tab);
-int		tab_size(char **tab);
+void	array_free(char **array);
+int		array_size(char **array);
 char	*ft_join(char *s, char c);
 
 #endif

@@ -6,15 +6,12 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 13:59:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/11/30 14:34:15 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <errno.h>
-#include <signal.h>
 #include <sys/param.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "libft.h"
