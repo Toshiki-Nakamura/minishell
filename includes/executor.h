@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:45:46 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:02:44 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/11/30 21:41:30 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define EXECUTOR_H
 
 int		sh_execute(char **args, char **env, int fd);
-int		sh_launch(char **args, char **env);
+int		sh_launch(char **args, char **env, int fd);
 
 #endif

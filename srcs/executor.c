@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:34:15 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/11/30 23:15:00 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,22 @@
 #include "utils.h"
 #include "builtin.h"
 
-int		sh_launch(char **args, char **env)
+int		sh_launch(char **args, char **env, int fd)
 {
 	pid_t	pid;
 	int		status;
 
 	pid = fork();
 	/* printf("ppid = [%d]\n", pid); */
-	if (pid == 0) // 子プロセス
+	if (pid == 0)
 	{
-		if (execve(args[0], args, env) == -1)
-			printf("shell: %s: %s\n",strerror(errno), args[0]);
-		exit(EXIT_FAILURE);
+		exec_execve(args, env, fd);
 	}
-	else if (pid < 0)	//fork でエラー
+	else if (pid < 0)
 		perror("minish");
-	else //親プロセス
+	else
 	{
-		wait(&status);//子プロセスが実行し終わるまで待つ
+		wait(&status);
 	}
 	return (1);
 }
@@ -62,5 +60,17 @@ int		sh_execute(char **args, char **env, int fd)
 	{
 		exec_exit(args);
 	}
-	return (sh_launch(args, env));
+	if (ft_strncmp(args[0], "echo", 5) == 0)
+	{
+		return (exec_echo(args, fd));
+	}
+	if (ft_strncmp(args[0], "unset", 6) == 0)
+	{
+		return (exec_unset(args));
+	}
+	if (ft_strncmp(args[0], "export", 7) == 0)
+	{
+		return (exec_export(args, fd));
+	}
+	return (sh_launch(args, env, fd));
 }

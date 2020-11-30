@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:51:19 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 13:53:23 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/11/30 22:37:15 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,49 @@ void		exec_exit(char **args)
 	(void)args;
 	ft_putstr_fd("exit\n", 1);
 	exit(0); //引数によって終了ステータスを変更しなければならない
+}
+
+int			exec_echo(char **args, int fd)
+{
+	int	i;
+
+	i = 1;
+	if (args[1] == NULL)
+		ft_putstr_fd("", fd);
+	if (args[1] && ft_strncmp(args[1], "-n", 3) == 0)
+		i++;
+	while (args[i])
+	{
+		ft_putstr_fd(args[i], fd);
+		i++;
+		if (args[i] != NULL)
+			write(fd, " ", 1);
+	}
+	if (!args[1] || ft_strncmp(args[1], "-n", 3) != 0)
+		write(fd, "\n", 1);
+	return (1);
+}
+
+int			exec_unset(char **args)
+{
+	(void)args;
+	return (1);
+}
+
+int			exec_export(char **args, int fd)
+{
+	(void)args;
+	(void)fd;
+	return (1);
+}
+
+void		exec_execve(char **args, char **env, int fd)
+{
+	(void)fd;
+	if ((execve(args[0], args, env)) == -1)
+	{
+		ft_putstr_fd("shell: ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+	}
+	exit(EXIT_FAILURE);
 }
