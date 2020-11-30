@@ -6,11 +6,14 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/11/26 14:48:12 by skohraku         ###   ########.fr        #
+#    Updated: 2020/11/30 13:13:03 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= shell.c
+SRCS	= srcs/main.c \
+		srcs/exec.c \
+		srcs/prompt.c \
+		srcs/utils.c
 
 
 NAME	= minishell
