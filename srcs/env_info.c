@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 22:31:15 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/04 22:52:33 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include "libft.h"
 #include "env_info.h"
 #include "utils_string.h"
+
+void		show_env_list_contents(t_list *p, int is_reverse)
+{
+	if (!p)
+		return ;
+	if (is_reverse)
+		show_env_list_contents(p->next, is_reverse);
+	show_env_info(p->content);
+	if (!is_reverse)
+		show_env_list_contents(p->next, is_reverse);
+}
 
 t_env_info	*create_env_info(const char *env)
 {
