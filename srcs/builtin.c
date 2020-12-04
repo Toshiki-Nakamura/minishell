@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:51:19 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 22:37:15 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/04 23:04:41 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <errno.h>
 #include <sys/param.h>
 #include "libft.h"
+#include "env_list.h"
 
 static void	get_env_path(char **home, char **env, char *path)
 {
