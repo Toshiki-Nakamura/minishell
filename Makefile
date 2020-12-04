@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/11/30 14:00:12 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/04 21:43:02 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRCS	= srcs/main.c \
 		srcs/builtin.c \
 		srcs/inout.c \
 		srcs/env_list.c \
-		srcs/utils.c
+		srcs/env_info.c \
+		srcs/utils.c \
+		srcs/utils_string.c
 
 NAME	= minishell
 CC		= gcc

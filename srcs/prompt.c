@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 23:17:58 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/04 22:28:53 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "utils.h"
+#include "utils_string.h"
 #include "executor.h"
 
 static char	*get_cmd_line(void)
@@ -36,8 +37,8 @@ static char	*get_cmd_line(void)
 void		input_prompt(char **line, char ***args, char ***env, int *status)
 {
 	int fd;
-	fd = 1;
 
+	fd = 1;
 	ft_putstr_fd("\033[32mshell$> \033[0m", 1);
 	*line = get_cmd_line(); // !!! wait return !!!
 	// ;	複数コマンドのパース
@@ -46,7 +47,6 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 	// > >>	リダイレクト fd
 	*args = ft_split(*line, ' ');
 	*status = sh_execute(*args, *env, fd);
-
 	if (*args != NULL)
 		array_free(*args);
 	if (*line != NULL)

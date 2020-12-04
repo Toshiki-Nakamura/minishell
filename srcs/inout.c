@@ -6,13 +6,13 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2020/11/30 14:26:16 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/04 22:28:24 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char 	*dup_redirect_input(char *filename)
+char	*dup_redirect_input(char *filename)
 {
 	return (filename);
 }
@@ -20,7 +20,6 @@ char 	*dup_redirect_input(char *filename)
 int		get_output_fd(char *filename, int oflag)
 {
 	(void)filename;
-
 	return (oflag);
 }
 
