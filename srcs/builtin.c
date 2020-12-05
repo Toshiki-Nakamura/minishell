@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:51:19 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 23:04:41 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/05 14:28:52 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,10 @@ int			exec_cd(char **args, char **env)
 
 int			exec_env(char **args, char **env, int fd)
 {
-	int i;
-
 	(void)args;
-	if (env == NULL)
-		return (0);
-	i = 0;
-	while (env[i])
-	{
-		ft_putendl_fd(env[i], fd);
-		i++;
-	}
+	(void)env;
+	(void)fd;
+	show_env_list();
 	return (1);
 }
 
@@ -87,6 +80,18 @@ void		exec_exit(char **args)
 	exit(0); //引数によって終了ステータスを変更しなければならない
 }
 
+static int	is_env(char *str)
+{
+	if (str[0] == '$')
+	{
+		if (str[1] != '\0' && str[1] != '$')
+			return (1);
+		else if (str[1] == '$')
+			return (-1);
+	}
+	return (0);
+}
+
 int			exec_echo(char **args, int fd)
 {
 	int	i;
@@ -98,7 +103,10 @@ int			exec_echo(char **args, int fd)
 		i++;
 	while (args[i])
 	{
-		ft_putstr_fd(args[i], fd);
+		if (!is_env(args[i]))
+			ft_putstr_fd(args[i], fd);
+		else
+			ft_putstr_fd((char *)get_env_value(args[i] + 1), fd);
 		i++;
 		if (args[i] != NULL)
 			write(fd, " ", 1);
@@ -114,10 +122,38 @@ int			exec_unset(char **args)
 	return (1);
 }
 
+static int	search_equal(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int			exec_export(char **args, int fd)
 {
+	int i;
+
 	(void)args;
 	(void)fd;
+	i = 0;
+	while (args[++i])
+	{
+		if (!ft_isalpha(args[i][0]) && args[i][0] != '_')
+		{
+			ft_putstr_fd("export:", 2);
+			ft_putstr_fd(args[i], 2);
+			ft_putendl_fd(": not a valid identifier", 2);
+		}
+		else if (search_equal(args[i]) == 1)
+			set_env_value(args[i]);
+	}
 	return (1);
 }
 
