@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/07 10:36:07 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/07 22:04:05 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,6 @@
 #include "env_info.h"
 #include "utils_string.h"
 #include "utils_list.h"
-
-#define ENV_KEY_QUESTION	"?"
-
-static char		*g_env_question;
-static t_list	*g_env_list_top;
-
-
-
-void				initialize_env_list(char **env)
-{
-	char	*p;
-	t_list	*plist;
-
-	g_env_question = NULL;
-	g_env_list_top = NULL;
-	while ((p = *env))
-	{
-		plist = ft_lstnew(create_env_info(p));
-		ft_lstadd_back(&g_env_list_top, plist);
-		env++;
-	}
-}
-
-void				finalize_env_list(void)
-{
-	ft_lstclear(&g_env_list_top, delete_env_info);
-}
 
 void				show_env_list(void)
 {

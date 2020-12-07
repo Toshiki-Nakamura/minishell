@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/07 10:46:50 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/07 22:05:50 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ SRCS	= srcs/main.c \
 		srcs/builtin/pwd.c \
 		srcs/builtin/unset.c \
 		srcs/inout.c \
-		srcs/env/env_list.c \
 		srcs/env/env_info.c \
+		srcs/env/env_list.c \
+		srcs/env/env_list_base.c \
 		srcs/utils/utils.c \
 		srcs/utils/utils_string.c \
 		srcs/utils/utils_list.c

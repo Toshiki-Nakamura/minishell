@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:01:48 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/07 10:24:14 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/07 22:05:34 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft.h"
 
-void		initialize_env_list(char **env);
-void		finalize_env_list();
 void		show_env_list(void);
 const char	*get_env_value(const char *key);
 void		set_env_value(const char *env);

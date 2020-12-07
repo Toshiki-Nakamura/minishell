@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 23:10:24 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/07 22:03:59 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "libft.h"
 #include "env_info.h"
 #include "utils_string.h"
+
+t_list	*g_env_list_top;
+char	*g_env_question;
+char	**g_env;
 
 static void	show_env_info(void *info)
 {
