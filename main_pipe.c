@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/07 21:07:46 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/07 21:19:02 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,12 @@ static void	execve_implement(char **cmd)
 }
 
 
-void		pipe_executor(int cmd_num, char ***cmd)
+void		pipe_executor(int pipe_num, char ***cmd)
 {
 	int		fd[2];
 	pid_t	pid;
 
-	cmd_num--;
-	if (cmd_num == 0)
+	if (pipe_num == 0)
 	{
 		execve_implement(cmd[0]);
 		exit(1);
@@ -75,31 +74,31 @@ void		pipe_executor(int cmd_num, char ***cmd)
 		dup2(fd[0], 0);
 		close(fd[0]);
 		/* 親プロセスにn番目のコマンドを実行させる */
-		execve_implement(cmd[cmd_num]);
+		execve_implement(cmd[pipe_num]);
 		exit(1);
 	}
-	close(fd[0]);
-	dup2(fd[1], 1);
-	close(fd[1]);
-	/* 子供プロセスには再帰でn-1番目のコマンドを実行させる */
-	pipe_executor(cmd_num, cmd);
+	else
+	{
+		close(fd[0]);
+		dup2(fd[1], 1);
+		close(fd[1]);
+		/* 子供プロセスには再帰でn-1番目のコマンドを実行させる */
+		pipe_executor(pipe_num - 1, cmd);
+	}
 }
 
-void	executor(int cmd_num, char ***cmd)
+void	executor(int pipe_num, char ***cmd)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid != 0)
 	{
-		//printf("parent process wait(%d)\n", pid);
 		wait(NULL);
-		//printf("parent process wakeup\n");
 	}
 	else
 	{
-		//printf("child process(%d)\n", pid);
-		pipe_executor(cmd_num, cmd);
+		pipe_executor(pipe_num, cmd);
 	}
 }
 
@@ -119,7 +118,7 @@ int		main(int ac, char **av, char **env)
 		cmdlst[i] = ft_split(av[i+1], ' ');
 		i++;
 	}
-	executor(cmd_num, cmdlst);
+	executor(cmd_num - 1, cmdlst);
 
 #if 0
 	i = 0;
