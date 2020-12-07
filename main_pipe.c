@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/07 21:19:02 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/07 21:45:04 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,23 @@ int		array_size(char **array)
 
 static char	**g_env;
 
-static void	execve_implement(char **cmd)
+static void	exec_command(char *cmd)
 {
-	if (execve(cmd[0], cmd, g_env) == -1)
+	char	**cmd_list;
+
+	cmd_list = ft_split(cmd, ' ');
+	if (execve(cmd_list[0], cmd_list, g_env) == -1)
 		ft_putendl_fd(strerror(errno), 2);
 }
 
-
-void		pipe_executor(int pipe_num, char ***cmd)
+static void	exec_pipe_commands(int cmd_num, char **pipe_list)
 {
 	int		fd[2];
 	pid_t	pid;
 
-	if (pipe_num == 0)
+	if (cmd_num == 0)
 	{
-		execve_implement(cmd[0]);
+		exec_command(pipe_list[0]);
 		exit(1);
 	}
 	pipe(fd);
@@ -74,7 +76,7 @@ void		pipe_executor(int pipe_num, char ***cmd)
 		dup2(fd[0], 0);
 		close(fd[0]);
 		/* 親プロセスにn番目のコマンドを実行させる */
-		execve_implement(cmd[pipe_num]);
+		exec_command(pipe_list[cmd_num]);
 		exit(1);
 	}
 	else
@@ -83,11 +85,11 @@ void		pipe_executor(int pipe_num, char ***cmd)
 		dup2(fd[1], 1);
 		close(fd[1]);
 		/* 子供プロセスには再帰でn-1番目のコマンドを実行させる */
-		pipe_executor(pipe_num - 1, cmd);
+		exec_pipe_commands(cmd_num - 1, pipe_list);
 	}
 }
 
-void	executor(int pipe_num, char ***cmd)
+static void	exec_pipe_list(int cmd_num, char **pipe_list)
 {
 	pid_t	pid;
 
@@ -98,33 +100,18 @@ void	executor(int pipe_num, char ***cmd)
 	}
 	else
 	{
-		pipe_executor(pipe_num, cmd);
+		exec_pipe_commands(cmd_num - 1, pipe_list);
 	}
 }
 
 int		main(int ac, char **av, char **env)
 {
-	char	***cmdlst;
-	int 	i;
-	int		cmd_num;
-
+	// execveで引数に必要なためグローバル変数に保持しておく。
 	g_env = env;
-	i = 0;
-	cmd_num = ac - 1;
-	cmdlst = malloc(sizeof(char **) * (cmd_num + 1));
-	cmdlst[cmd_num] = NULL;
-	while (i < cmd_num)
-	{
-		cmdlst[i] = ft_split(av[i+1], ' ');
-		i++;
-	}
-	executor(cmd_num - 1, cmdlst);
-
-#if 0
-	i = 0;
-	while (cmdlst[i] != NULL)
-		array_free(cmdlst[i++]);
-	free(cmdlst);
-#endif
+	/* shell> ls | cat -e | grep test を入力した場合、
+	* pipe_listは、"ls", "cat -e", "grep test" の形式。
+	* テスト用のmainでは、avをそのまま使用する。
+	*/
+	exec_pipe_list(ac - 1, &av[1]);
 	return (0);
 }
