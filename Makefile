@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/07 10:43:28 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/07 10:46:50 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,14 +46,14 @@ LIBFT	= libft/libft.a
 $(NAME):	$(OBJS) $(LIBFT)
 		$(CC) -o $@ $^
 
+-include $(DEPS)
+
 $(LIBFT):
 		make -C libft bonus
 
 all:	$(NAME)
 
 bonus:	$(NAME)
-
--include $(DEPS)
 
 clean:
 		$(RM) $(OBJS) $(DEPS); make -C libft clean
