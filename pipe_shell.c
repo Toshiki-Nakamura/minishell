@@ -6,11 +6,20 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/06 15:40:28 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/07 13:20:37 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <string.h>
+# include <errno.h>
+# include <sys/param.h>
+# include <signal.h>
+# include "libft.h"
 
 static char	*ft_join(char *s, char c)
 {
