@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 22:52:33 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/04 23:10:24 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include "libft.h"
 #include "env_info.h"
 #include "utils_string.h"
+
+static void	show_env_info(void *info)
+{
+	t_env_info	*p;
+
+	p = (t_env_info *)info;
+	ft_putstr_fd(p->key, 1);
+	ft_putstr_fd("=", 1);
+	ft_putstr_fd(p->value, 1);
+	ft_putstr_fd("\n", 1);
+}
 
 void		show_env_list_contents(t_list *p, int is_reverse)
 {
@@ -58,17 +69,6 @@ void		delete_env_info(void *info)
 	free(p->key);
 	free(p->value);
 	free(p);
-}
-
-void		show_env_info(void *info)
-{
-	t_env_info	*p;
-
-	p = (t_env_info *)info;
-	ft_putstr_fd(p->key, 1);
-	ft_putstr_fd("=", 1);
-	ft_putstr_fd(p->value, 1);
-	ft_putstr_fd("\n", 1);
 }
 
 int			cmp_env_key(void *info, const char *key)

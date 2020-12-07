@@ -6,15 +6,17 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 22:54:23 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/07 10:36:07 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
+#include <stdlib.h>
 #include "libft.h"
 #include "env_info.h"
 #include "utils_string.h"
+#include "utils_list.h"
 
 #define ENV_KEY_QUESTION	"?"
 
@@ -99,7 +101,23 @@ void				set_env_value(const char *env)
 	}
 }
 
-void				remove_env_value(const char *key)
+int					remove_env_value(const char *key)
 {
-	(void)key;
+	t_list		*cur;
+	t_list		*pre;
+
+	cur = g_env_list_top;
+	while (cur)
+	{
+		if (!cmp_env_key(cur->content, key))
+		{
+			break ;
+		}
+		pre = cur;
+		cur = cur->next;
+	}
+	if (!cur)
+		return (0);
+	ft_lst_remove_next(pre, delete_env_info);
+	return (1);
 }
