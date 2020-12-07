@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/07 10:08:33 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/07 10:43:28 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,16 @@ SRCS	= srcs/main.c \
 		srcs/builtin/pwd.c \
 		srcs/builtin/unset.c \
 		srcs/inout.c \
-		srcs/env_list.c \
-		srcs/env_info.c \
-		srcs/utils.c \
-		srcs/utils_string.c \
+		srcs/env/env_list.c \
+		srcs/env/env_info.c \
+		srcs/utils/utils.c \
+		srcs/utils/utils_string.c \
 		srcs/utils/utils_list.c
 
 NAME	= minishell
 CC		= gcc
-INCLUDE = -I./libft -I./includes -I./builtin -I./utils
+INCLUDE = -I./libft -I./includes
+
 CFLAGS	= -Wall -Wextra -Werror
 
 OBJS	= $(SRCS:.c=.o)
