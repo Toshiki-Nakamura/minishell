@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/07 13:20:37 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/07 15:52:22 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,51 +61,35 @@ static char	*get_cmd_line(void)
 	return (line);
 }
 
-void	tab_print(char **tab)
+void	array_free(char **array)
 {
 	int i;
 
 	i = 0;
-	while (tab[i])
-		ft_putendl_fd(tab[i++], 1);
-}
-
-void	tab_free(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
+	while (array[i])
 	{
-		free(tab[i]);
-		tab[i] = NULL;
+		free(array[i]);
+		array[i] = NULL;
 		i++;
 	}
-	free(tab);
-	tab = NULL;
+	free(array);
+	array = NULL;
 }
 
-int		tab_size(char **tab)
+int		array_size(char **array)
 {
 	int i = 0;
-	while (tab[i])
+	while (array[i])
 		i++;
 	return (i);
 }
-int g_len;
 
-void		executor(int n,char ***cmd, char **env)
+void		pipe_executor(int n, char ***cmd, char **env)
 {
 	int		fd[2];
 	pid_t	pid1;
 
-	if (n == g_len - 1)
-	{
-		if (execve(cmd[0][0], cmd[0], 0) < 0)
-			ft_putendl_fd(strerror(errno), 2);
-		exit(1);
-	}
-	else
+	if (n - 1 != 0)
 	{
 		pipe(fd);
 		pid1 = fork();
@@ -114,18 +98,25 @@ void		executor(int n,char ***cmd, char **env)
 			close(fd[0]);
 			dup2(fd[1], 1);
 			close(fd[1]);
-
-			executor(n + 1, cmd, env);
+			/* 子供プロセスには再帰でn-1番目のコマンドを実行させる */
+			pipe_executor(--n, cmd, env);
 		}
 		else
 		{
 			close(fd[1]);
 			dup2(fd[0], 0);
 			close(fd[0]);
-			if (execve(cmd[g_len - n - 1][0], cmd[g_len - n - 1], env) == -1)
+			/* 親プロセスにn番目のコマンドを実行させる */
+			if (execve(cmd[n - 1][0], cmd[n - 1], env) == -1)
 				ft_putendl_fd(strerror(errno), 2);
 			exit(1);
 		}
+	}
+	else
+	{
+		if (execve(cmd[0][0], cmd[0], 0) < 0)
+			ft_putendl_fd(strerror(errno), 2);
+		exit(1);
 	}
 }
 
@@ -143,8 +134,7 @@ int		main(int ac, char **av, char **env)
 
 		line = get_cmd_line();
 		args = ft_split(line, '|');
-		int len = tab_size(args);
-		g_len = len;
+		int len = array_size(args);
 		cmdlst = malloc(sizeof(char **) * (len + 1));
 		int i = -1;
 		while (args[++i])
@@ -155,7 +145,7 @@ int		main(int ac, char **av, char **env)
 		{
 			pid = fork();
 			if (pid == 0)
-				executor(0, cmdlst, env);
+				pipe_executor(len, cmdlst, env);
 			else
 				wait(NULL);
 		}
@@ -163,10 +153,10 @@ int		main(int ac, char **av, char **env)
 		if (line != NULL)
 			free(line);
 		if (args != NULL)
-			tab_free(args);
+			array_free(args);
 		i = 0;
 		while (cmdlst[i] != NULL)
-			tab_free(cmdlst[i++]);
+			array_free(cmdlst[i++]);
 		free(cmdlst);
 	}
 	return (0);
