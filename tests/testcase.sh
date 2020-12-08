@@ -16,5 +16,8 @@ ls
 ls -lt
 echo '----- test: pipe 1 -----'
 ls | cat -e | grep test
+echo '----- test: gcc <a.out cat -e> -----'
+gcc hello.c
+./a.out | cat -e
 echo '========== test finished =============================='
 exit
