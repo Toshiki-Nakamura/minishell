@@ -1,6 +1,6 @@
-<mxfile host="65bd71144e" modified="2020-12-07T12:48:00.783Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="eAI2oezciYQTCq-xAqXb" version="13.10.8" type="embed" pages="3">
+<mxfile host="65bd71144e" modified="2020-12-07T13:30:43.368Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="8U1oBBEYLMNvvPjbRDyV" version="13.10.8" type="embed" pages="3">
     <diagram id="8rXn6J1F0hXc0jveFzcs" name="構成図">
-        <mxGraphModel dx="679" dy="1811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="679" dy="1783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -28,7 +28,7 @@
                 <mxCell id="13" value="&lt;h1&gt;共通リスト&lt;/h1&gt;&lt;p&gt;typedef struct s_list {&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; void *data;&lt;br&gt;&amp;nbsp; &amp;nbsp; t_list *next;&lt;br&gt;} t_list;&lt;br&gt;&lt;br&gt;// dataポインタに入る構造体の例&lt;br&gt;typedef struct s_env_param {&lt;br&gt;&amp;nbsp; &amp;nbsp; char *key;&lt;br&gt;&amp;nbsp; &amp;nbsp; char *value;&lt;br&gt;} t_env_param;&lt;br&gt;&lt;br&gt;typedef struct s_user_command {&lt;br&gt;&amp;nbsp; &amp;nbsp; char *command;&lt;br&gt;} t_user_command;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span&gt;&lt;br&gt;構造体ポインタをcontentに設定する。&lt;br&gt;ex)&amp;nbsp; 環境変数 { &quot;USER&quot;, &quot;skohraku&quot; }&amp;nbsp;&lt;br&gt;実施済みコマンド { &quot;git clone https://github.com/xxx&quot; }&lt;br&gt;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;align=left;" parent="1" vertex="1">
                     <mxGeometry x="30" y="-360" width="370" height="370" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="&lt;u&gt;env_list.c&lt;br&gt;&lt;/u&gt;&lt;br&gt;環境変数を問い合わせて値を返す係&lt;br&gt;list操作に関してはlibftを使う。環境変数に特化した部分だけ実装する。&lt;br&gt;static int g_env_question &amp;lt;= 環境変数?&lt;br&gt;static t_list *g_env_list_top;&lt;br&gt;&lt;br&gt;void initialize_env_list(char **env);&lt;br&gt;void finalize_env_list();&lt;br&gt;char *get_env_value(const char *key);&lt;br&gt;int set_env_value(const char *key, const char *value);&lt;br&gt;int remove_env_value(const char *key);" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="14" value="環境変数を問い合わせて値を返す係&lt;br&gt;list操作に関してはlibftを使う。環境変数に特化した部分だけ実装する。&lt;br&gt;&lt;br&gt;&lt;u&gt;&lt;b&gt;env_list_base.c&lt;/b&gt;&lt;/u&gt;&lt;br&gt;void initialize_env_list(char **env);&lt;br&gt;void finalize_env_list();&lt;br&gt;char **get_env_param();&lt;br&gt;&lt;br&gt;&lt;u&gt;&lt;b&gt;env_list.c&lt;/b&gt;&lt;/u&gt;&lt;br&gt;void show_env_list();&lt;br&gt;char *get_env_value(const char *key);&lt;br&gt;int set_env_value(const char *key, const char *value);&lt;br&gt;int remove_env_value(const char *key);" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="470" y="-400" width="340" height="220" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="Global変数&lt;br&gt;char **current_command&lt;br&gt;(入力をSplitしたもの)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
@@ -44,9 +44,9 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="21" value="&lt;u&gt;inout.c&lt;br&gt;&lt;/u&gt;&lt;br&gt;char *dup_redirect_input(char *filename);&lt;br&gt;コマンド実行前に引数の入力を制御する。&lt;br&gt;通常は、コマンド引数を採用する&lt;br&gt;&amp;lt;の時は、ファイルなどを開いて文字列に格納し直す。&lt;br&gt;&lt;br&gt;指定した場所に出力する&lt;br&gt;int get_output_fd(char *filename, int mode);&lt;br&gt;void close(int fd);" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
-                    <mxGeometry x="120" y="-530" width="300" height="170" as="geometry"/>
+                    <mxGeometry x="130" y="-470" width="300" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="&lt;u&gt;executor.c&lt;/u&gt;&lt;br&gt;&lt;br&gt;static int sh_launch(char **args, char **env);&lt;br&gt;&lt;br&gt;void exec_pipe_list(int cmd_num, char **pipe_list);&lt;br&gt;パイプを含むコマンドリストを実行する係。&lt;br&gt;int sh_execute(char **args, char **env, int fd);&lt;br&gt;1コマンドを実行する係&lt;br&gt;コマンド不正はここで出力&lt;br&gt;$?の設定" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="23" value="&lt;b&gt;pipe_executor.c&lt;/b&gt;&lt;br&gt;&lt;u&gt;exec_pipe_list(int cmd_num, char **pipe_list);&lt;/u&gt;&lt;br&gt;パイプリスト：パイプで切り分けたコマンドリストを実行する係&lt;br&gt;&lt;br&gt;&lt;u&gt;&lt;b&gt;executor.c&lt;/b&gt;&lt;/u&gt;&lt;br&gt;static int sh_launch(char **args, char **env);&lt;br&gt;int sh_execute(char **args, char **env, int fd);&lt;br&gt;1コマンドを実行する係&lt;br&gt;コマンド不正はここで出力&lt;br&gt;$?の設定" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="500" y="-810" width="310" height="170" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" value="" style="endArrow=classic;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="16" target="21" edge="1">
@@ -71,10 +71,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="29" value="&lt;u&gt;ユーザーコマンド&lt;/u&gt;&lt;br&gt;&lt;br&gt;history用のクラス&lt;br&gt;ユーザーが入力したコマンドを保持。&lt;br&gt;&lt;br&gt;static t_list **top;&lt;br&gt;int add_command(char *cmd);&lt;br&gt;char *prev_command();&lt;br&gt;char *next_command();" style="whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
-                    <mxGeometry x="445" y="-110" width="335" height="140" as="geometry"/>
+                    <mxGeometry x="440" y="-90" width="335" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="env_info.c" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="690" y="-190" width="120" height="60" as="geometry"/>
+                <mxCell id="30" value="&lt;u&gt;env_info.c&lt;/u&gt;&lt;br&gt;&lt;br&gt;char *g_env&lt;br&gt;t_list *g_env_list_top&lt;br&gt;char *g_env_question" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="-190" width="150" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="224rtaX7X39T5z5zW9lJ-30" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.533;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="9" target="21">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/07 23:17:58 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 18:30:32 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,59 +21,71 @@
 #include <signal.h>
 #include "libft.h"
 #include "executor.h"
+#include "env_list.h"
 #include "env_list_base.h"
 
-static void	exec_command(char *cmd)
+int			exec_command(char *cmd)
 {
 	char	**cmd_list;
+	int		ret_value;
 
 	cmd_list = ft_split(cmd, ' ');
-	if (sh_execute(cmd_list, get_env_param(), 1) <= 0)
+	ret_value = sh_execute(cmd_list, get_env_param(), 1, 1);
+	if (ret_value == -1)
 		ft_putendl_fd(strerror(errno), 2);
+	return (ret_value);
 }
 
-static void	exec_pipe_commands(int cmd_num, char **pipe_list)
+static int	exec_pipe_commands(int cmd_num, char **pipe_list)
 {
 	int		fd[2];
 	pid_t	pid;
+	int		ret_value;
 
 	if (cmd_num == 0)
 	{
-		exec_command(pipe_list[0]);
-		exit(1);
-	}
-	pipe(fd);
-	pid = fork();
-	if (pid != 0)
-	{
-		close(fd[1]);
-		dup2(fd[0], 0);
-		close(fd[0]);
-		/* 親プロセスにn番目のコマンドを実行させる */
-		exec_command(pipe_list[cmd_num]);
-		exit(1);
+		ret_value = exec_command(pipe_list[0]);
 	}
 	else
 	{
-		close(fd[0]);
-		dup2(fd[1], 1);
-		close(fd[1]);
-		/* 子供プロセスには再帰でn-1番目のコマンドを実行させる */
-		exec_pipe_commands(cmd_num - 1, pipe_list);
+		pipe(fd);
+		pid = fork();
+		if (pid != 0)
+		{
+			close(fd[1]);
+			dup2(fd[0], 0);
+			close(fd[0]);
+			/* 親プロセスにn番目のコマンドを実行させる */
+			ret_value = exec_command(pipe_list[cmd_num]);
+		}
+		else
+		{
+			close(fd[0]);
+			dup2(fd[1], 1);
+			close(fd[1]);
+			/* 子供プロセスには再帰でn-1番目のコマンドを実行させる */
+			ret_value = exec_pipe_commands(cmd_num - 1, pipe_list);
+		}
 	}
+	return (ret_value);
 }
 
-void		exec_pipe_list(int cmd_num, char **pipe_list)
+int			exec_pipe_list(int cmd_num, char **pipe_list)
 {
 	pid_t	pid;
+	int		ret_value;
 
+	ret_value = 0;
 	pid = fork();
 	if (pid != 0)
 	{
 		wait(NULL);
+		return (ret_value);
 	}
 	else
 	{
-		exec_pipe_commands(cmd_num - 1, pipe_list);
+		ret_value = exec_pipe_commands(cmd_num - 1, pipe_list);
+		//printf("child_process finished(%d)\n", ret_value);
+		exit(1);
 	}
 }

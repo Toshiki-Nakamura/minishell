@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/07 22:04:05 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:45:10 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ const char			*get_env_value(const char *key)
 	t_env_info	*p;
 
 	if (!(ft_strcmp(key, ENV_KEY_QUESTION)))
+	{
+		printf("%p\n", g_env_question);
 		return (g_env_question);
+	}
 	if (!(p = find_env_info(key)))
 		return (NULL);
 	return (p->value);

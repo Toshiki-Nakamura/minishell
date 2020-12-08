@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:39:08 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/07 22:07:59 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:45:56 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ENV_INFO_H
 
 # define ENV_KEY_QUESTION	"?"
+
+# include "libft.h"
 
 typedef struct	s_env_info
 {
