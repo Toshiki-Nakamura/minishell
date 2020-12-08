@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:01:41 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/07 22:04:07 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 15:48:14 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				initialize_env_list(char **env)
 	char	*p;
 	t_list	*plist;
 
-	if (!g_env_list_top)
+	if (g_env_list_top)
 		return ;
 	g_env_list_top = NULL;
 	g_env_question = NULL;
