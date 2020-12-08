@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 21:43:24 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 18:12:58 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,16 @@ int		ft_strncmp_ex(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char *new;
+
+	new = ft_strjoin(s1, s2);
+	if (s1 != NULL)
+		free(s1);
+	if (s2 != NULL)
+		free(s2);
+	return (new);
 }
