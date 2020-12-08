@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/08 18:30:32 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 18:50:52 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			exec_pipe_list(int cmd_num, char **pipe_list)
 	pid_t	pid;
 	int		ret_value;
 
-	ret_value = 0;
+	ret_value = 1; /* 0 でreturn するとinput_promptが終了してしまう */
 	pid = fork();
 	if (pid != 0)
 	{
