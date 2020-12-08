@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 18:36:21 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 20:38:14 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 	int i = 0;
 	while (pipe_list[i])
 		i++;
-	if (i <= 1)
+	if (i == 1)
 	{
 #if 1
 		char	**cmd_list;
@@ -67,7 +67,7 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 		*status = exec_command(pipe_list);
 #endif
 	}
-	else
+	else if (i >= 2)
 		*status = exec_pipe_list(i, pipe_list);
 	//printf("finish input_prompt ret=%d\n", *status);
 	if (*args != NULL)
