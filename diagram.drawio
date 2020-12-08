@@ -1,6 +1,6 @@
-<mxfile host="65bd71144e" modified="2020-12-07T13:30:43.368Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="8U1oBBEYLMNvvPjbRDyV" version="13.10.8" type="embed" pages="3">
+<mxfile host="65bd71144e" modified="2020-12-08T09:48:02.491Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="IqS3XkL_PA2tUky_CF4X" version="13.10.9" type="embed" pages="3">
     <diagram id="8rXn6J1F0hXc0jveFzcs" name="構成図">
-        <mxGraphModel dx="679" dy="1783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="848" dy="1810" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -76,7 +76,7 @@
                 <mxCell id="30" value="&lt;u&gt;env_info.c&lt;/u&gt;&lt;br&gt;&lt;br&gt;char *g_env&lt;br&gt;t_list *g_env_list_top&lt;br&gt;char *g_env_question" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="650" y="-190" width="150" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="224rtaX7X39T5z5zW9lJ-30" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.533;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="9" target="21">
+                <mxCell id="224rtaX7X39T5z5zW9lJ-30" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.533;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="9" target="21" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="360" y="-410" as="sourcePoint"/>
                         <mxPoint x="410" y="-460" as="targetPoint"/>
@@ -86,7 +86,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="qc1QQhCkBsamnLW85WN9" name="フロー図">
-        <mxGraphModel dx="563" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="848" dy="641" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="Vm-qLk_0YOqzzcymPKnQ-0"/>
                 <mxCell id="Vm-qLk_0YOqzzcymPKnQ-1" parent="Vm-qLk_0YOqzzcymPKnQ-0"/>
@@ -108,19 +108,19 @@
                 <mxCell id="1OFQfx3OAHXFVRJQY0fg-4" value="グループリストに分割" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
                     <mxGeometry x="60" y="150" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="1OFQfx3OAHXFVRJQY0fg-5" value="readの文字列を受け取る" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
+                <mxCell id="1OFQfx3OAHXFVRJQY0fg-5" value="readの文字列を受け取る&lt;br&gt;input_prompt" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
                     <mxGeometry x="80" y="80" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="1OFQfx3OAHXFVRJQY0fg-9" value="パイプリストに分割" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
                     <mxGeometry x="75" y="330" width="170" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="1OFQfx3OAHXFVRJQY0fg-13" value="executor実行&lt;br&gt;(コマンドリスト, 出力先指定)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
+                <mxCell id="1OFQfx3OAHXFVRJQY0fg-13" value="今は、sh_execute&lt;br&gt;exec_commandに変更予定&lt;br&gt;(コマンドリスト, 出力先指定)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
                     <mxGeometry x="50" y="610" width="225" height="65" as="geometry"/>
                 </mxCell>
                 <mxCell id="mPCId1YOEe2htGxt5DQf-0" value="1コマンドグループを実行" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
                     <mxGeometry x="50" y="210" width="220" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="mPCId1YOEe2htGxt5DQf-2" value="1コマンドを実行" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
+                <mxCell id="mPCId1YOEe2htGxt5DQf-2" value="1コマンドを実行&lt;br&gt;exec_pipe_list" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
                     <mxGeometry x="80" y="405" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="mPCId1YOEe2htGxt5DQf-5" value="ex) &quot;cmd0 x y&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="Vm-qLk_0YOqzzcymPKnQ-1" vertex="1">
@@ -172,35 +172,66 @@
         </mxGraphModel>
     </diagram>
     <diagram id="lPDOuuhqfNvF5IfkHC4r" name="パイプ処理">
-        <mxGraphModel dx="498" dy="408" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        &#xa;
+        <mxGraphModel dx="1197" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            &#xa;
             <root>
+                &#xa;
                 <mxCell id="RmXYfBoyRrhIvFDnuk7J-0"/>
+                &#xa;
                 <mxCell id="RmXYfBoyRrhIvFDnuk7J-1" parent="RmXYfBoyRrhIvFDnuk7J-0"/>
-                <mxCell id="RmXYfBoyRrhIvFDnuk7J-2" value="&lt;font style=&quot;font-size: 22px&quot;&gt;パイプ処理&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="RmXYfBoyRrhIvFDnuk7J-2" value="&lt;font style=&quot;font-size: 22px&quot;&gt;パイプ処理&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="10" y="20" width="370" height="30" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="kp780r_JI9rgV8aj1NWh-0" value="すでに取得したfd_inを使用" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="kp780r_JI9rgV8aj1NWh-0" value="すでに取得したfd_inを使用" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="60" y="290" width="190" height="50" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="kp780r_JI9rgV8aj1NWh-1" value="次のコマンドがあるか？" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="kp780r_JI9rgV8aj1NWh-1" value="次のコマンドがあるか？" style="rhombus;whiteSpace=wrap;html=1;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="75" y="350" width="160" height="60" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="0F6ULK4f1mbHGqK39_J1-0" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="0F6ULK4f1mbHGqK39_J1-0" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="60" y="160" width="190" height="30" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="0F6ULK4f1mbHGqK39_J1-1" value="ex) &quot;ls | cat -e | grep test&quot;&lt;br&gt;パイプリストに分割済み状態から開始&lt;br&gt;&quot;ls&quot;&lt;br&gt;&quot;cat -e&quot;&lt;br&gt;&quot;grep test&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="0F6ULK4f1mbHGqK39_J1-1" value="ex) &quot;ls | cat -e | grep test&quot;&lt;br&gt;パイプリストに分割済み状態から開始&lt;br&gt;&quot;ls&quot;&lt;br&gt;&quot;cat -e&quot;&lt;br&gt;&quot;grep test&quot;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="60" y="50" width="240" height="100" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="0F6ULK4f1mbHGqK39_J1-2" value="前のコマンドがあるか？" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="0F6ULK4f1mbHGqK39_J1-2" value="前のコマンドがあるか？" style="rhombus;whiteSpace=wrap;html=1;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="65" y="230" width="180" height="50" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="0F6ULK4f1mbHGqK39_J1-3" value="pipe()で取得したfd[1]を設定。fd[0]は" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="0F6ULK4f1mbHGqK39_J1-3" value="pipe()で取得したfd[1]を設定。fd[0]は" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="65" y="420" width="185" height="100" as="geometry"/>
+                    &#xa;
                 </mxCell>
-                <mxCell id="0F6ULK4f1mbHGqK39_J1-5" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rotation=-180;" vertex="1" parent="RmXYfBoyRrhIvFDnuk7J-1">
+                &#xa;
+                <mxCell id="0F6ULK4f1mbHGqK39_J1-5" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rotation=-180;" parent="RmXYfBoyRrhIvFDnuk7J-1" vertex="1">
+                    &#xa;
                     <mxGeometry x="60" y="585" width="190" height="30" as="geometry"/>
+                    &#xa;
                 </mxCell>
+                &#xa;
             </root>
+            &#xa;
         </mxGraphModel>
+        &#xa;
     </diagram>
 </mxfile>
