@@ -6,11 +6,11 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 18:20:20 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/09 08:19:44 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
 #include "prompt.h"
 #include "env_list_base.h"
@@ -18,8 +18,6 @@
 int		main(int ac, char **av, char **env)
 {
 	int		status;
-	char	**args;
-	char	*line;
 
 	(void)av;
 	if (ac != 1)
@@ -28,7 +26,7 @@ int		main(int ac, char **av, char **env)
 	status = 1;
 	while (status > 0)
 	{
-		input_prompt(&line, &args, &env, &status);
+		input_prompt(&status);
 	}
 	finalize_env_list();
 	return (0);

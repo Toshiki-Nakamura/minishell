@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/09 01:29:17 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/09 08:18:35 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "executor.h"
 #include "pipe_executor.h"
 #include "env_list.h"
+#include "env_list_base.h"
 
 static char	*get_cmd_line(void)
 {
@@ -37,24 +38,24 @@ static char	*get_cmd_line(void)
 	return (line);
 }
 
-void		input_prompt(char **line, char ***args, char ***env, int *status)
+void		input_prompt(int *status)
 {
-	int fd;
+	int		fd;
+	char	**pipe_list;
+	int		i;
+	char	*line;
 
 	fd = 1;
 	ft_putstr_fd("\033[32mshell$> \033[0m", 1);
-	*line = get_cmd_line(); // !!! wait return !!!
+	line = get_cmd_line(); // !!! wait return !!!
 	// ;	複数コマンドのパース
 	// |	パイプ
 	// ' "	クォーテーション
 	// > >>	リダイレクト fd
-	(void)env;
-	(void)args;
-
-	//本来はcmd_managerを通した後。
-	char **pipe_list;
-	pipe_list = ft_split(*line, '|');
-	int i = 0;
+	pipe_list = ft_split(line, '|'); //本来はcmd_managerを通した後。
+	if (line != NULL)
+		free(line);
+	i = 0;
 	while (pipe_list[i])
 		i++;
 	if (i == 1)
@@ -62,7 +63,7 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 #if 1
 		char	**cmd_list;
 		cmd_list = ft_split(pipe_list[0], ' ');
-		*status = sh_execute(cmd_list, *env, fd, 0);
+		*status = sh_execute(cmd_list, get_env_param(), fd, 0);
 		if (cmd_list != NULL)
 			array_free(cmd_list);
 #else//こちらにしたい。
@@ -71,11 +72,6 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 	}
 	else if (i >= 2)
 		*status = exec_pipe_list(i, pipe_list);
-	//printf("finish input_prompt ret=%d\n", *status);
 	if (pipe_list != NULL)
 		array_free(pipe_list);
-	if (*args != NULL)
-		array_free(*args);
-	if (*line != NULL)
-		free(*line);
 }
