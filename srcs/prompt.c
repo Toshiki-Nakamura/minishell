@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 22:28:53 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 17:32:34 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 	// ' "	クォーテーション
 	// > >>	リダイレクト fd
 	*args = ft_split(*line, ' ');
-	*status = sh_execute(*args, *env, fd);
+	*status = sh_execute(*args, *env, fd, 0);
 	if (*args != NULL)
 		array_free(*args);
 	if (*line != NULL)
