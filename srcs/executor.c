@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 21:42:23 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/08 16:08:19 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int		sh_launch(char **args, char **env, int fd)
 	return (1);
 }
 
-int		sh_execute(char **args, char **env, int fd)
+/*
+** @cmd_num = 複数コマンドの場合は1, 単体実行は0
+*/
+int		sh_execute(char **args, char **env, int fd, int cmd_num)
 {
 	if (args[0] == NULL)
 	{
@@ -71,6 +74,11 @@ int		sh_execute(char **args, char **env, int fd)
 	if (ft_strncmp(args[0], "export", 7) == 0)
 	{
 		return (exec_export(args, fd));
+	}
+	if (cmd_num)
+	{
+		exec_execve(args, env, fd);
+		return (1);
 	}
 	return (sh_launch(args, env, fd));
 }
