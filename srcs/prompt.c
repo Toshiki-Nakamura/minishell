@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 20:38:14 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/09 01:10:38 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ void		input_prompt(char **line, char ***args, char ***env, int *status)
 #if 1
 		char	**cmd_list;
 		cmd_list = ft_split(pipe_list[0], ' ');
+		if (pipe_list != NULL)
+			array_free(pipe_list);
 		*status = sh_execute(cmd_list, *env, fd, 0);
+		if (cmd_list != NULL)
+			array_free(cmd_list);
 #else//こちらにしたい。
 		*status = exec_command(pipe_list);
 #endif
