@@ -6,13 +6,14 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/07 22:05:50 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/07 22:55:58 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= srcs/main.c \
 		srcs/prompt.c \
 		srcs/cmd_manager.c \
+		srcs/pipe_executor.c \
 		srcs/executor.c \
 		srcs/builtin/cd.c \
 		srcs/builtin/echo.c \
