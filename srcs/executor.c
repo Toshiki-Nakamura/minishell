@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 16:08:19 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/09 16:07:59 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include "libft.h"
 #include "utils_string.h"
 #include "builtin.h"
+#include "env_list_base.h"
 
-int		sh_launch(char **args, char **env, int fd)
+static int		sh_launch(char **args, char **env, int fd)
 {
 	pid_t	pid;
 	int		status;
@@ -81,4 +82,16 @@ int		sh_execute(char **args, char **env, int fd, int cmd_num)
 		return (1);
 	}
 	return (sh_launch(args, env, fd));
+}
+
+int			exec_command(char *cmd)
+{
+	char	**cmd_list;
+	int		ret_value;
+
+	cmd_list = ft_split(cmd, ' ');
+	ret_value = sh_execute(cmd_list, get_env_param(), 1, 1);
+	if (ret_value == -1)
+		ft_putendl_fd(strerror(errno), 2);
+	return (ret_value);
 }

@@ -6,24 +6,35 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/04 22:28:24 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/09 12:56:35 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*dup_redirect_input(char *filename)
+static	int fd_array[256];
+
+char	*dup_redirect_input(const char *filename, size_t *len)
 {
-	return (filename);
+	(void)len;
+	(void)filename;
+	return (NULL);
 }
 
-int		get_output_fd(char *filename, int oflag)
+int		set_redirect_output(char *filename, int is_overwrite)
 {
 	(void)filename;
-	return (oflag);
+	fd_array[0] = 0;
+	return (is_overwrite);
 }
 
-void	close_fd(int fd)
+int		output(char *str)
 {
-	close(fd);
+	(void)str;
+	return (0);
+}
+
+void	close_fd(void)
+{
+
 }

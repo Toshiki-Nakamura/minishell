@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/09 08:18:35 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/09 16:06:55 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void		input_prompt(int *status)
 		if (cmd_list != NULL)
 			array_free(cmd_list);
 #else//こちらにしたい。
-		*status = exec_command(pipe_list);
+		*status = exec_command(pipe_list[0]);
 #endif
 	}
 	else if (i >= 2)
-		*status = exec_pipe_list(i, pipe_list);
+		*status = fork_exec_commands(i, pipe_list);
 	if (pipe_list != NULL)
 		array_free(pipe_list);
 }
