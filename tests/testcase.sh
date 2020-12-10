@@ -19,5 +19,6 @@ ls | cat -e | grep test
 echo '----- test: gcc <a.out cat -e> -----'
 gcc hello.c
 ./a.out | cat -e
+rm ./a.out
 echo '========== test finished =============================='
 exit
