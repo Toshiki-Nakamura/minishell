@@ -9,6 +9,9 @@ pwd
 echo '----- test: export 1 -----'
 export TEST_EXPORT=hoge
 echo $TEST_EXPORT
+echo '----- test: export 2 -----'
+export NO_VALUE=
+echo $NO_VALUE_
 echo '----- test: unset 1 -----'
 unset TEST_EXPORT
 echo $TEST_EXPORT
@@ -17,6 +20,13 @@ ls
 ls -lt
 echo '----- test: pipe 1 -----'
 ls | cat -e | grep test
+echo '----- test: pipe 2 -----'
+pwd | cat -e
+echo '----- test: pipe 3 -----'
+cd .. | ls
+pwd
+echo '----- test: pipe4 -----'
+exit | echo hoge | ls
 echo '----- test: gcc <a.out cat -e> -----'
 gcc hello.c
 ./a.out | cat -e
