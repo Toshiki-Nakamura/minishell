@@ -1,5 +1,6 @@
 echo '========== test start =============================='
-echo '----- test: echo 1 -----'
+echo '----- test: empty new line -----'
+
 echo '----- test: pwd 1 -----'
 pwd
 echo '----- test: cd 1 -----'
