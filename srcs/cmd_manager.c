@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/10 12:45:20 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/10 12:59:15 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		exec_command_line(const char *line)
 	int		i;
 	int		ret_status;
 
-	ret_status = 0;
+	ret_status = 1;
 	// ;	複数コマンドのパース
 	// |	パイプ
 	// ' "	クォーテーション
