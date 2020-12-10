@@ -12,6 +12,23 @@ echo $TEST_EXPORT
 echo '----- test: export 2 -----'
 export NO_VALUE=
 echo $NO_VALUE_
+echo '----- test: export 3 -----'
+export KEY
+export | sed /SHLVL/d
+echo '----- test: export 4 -----'
+env | grep KEY
+export | grep KEY
+echo '----- test: export 4 -----'
+export KEY=value
+env | grep KEY
+export | grep KEY
+export KEY 
+env | grep KEY
+export | grep KEY
+echo '----- test: export 5 -----'
+unset KEY
+env | grep KEY
+export | grep KEY
 echo '----- test: unset 1 -----'
 unset TEST_EXPORT
 echo $TEST_EXPORT

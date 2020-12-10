@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 15:45:10 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/10 22:45:31 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void				set_env_value(const char *env)
 	}
 	else if ((p = find_env_info(input->key)))
 	{
-		free(p->value);
+		if (p->value != NULL)
+			free(p->value);
 		p->value = ft_strdup(input->value);
 		delete_env_info(input);
 	}
