@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/07 22:55:58 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/11 18:56:23 by tnakamur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS	= srcs/main.c \
 		srcs/env/env_info.c \
 		srcs/env/env_list.c \
 		srcs/env/env_list_base.c \
+		srcs/env/env_show.c \
 		srcs/utils/utils.c \
 		srcs/utils/utils_string.c \
 		srcs/utils/utils_list.c

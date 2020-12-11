@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/11 17:22:58 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 18:57:57 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		sh_launch(char **args, char **env, int fd)
 		if (WIFEXITED(status))
 		{
 			exit_code = WEXITSTATUS(status);
-			printf("%d\n", exit_code);
+			// printf("%d\n", exit_code);
 		}
 	}
 	return (1);

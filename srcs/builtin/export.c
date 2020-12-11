@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 17:09:17 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 18:54:18 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 #include <sys/param.h>
 #include "libft.h"
 #include "env_list.h"
-#include "env_info.h"
-#include "utils_string.h"
-#include "utils_list.h"
-
+#include "env_show.h"
 
 static int	search_equal(char *str)
 {
@@ -41,7 +38,7 @@ int			exec_export(char **args, int fd)
 	(void)args;
 	(void)fd;
 	if (args[1] == NULL)
-		show_export_list();//print_export();
+		show_export_list();
 	i = 0;
 	while (args[++i])
 	{
