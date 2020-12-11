@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/10 21:25:20 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:14:49 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "env_info.h"
+#include "utils_list.h"
 #include "utils_string.h"
 
 t_list	*g_env_list_top;
 char	*g_env_question;
 char	**g_env;
 
-static void	show_env_info(void *info)
+// env_show.c に移動予定
+static void		show_info_for_env(void *info)
 {
 	t_env_info	*p;
 
@@ -33,11 +35,11 @@ static void	show_env_info(void *info)
 	ft_putstr_fd("\n", 1);
 }
 
-static void	show_export_info(void *content)
+static void		show_info_for_export(void *info)
 {
 	t_env_info	*p;
 
-	p = (t_env_info *)content;
+	p = (t_env_info *)info;
 	if ((p->key[0] == '_' && p->key[1] == '\0'))
 		return ;
 	ft_putstr_fd("declare -x ", 1);
@@ -51,21 +53,22 @@ static void	show_export_info(void *content)
 	ft_putchar_fd('\n', 1);
 }
 
-void		show_env_list_contents(t_list *p, int is_export)
+void			show_env_list(void)
 {
-	if (!p)
-		return ;
-	if (is_export)
-	{
-		show_export_info(p->content);
-		show_env_list_contents(p->next, is_export);
-	}
-	if (!is_export)
-	{
-		show_env_info(p->content);
-		show_env_list_contents(p->next, is_export);
-	}
+	ft_lstiter(g_env_list_top, show_info_for_env);
 }
+
+void			show_export_list(void)
+{
+	t_list *p;
+
+	p = list_dup(g_env_list_top);
+	sort_env_list(&p, &ft_strcmp);
+	ft_lstiter(p, show_info_for_export);
+	ft_lstclear(&p, &delete_env_info);
+}
+// env_show.c に移動予定
+
 
 static t_env_info		*set_key_only(const char *key)
 {

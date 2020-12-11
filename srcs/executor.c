@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/09 16:07:59 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:22:58 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 #include "utils_string.h"
 #include "builtin.h"
 #include "env_list_base.h"
+#include "env_list.h"
 
 static int		sh_launch(char **args, char **env, int fd)
 {
 	pid_t	pid;
 	int		status;
+	int		exit_code;
 
 	pid = fork();
 	/* printf("ppid = [%d]\n", pid); */
@@ -35,6 +37,12 @@ static int		sh_launch(char **args, char **env, int fd)
 	else
 	{
 		wait(&status);
+		// waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+		{
+			exit_code = WEXITSTATUS(status);
+			printf("%d\n", exit_code);
+		}
 	}
 	return (1);
 }

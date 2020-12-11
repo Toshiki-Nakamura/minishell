@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:01:41 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 15:48:14 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:14:00 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "utils_string.h"
 #include "utils_list.h"
 #include "env_info.h"
+#include "env_list.h"
 
 void				initialize_env_list(char **env)
 {
@@ -33,11 +34,14 @@ void				initialize_env_list(char **env)
 		ft_lstadd_back(&g_env_list_top, plist);
 		env++;
 	}
+	if (!get_env_value("OLDPWD"))
+		set_env_value("OLDPWD");
 }
 
 void				finalize_env_list(void)
 {
 	ft_lstclear(&g_env_list_top, delete_env_info);
+	free(g_env_question);
 }
 
 char				**get_env_param(void)

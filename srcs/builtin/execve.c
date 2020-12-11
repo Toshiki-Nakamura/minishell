@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/08 18:11:16 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 15:58:13 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		exec_execve(char **args, char **env, int fd)
 		{
 			ft_putstr_fd("shell: command not found: ", 2);
 			ft_putendl_fd(args[0], 2);
-			exit(EXIT_FAILURE);
+			exit(127);
 		}
 	}
 	if ((execve(args[0], args, env)) == -1)

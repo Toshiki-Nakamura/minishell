@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/10 22:45:31 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:16:24 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 #include "utils_string.h"
 #include "utils_list.h"
 
-void				show_env_list(void)
-{
-	show_env_list_contents(g_env_list_top, 0);
-}
 
 static t_env_info	*find_env_info(const char *key)
 {
