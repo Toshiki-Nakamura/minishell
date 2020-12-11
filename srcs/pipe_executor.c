@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/09 16:09:36 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/11 22:20:06 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,22 @@ int			fork_exec_commands(int cmd_num, char **pipe_list)
 {
 	pid_t	pid;
 	int		ret_value;
+	int		status;
 
 	ret_value = 1; /* 0 でreturn するとinput_promptが終了してしまう */
 	pid = fork();
 	if (pid != 0)
 	{
-		wait(NULL);
+		wait(&status);
+		/* 子プロセスの終了コード => $? */
+		// if (WIFEXITED(status)) 
+			// printf("[exit code = %d]\n", WEXITSTATUS(status));
 		return (ret_value);
 	}
 	else
 	{
 		ret_value = exec_pipe_command(cmd_num - 1, pipe_list);
 		//printf("child_process finished(%d)\n", ret_value);
-		exit(1);
+		exit(1);// ? echo | cd => exit(0)
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/08 18:12:58 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 21:05:12 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_join(char *s, char c)
 	return (new);
 }
 
-int		ft_strncmp_ex(const char *s1, const char *s2, size_t n)
+int		ft_cmp_ignore_case(const char *s1, const char *s2, size_t n)
 {
 	size_t i;
 

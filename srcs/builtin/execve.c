@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 15:58:13 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/11 22:15:40 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ void		exec_execve(char **args, char **env, int fd)
 	{
 		if (!parse_path(&args[0]))
 		{
-			ft_putstr_fd("shell: command not found: ", 2);
-			ft_putendl_fd(args[0], 2);
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(args[0], 2);
+			ft_putendl_fd(": command not found", 2);
 			exit(127);
 		}
 	}

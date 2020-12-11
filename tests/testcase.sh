@@ -44,6 +44,14 @@ cd .. | ls
 pwd
 echo '----- test: pipe4 -----'
 exit | echo hoge | ls
+echo '----- test: crazy case 1-----'
+CD ..
+PWd
+ECho minihsell
+echo '----- test: crazy case 1-----'
+UnsEt
+EXPORT
+EXit
 echo '----- test: gcc <a.out cat -e> -----'
 gcc hello.c
 ./a.out | cat -e
