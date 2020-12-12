@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/11 22:17:36 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/12 15:44:04 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include "libft.h"
 #include "utils_string.h"
+#include "utils.h"
 #include "builtin.h"
 #include "env_list_base.h"
 #include "env_list.h"
@@ -72,6 +73,8 @@ int			exec_command(char *cmd)
 
 	cmd_list = ft_split(cmd, ' ');
 	ret_value = sh_execute(cmd_list, get_env_param(), 1);
+	if (cmd_list != NULL)
+		array_free(cmd_list);
 	if (ret_value == -1)
 		ft_putendl_fd(strerror(errno), 2);
 	return (ret_value);
