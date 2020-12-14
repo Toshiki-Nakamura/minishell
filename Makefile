@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/11 18:56:23 by tnakamur         ###   ########.fr        #
+#    Updated: 2020/12/14 15:09:59 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS	= srcs/main.c \
 		srcs/builtin/export.c \
 		srcs/builtin/pwd.c \
 		srcs/builtin/unset.c \
-		srcs/inout.c \
+		srcs/redirect.c \
 		srcs/env/env_info.c \
 		srcs/env/env_list.c \
 		srcs/env/env_list_base.c \

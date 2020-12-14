@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/14 14:57:34 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/14 15:09:01 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "builtin.h"
 #include "env_list_base.h"
 #include "env_list.h"
-#include "inout.h"
+#include "redirect.h"
 
 int		is_builtin(char *cmd)
 {
