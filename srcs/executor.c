@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/12 15:44:04 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/14 14:57:34 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "builtin.h"
 #include "env_list_base.h"
 #include "env_list.h"
+#include "inout.h"
 
 int		is_builtin(char *cmd)
 {
@@ -71,8 +72,24 @@ int			exec_command(char *cmd)
 	char	**cmd_list;
 	int		ret_value;
 
+	ret_value = -1;
+#if 0
+	//"> filename" があった場合は下記コマンドを実行して出力fdを切り替える
+	int fd_std_out;
+	int fd_std_in;
+	if ((-1 == (fd_std_in = set_redirect_input("hoge.txt")))
+		||
+		(-1 == (fd_std_out = set_redirect_output("fuga.txt", 0))))
+	{
+		array_free(cmd_list);
+		return (ret_value);
+	}
+#endif
 	cmd_list = ft_split(cmd, ' ');
 	ret_value = sh_execute(cmd_list, get_env_param(), 1);
+
+	//undo_redirect_fd(fd_std_in, fd_std_out); //これはプロンプト表示のために毎回戻す
+
 	if (cmd_list != NULL)
 		array_free(cmd_list);
 	if (ret_value == -1)
