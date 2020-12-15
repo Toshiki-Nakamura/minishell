@@ -44,6 +44,12 @@ cd .. | ls
 pwd
 echo '----- test: pipe4 -----'
 exit | echo hoge | ls
+echo '----- test: quote 1 -----'
+echo "ddd' ss 'DD"
+echo "aaa"'bb"c'" 'aaa'"
+echo 'aaa"CCC"'"eee"'ggggg'''
+echo 'bb"cccddd"ee"ff''ii"jj"k'
+echo "''''"'"""'
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
