@@ -22,7 +22,7 @@ echo '----- test: export 4 -----'
 export KEY=value
 env | grep KEY
 export | grep KEY
-export KEY 
+export KEY
 env | grep KEY
 export | grep KEY
 echo '----- test: export 5 -----'
@@ -53,8 +53,9 @@ echo "''''"'"""'
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
+cd tests
 ECho minihsell
-echo '----- test: crazy case 1-----'
+echo '----- test: crazy case 2-----'
 UnsEt
 EXPORT
 EXit
