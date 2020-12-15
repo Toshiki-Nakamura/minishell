@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/15 14:38:18 by tnakamur         ###   ########.fr        #
+#    Updated: 2020/12/16 00:38:57 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,11 @@ SRCS	= srcs/main.c \
 		srcs/env/env_show.c \
 		srcs/utils/utils.c \
 		srcs/utils/utils_string.c \
+		srcs/utils/utils_string_operation.c \
 		srcs/utils/utils_quote.c \
-		srcs/utils/utils_list.c
+		srcs/utils/utils_list.c \
+		srcs/utils/utils_redirect.c \
+		srcs/utils/utils_env_param.c
 
 NAME	= minishell
 CC		= gcc
