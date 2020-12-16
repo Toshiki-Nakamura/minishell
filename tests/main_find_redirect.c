@@ -91,6 +91,7 @@ int		main(int ac, char **av, char **env)
 	test_replace_env_param("cd HOME");
 	test_replace_env_param("echo $HOME $LANG");
 	test_replace_env_param("echo $HOME '$LANG' $LANG");
+	test_replace_env_param("echo $HOME$LANG2$HOME");
 
 	printf("--- memory leak check ---\n");
 	system("leaks minishell");

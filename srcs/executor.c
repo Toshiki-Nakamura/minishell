@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/14 15:09:01 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:39:02 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 #include "libft.h"
 #include "utils_string.h"
 #include "utils.h"
+#include "utils_redirect.h"
 #include "builtin.h"
 #include "env_list_base.h"
 #include "env_list.h"
 #include "redirect.h"
 
-int		is_builtin(char *cmd)
+int			is_builtin(char *cmd)
 {
 	if (cmd == NULL)
 		return (1);
@@ -43,7 +44,7 @@ int		is_builtin(char *cmd)
 	return (0);
 }
 
-int		sh_execute(char **args, char **env, int fd)
+int			sh_execute(char **args, char **env, int fd)
 {
 	if (args[0] == NULL)
 		return (1);

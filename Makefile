@@ -6,12 +6,12 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/16 12:50:45 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/16 13:16:38 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= srcs/main.c
-#SRCS	= tests/main_find_redirect.c
+#SRCS	= srcs/main.c
+SRCS	= tests/main_find_redirect.c
 
 SRCS	+= srcs/prompt.c \
 		srcs/cmd_manager.c \

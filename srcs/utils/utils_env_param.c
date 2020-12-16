@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 12:48:43 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:16:02 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			get_envparam_length(const char *cmd)
 	if (*p != '$')
 		return (0);
 	p++;
-	while (is_printable(*p, " <>|;&"))
+	while (is_available_env_key(*p))
 	{
 		param_len++;
 		p++;
