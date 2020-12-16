@@ -9,13 +9,13 @@
 void	test_get_redirect_length(char *cmd)
 {
 	int ret = get_redirect_length(cmd);
-	printf("%d <= %s\n", ret, cmd);
+	printf("length(%d) in [%s]\n", ret, cmd);
 }
 
 void	test_get_envparam_length(char *cmd)
 {
 	int ret = get_envparam_length(cmd);
-	printf("%d <= %s\n", ret, cmd);
+	printf("length(%d) in [%s]\n", ret, cmd);
 }
 
 void	test_separate_redirect_word(char *cmd)
@@ -25,7 +25,7 @@ void	test_separate_redirect_word(char *cmd)
 	word = NULL;
 	if (separate_redirect_word(&str, &word))
 	{
-		printf("%s => %s:[%s]\n", cmd, word, str);
+		printf("[%s] separated [%s] and [%s]\n", cmd, str, word);
 		if (word)
 			free(word);
 		test_separate_redirect_word(str);
@@ -39,7 +39,7 @@ void	test_replace_env_param(char *cmd)
 	char *str = ft_strdup(cmd);
 	if (replace_env_param(&str))
 	{
-		printf("%s => %s\n", cmd, str);
+		printf("[%s] replaced [%s]\n", cmd, str);
 		test_replace_env_param(str);
 	}
 	if (str)
@@ -83,6 +83,7 @@ int		main(int ac, char **av, char **env)
 	test_separate_redirect_word("cd>>>hoge  ");
 	test_separate_redirect_word("cd> >hoge  ");
 	test_separate_redirect_word("cd >hoge >>fuga <    aho ");
+	test_separate_redirect_word("cd >hoge>>fuga   <aho <");
 
 	initialize_env_list(env);
 	printf("--- test_replace_env_param ---\n");
