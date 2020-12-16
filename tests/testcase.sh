@@ -50,6 +50,20 @@ echo "aaa"'bb"c'" 'aaa'"
 echo 'aaa"CCC"'"eee"'ggggg'''
 echo 'bb"cccddd"ee"ff''ii"jj"k'
 echo "''''"'"""'
+echo '----- test: quote 2 -----'
+echo "'$HOME' $HOME"
+echo '----- test: quote 3 -----'
+echo '"$HOME" '$HOME''
+echo '----- test: quote 4 -----'
+echo '"$HOME"' '''$HOME'''
+echo '----- test: quote 5 -----'
+echo '"$HOME ''$HOME''"'
+echo '----- test: quote 6 -----'
+echo "'$HOME ""$HOME""'"
+echo '----- test: quote 7 -----'
+echo '"''$HOME'' "'
+echo '----- test: quote 8 -----'
+echo '"$HOME ''$HOME''"'
 echo '----- test: crazy case 1-----'
 CD ..
 PWd

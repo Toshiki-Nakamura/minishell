@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env_param.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 13:16:02 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 20:56:20 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,33 @@ static char	*find_invalid_envparam_head(char *cmd)
 {
 	char	*p;
 	char	quote;
+	char	d_quote;
 
 	p = cmd;
 	quote = 0;
+	d_quote = 0;
 	while (*p != 0)
 	{
+		#if 1
+		if (*p == '"' && d_quote)
+			d_quote = 0;
+		else if (*p == '"' && !d_quote && !quote)
+			d_quote = *p;
+		if (!d_quote && !quote && *p == '\'')
+			quote = *p;
+		else if (quote && (*p == quote))
+			quote = 0;
+		else if (!quote && (*p == '$'))
+			return (p);
+		#endif
+		#if 0
 		if (!quote && ((*p == '"') || (*p == '\'')))
 			quote = *p;
 		else if (quote && (*p == quote))
 			quote = 0;
 		else if (!quote && (*p == '$'))
 			return (p);
+		#endif
 		p++;
 	}
 	return (NULL);

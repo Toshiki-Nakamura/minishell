@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 14:29:34 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/15 14:33:00 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/16 20:07:22 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UTIILS_QUOTE_H
 
 int			is_quote(int c);
-char		*clean_line(char *line, int *quote, int *idx);
+char		*parse_line(char *line, int *quote, int *idx);
+char		*remove_quote(char *line);
 
 #endif

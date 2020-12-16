@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/15 15:09:33 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/16 20:55:46 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "utils_string.h"
 #include "cmd_manager.h"
 #include "utils_quote.h"
+#include "utils_env_param.h"
 
 void	get_quote_line(char **line)
 {
@@ -68,26 +69,25 @@ static char	*get_cmd_line(char c)
 	return (line);
 }
 
-void		get_quote_mode(char **line, char quote, int idx)
+void		get_quote_mode(char **line, char quote)
 {
 	char	*line_next;
-	char	*mode_line;
-	char	*tmp;
-	int		q;
-	int		n_idx;
 
-	q = 0;
-	n_idx = 0;
 	*line = ft_join(*line, '\n');
 	ft_putstr_fd("> ", 2);
 	line_next = get_cmd_line(quote);
 	*line = ft_strjoin_free(*line, line_next);
-
+	#if 0
+	char	*tmp;
+	replace_env_param(line); /* $変数置換 */
 	tmp = *line;
-	mode_line = clean_line(tmp + idx, &q, &n_idx); /* 後程、$変数挿し込む */
-	tmp[idx] = '\0';
-	*line = ft_strjoin_free(*line, mode_line);
+	*line = remove_quote(*line);
+	free(tmp);
+	#endif
 }
+
+//echo '"$HOME ''$HOME''" 
+//>'
 
 void		check_quote(char **line)
 {
@@ -97,23 +97,29 @@ void		check_quote(char **line)
 
 	quote = 0;
 	idx = 0;
-	new = clean_line(*line, &quote, &idx);
+	new = parse_line(*line, &quote, &idx);// " ' を削ぎ落とすのは一番最後
 	free(*line);
 	*line = new;
 	if (quote <= 2)
 		return ;
-	get_quote_mode(line, quote, idx);
+	get_quote_mode(line, quote);
 }
 
 void		input_prompt(int *status)
 {
 	int		fd;
 	char	*line;
+	char	*new;
 
 	fd = 1;
 	ft_putstr_fd("\033[32mshell$> \033[0m", 1);
 	line = get_cmd_line('\n'); // !!! wait return !!!
 	check_quote(&line);
+	replace_env_param(&line); /* $変数置換 */
+	new = remove_quote(line); /* クォーテーション除去 */
+	if (line != NULL)
+		free(line);
+	line = new;
 	*status = exec_command_line(line);
 	if (line != NULL)
 		free(line);
