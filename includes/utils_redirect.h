@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:20:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 00:36:25 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:05:45 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define UTILS_REDIRECT_H
 
 int			get_redirect_length(const char *cmd);
-int			get_envparam_length(const char *cmd);
-char		*extract_redirect_word(const char *cmd, char **word);
-char		*replace_env_param(const char *cmd);
+
+/*
+**	cmdに含まれる文字列から最初のリダイレクトとファイル名を抽出し、cmdと分離する
+*/
+int			separate_redirect_word(char **cmd, char **word);
 
 #endif

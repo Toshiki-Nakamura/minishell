@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:28:43 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 00:36:42 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:06:10 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils_string_operation.h"
 #include "utils_string.h"
 
-int			get_redirect_length(const char *cmd)
+int		get_redirect_length(const char *cmd)
 {
 	const char	*p;
 	int			total_len;
@@ -26,9 +26,9 @@ int			get_redirect_length(const char *cmd)
 	file_len = 0;
 	if ((p[0] != '<') && (p[0] != '>'))
 		return (0);
-	if ((p[0] == '>') && (p[1] == '>') && (is_printable(p[2], "<>"))) // >>のケース
+	if ((p[0] == '>') && (p[1] == '>') && (is_printable(p[2], "<>")))
 		p += 2;
-	else if (((p[0] == '>') || (p[0] == '<')) && (is_printable(p[1], "<>"))) // >,< 単独のケース
+	else if (((p[0] == '>') || (p[0] == '<')) && (is_printable(p[1], "<>")))
 		p += 1;
 	else
 		return (0);
@@ -43,13 +43,14 @@ int			get_redirect_length(const char *cmd)
 	return (total_len);
 }
 
-char		*extract_redirect_word(const char *cmd, char **word)
+int		separate_redirect_word(char **cmd, char **word)
 {
-	const char	*p;
-	char		quote;
-	int			len;
+	char	*p;
+	char	quote;
+	int		len;
+	char	*ret_cmd;
 
-	p = cmd;
+	p = *cmd;
 	quote = 0;
 	while (*p != '\0')
 	{
@@ -60,10 +61,13 @@ char		*extract_redirect_word(const char *cmd, char **word)
 		else if (!quote && ((*p == '<') || (*p == '>')))
 		{
 			if (!(len = get_redirect_length(p)))
-				return (NULL);
-			return (extract_word(cmd, p - cmd, len, word));
+				break ;
+			ret_cmd = extract_word(*cmd, p - *cmd, len, word);
+			free(*cmd);
+			*cmd = ret_cmd;
+			return (1);
 		}
 		p++;
 	}
-	return (NULL);
+	return (0);
 }

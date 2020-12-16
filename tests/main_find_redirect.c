@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
 #include "env_list_base.h"
 #include "utils_redirect.h"
 #include "utils_env_param.h"
@@ -16,17 +18,32 @@ void	test_get_envparam_length(char *cmd)
 	printf("%d <= %s\n", ret, cmd);
 }
 
-void	test_extract_redirect_word(char *cmd)
+void	test_separate_redirect_word(char *cmd)
 {
 	char *word;
-	char *ret = extract_redirect_word(cmd, &word);
-	printf("%s => %s:[%s]\n", cmd, word, ret);
+	char *str = ft_strdup(cmd);
+	word = NULL;
+	if (separate_redirect_word(&str, &word))
+	{
+		printf("%s => %s:[%s]\n", cmd, word, str);
+		if (word)
+			free(word);
+		test_separate_redirect_word(str);
+	}
+	if (str)
+		free(str);
 }
 
 void	test_replace_env_param(char *cmd)
 {
-	char *ret = replace_env_param(cmd);
-	printf("%s => %s\n", cmd, ret);
+	char *str = ft_strdup(cmd);
+	if (replace_env_param(&str))
+	{
+		printf("%s => %s\n", cmd, str);
+		test_replace_env_param(str);
+	}
+	if (str)
+		free(str);
 }
 
 int		main(int ac, char **av, char **env)
@@ -34,8 +51,8 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	if (ac != 1)
 		return (0);
-	initialize_env_list(env);
 
+	printf("--- test_get_redirect_length ---\n");
 	test_get_redirect_length(">hoge");
 	test_get_redirect_length("> hoge");
 	test_get_redirect_length(">   hoge");
@@ -49,6 +66,7 @@ int		main(int ac, char **av, char **env)
 	test_get_redirect_length("<>  fuga   ");
 	test_get_redirect_length("<<fuga   ");
 
+	printf("--- test_get_envparam_length ---\n");
 	test_get_envparam_length("$ENV");
 	test_get_envparam_length("$ ENV");
 	test_get_envparam_length("$ENV>hoge");
@@ -56,18 +74,27 @@ int		main(int ac, char **av, char **env)
 	test_get_envparam_length("$ENVfuga < fuga");
 	test_get_envparam_length("$ENV|");
 
-	test_extract_redirect_word("cd>hoge  ");
-	test_extract_redirect_word("cd> hoge  ");
-	test_extract_redirect_word("cd >hoge  ");
-	test_extract_redirect_word("cd >   hoge fuga");
-	test_extract_redirect_word("cd>>hoge  ");
-	test_extract_redirect_word("cd>>>hoge  ");
-	test_extract_redirect_word("cd> >hoge  ");
+	printf("--- test_separate_redirect_word ---\n");
+	test_separate_redirect_word("cd>hoge  ");
+	test_separate_redirect_word("cd> hoge  ");
+	test_separate_redirect_word("cd >hoge  ");
+	test_separate_redirect_word("cd >   hoge fuga");
+	test_separate_redirect_word("cd>>hoge  ");
+	test_separate_redirect_word("cd>>>hoge  ");
+	test_separate_redirect_word("cd> >hoge  ");
+	test_separate_redirect_word("cd >hoge >>fuga <    aho ");
 
+	initialize_env_list(env);
+	printf("--- test_replace_env_param ---\n");
 	test_replace_env_param("cd $HOME");
 	test_replace_env_param("cd $HOME>test.txt");
 	test_replace_env_param("cd '$HOME' $HOME");
 	test_replace_env_param("cd $HOM HOME");
+	test_replace_env_param("cd HOME");
+	test_replace_env_param("echo $HOME $LANG");
+
+	printf("--- memory leak check ---\n");
+	system("leaks minishell");
 
 	return (0);
 }

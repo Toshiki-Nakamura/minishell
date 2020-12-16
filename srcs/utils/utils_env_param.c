@@ -6,13 +6,33 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 00:33:26 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:06:37 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "env_list.h"
 #include "utils_string_operation.h"
+
+static char	*find_invalid_envparam_head(char *cmd)
+{
+	char	*p;
+	char	quote;
+
+	p = cmd;
+	quote = 0;
+	while (*p != 0)
+	{
+		if (!quote && ((*p == '"') || (*p == '\'')))
+			quote = *p;
+		else if (quote && (*p == quote))
+			quote = 0;
+		else if (!quote && (*p == '$'))
+			return (p);
+		p++;
+	}
+	return (NULL);
+}
 
 int			get_envparam_length(const char *cmd)
 {
@@ -26,7 +46,7 @@ int			get_envparam_length(const char *cmd)
 	if (*p != '$')
 		return (0);
 	p++;
-	while (is_printable(*p, " <>|;&"))//環境変数の終端を定義する
+	while (is_printable(*p, " <>|;&"))
 	{
 		param_len++;
 		p++;
@@ -35,31 +55,23 @@ int			get_envparam_length(const char *cmd)
 	return (total_len);
 }
 
-char		*replace_env_param(const char *cmd)
+int			replace_env_param(char **cmd)
 {
-	const char	*p;
-	char		quote;
-	int			len;
-	char		*env_key;
+	char	*p;
+	int		len;
+	char	*ret_cmd;
+	char	*env_key;
 
-	p = cmd;
-	quote = 0;
-	while (*p != 0)
-	{
-		if (!quote && ((*p == '"') || (*p == '\'')))
-			quote = *p;
-		else if (quote && (*p == quote))
-			quote = 0;
-		else if (!quote && (*p == '$'))
-		{
-			if (!(len = get_envparam_length(p)))
-				return (NULL);
-			if (!(env_key = malloc(len)))
-				return (NULL);
-			ft_strlcpy(env_key, (p + 1), len);
-			return (replace_word(cmd, (p - cmd), len, get_env_value(env_key)));
-		}
-		p++;
-	}
-	return (NULL);
+	if (!(p = find_invalid_envparam_head(*cmd)))
+		return (0);
+	if (!(len = get_envparam_length(p)))
+		return (0);
+	if (!(env_key = malloc(len)))
+		return (0);
+	ft_strlcpy(env_key, (p + 1), len);
+	ret_cmd = replace_word(*cmd, (p - *cmd), len, get_env_value(env_key));
+	free(env_key);
+	free(*cmd);
+	*cmd = ret_cmd;
+	return (1);
 }
