@@ -37,11 +37,8 @@ void	test_separate_redirect_word(char *cmd)
 void	test_replace_env_param(char *cmd)
 {
 	char *str = ft_strdup(cmd);
-	if (replace_env_param(&str))
-	{
-		printf("[%s] replaced [%s]\n", cmd, str);
-		test_replace_env_param(str);
-	}
+	replace_env_param(&str);
+	printf("[%s] replaced [%s]\n", cmd, str);
 	if (str)
 		free(str);
 }
@@ -93,6 +90,7 @@ int		main(int ac, char **av, char **env)
 	test_replace_env_param("cd $HOM HOME");
 	test_replace_env_param("cd HOME");
 	test_replace_env_param("echo $HOME $LANG");
+	test_replace_env_param("echo $HOME '$LANG' $LANG");
 
 	printf("--- memory leak check ---\n");
 	system("leaks minishell");

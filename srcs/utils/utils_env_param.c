@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 12:06:37 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/16 12:48:43 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ int			replace_env_param(char **cmd)
 	free(env_key);
 	free(*cmd);
 	*cmd = ret_cmd;
+	if (!replace_env_param(cmd))
+		return (0);
 	return (1);
 }
