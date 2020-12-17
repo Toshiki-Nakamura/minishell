@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inout.c                                            :+:      :+:    :+:   */
+/*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/14 14:13:19 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/17 12:41:08 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		set_redirect_output(char *filename, int is_overwrite)
 		close(fd_out);
 		return (-1);
 	}
+
 	fd_std_output = dup(STDOUT);
 	close(1);
 	dup2(fd_out, 1);

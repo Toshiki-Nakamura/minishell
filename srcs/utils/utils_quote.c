@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/16 20:10:26 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/17 15:42:39 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int			is_quote(int c)
 {
@@ -116,4 +117,25 @@ char		*parse_line(char *line, int *quote, int *idx)
 	}
 	new[j] = '\0';
 	return (new);
+}
+
+char		*skip_to_next_quote(char *str)
+{
+	int	target;
+
+	if (!str || ((*str != '"') && (*str != '\'')))
+	{
+		perror("head char is not quotation!!!");
+		return (NULL);
+	}
+	target = *str;
+	str++;
+	while (*str)
+	{
+		if (*str == target)
+			return (str);
+		str++;
+	}
+	perror("pair of quotation is not found!!!");
+	return (NULL);
 }
