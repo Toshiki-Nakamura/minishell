@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env_param.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 20:56:20 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/18 20:46:49 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "env_list.h"
+#include "utils_string.h"
 #include "utils_string_operation.h"
 
 static char	*find_invalid_envparam_head(char *cmd)
@@ -61,6 +62,8 @@ int			get_envparam_length(const char *cmd)
 	total_len = 0;
 	if (*p != '$')
 		return (0);
+	if (0 == ft_strcmp(p, "$?")) //?は本来使えない文字のため、$?だけ回避する
+		return (2);
 	p++;
 	while (is_available_env_key(*p))
 	{

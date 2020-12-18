@@ -54,7 +54,7 @@ void	test_separate_redirect_info(char *cmd)
 {
 	t_redirection type;
 	char *str = ft_strdup(cmd);
-	separate_redirect_info(str, &type);
+	separate_redirect_info(&str, &type);
 	printf("%s include file name [%s](%d)\n", cmd, str, type);
 	if (str)
 		free(str);
@@ -101,6 +101,7 @@ int		main(int ac, char **av, char **env)
 
 	initialize_env_list(env);
 	printf("--- test_replace_env_param ---\n");
+#if 0
 	test_replace_env_param("cd $HOME");
 	test_replace_env_param("cd $HOME>test.txt");
 	test_replace_env_param("cd '$HOME' $HOME");
@@ -111,6 +112,8 @@ int		main(int ac, char **av, char **env)
 	test_replace_env_param("echo $HOME$LANG2$HOME");
 	test_replace_env_param("echo $HOME$LANG2$HOME");
 	test_replace_env_param("echo \"'$HOME'\"'$LANG'$HOME");
+#endif
+	test_replace_env_param("echo $?");
 
 	printf("--- test_skip_redirect_mark ---\n");
 	test_skip_redirect_mark(">test.txt");
