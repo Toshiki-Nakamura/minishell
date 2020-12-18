@@ -43,6 +43,23 @@ void	test_replace_env_param(char *cmd)
 		free(str);
 }
 
+void	test_skip_redirect_mark(char *cmd)
+{
+	t_redirection type;
+	const char *ret = skip_redirect_mark(cmd, &type);
+	printf("%s skip [%s](%d)\n", cmd, ret, type);
+}
+
+void	test_separate_redirect_info(char *cmd)
+{
+	t_redirection type;
+	char *str = ft_strdup(cmd);
+	separate_redirect_info(str, &type);
+	printf("%s include file name [%s](%d)\n", cmd, str, type);
+	if (str)
+		free(str);
+}
+
 int		main(int ac, char **av, char **env)
 {
 	(void)av;
@@ -94,6 +111,33 @@ int		main(int ac, char **av, char **env)
 	test_replace_env_param("echo $HOME$LANG2$HOME");
 	test_replace_env_param("echo $HOME$LANG2$HOME");
 	test_replace_env_param("echo \"'$HOME'\"'$LANG'$HOME");
+
+	printf("--- test_skip_redirect_mark ---\n");
+	test_skip_redirect_mark(">test.txt");
+	test_skip_redirect_mark(">   test.txt");
+	test_skip_redirect_mark(">>  test.txt");
+	test_skip_redirect_mark("<test.txt");
+	test_skip_redirect_mark(">2test.txt");
+	test_skip_redirect_mark("<&test.txt");
+	test_skip_redirect_mark("><test.txt");
+	test_skip_redirect_mark("<=test.txt");
+	test_skip_redirect_mark(">& error.txt");
+	test_skip_redirect_mark("<< error.txt");
+	test_skip_redirect_mark("2>&1 error.txt");
+
+	printf("--- test_separate_redirect_info ---\n");
+	test_separate_redirect_info(">test.txt");
+	test_separate_redirect_info(">   test.txt");
+	test_separate_redirect_info(">>  test.txt");
+	test_separate_redirect_info("<test.txt");
+	test_separate_redirect_info(">2test.txt");
+	test_separate_redirect_info("<&test.txt");
+	test_separate_redirect_info("><test.txt");
+	test_separate_redirect_info("<=test.txt");
+	test_separate_redirect_info(">& error.txt");
+	test_separate_redirect_info("<< error.txt");
+	test_separate_redirect_info("2>&1 error.txt");
+
 
 	printf("--- memory leak check ---\n");
 	system("leaks minishell");

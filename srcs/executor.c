@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 12:39:02 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/18 12:15:16 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,31 +68,50 @@ int			sh_execute(char **args, char **env, int fd)
 	return (1);
 }
 
-int			exec_command(char *cmd)
+static int	exec_simple_command(char *cmd)
 {
 	char	**cmd_list;
 	int		ret_value;
 
-	ret_value = -1;
-#if 0
-	//"> filename" があった場合は下記コマンドを実行して出力fdを切り替える
-	int fd_std_out;
-	int fd_std_in;
-	if ((-1 == (fd_std_in = set_redirect_input("hoge.txt")))
-		||
-		(-1 == (fd_std_out = set_redirect_output("fuga.txt", 0))))
-	{
-		array_free(cmd_list);
-		return (ret_value);
-	}
-#endif
 	cmd_list = ft_split(cmd, ' ');
 	ret_value = sh_execute(cmd_list, get_env_param(), 1);
-
-	//undo_redirect_fd(fd_std_in, fd_std_out); //これはプロンプト表示のために毎回戻す
-
 	if (cmd_list != NULL)
 		array_free(cmd_list);
+	return (ret_value);
+}
+
+int			exec_command(char *cmd)
+{
+	int		ret_value;
+	int 	fd_std_in;
+	int 	fd_std_out;
+	char 	*redirect;
+	char 	*str;
+	t_redirection	type;
+
+	str = ft_strdup(cmd);
+	fd_std_in = 0;
+	fd_std_out = 1;
+	// TODO: echo hoge ><a.txt >b.txt の場合、 syntax error near unexpected token `<'で終了すべき
+	// TODO: echo '---<a.out>---' がリダイレクトとして認識されてしまう。promptで''を落としているのが原因
+	while (separate_redirect_word(&str, &redirect))
+	{
+		undo_redirect_fd(fd_std_in, fd_std_out);
+		separate_redirect_info(&redirect, &type);
+		if ((type == REDIRECT_INPUT)
+			&& (-1 == (fd_std_in = set_redirect_input(redirect))))
+			return (-1);
+		else if ((type == REDIRECT_APPEND)
+			&& (-1 == (fd_std_out = set_redirect_output(redirect, 0))))
+			return (-1);
+		else if ((type == REDIRECT_OVERRIDE)
+			&& (-1 == (fd_std_out = set_redirect_output(redirect, 1))))
+			return (-1);
+		free(redirect);
+	}
+	ret_value = exec_simple_command(str);
+	free(str);
+	undo_redirect_fd(fd_std_in, fd_std_out); //これはプロンプト表示のために毎回戻す
 	if (ret_value == -1)
 		ft_putendl_fd(strerror(errno), 2);
 	return (ret_value);
