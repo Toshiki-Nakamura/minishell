@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.h                                         :+:      :+:    :+:   */
+/*   signal_handle.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 13:45:46 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/19 14:01:10 by tnakamur         ###   ########.fr       */
+/*   Created: 2020/12/17 22:41:12 by tnakamur          #+#    #+#             */
+/*   Updated: 2020/12/19 13:40:03 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTOR_H
-# define EXECUTOR_H
+#ifndef SIGNAL_HANDLE_H
+# define SIGNAL_HANDLE_H
 
-int		g_old_status;
+# include "libft.h"
 
-int		exec_command(char *cmd);
-int		sh_execute(char **args, char **env, int fd);
-int		is_builtin(char *cmd);
-void	set_exit_status(int status);
+void		sig_func(int sig);
+void		sig_process(int sig);
 
 #endif

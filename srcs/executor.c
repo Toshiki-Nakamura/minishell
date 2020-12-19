@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/18 12:15:16 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/19 14:21:50 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,20 @@
 #include "builtin.h"
 #include "env_list_base.h"
 #include "env_list.h"
+#include "env_info.h"
 #include "redirect.h"
+#include "executor.h"
+
+void		set_exit_status(int status)
+{
+	char *s;
+	s = ft_itoa(status);
+	char *exit_code = ft_strjoin("?=", s);
+	free(s);
+	set_env_value(exit_code);
+	free(exit_code);
+	g_old_status = status;
+}
 
 int			is_builtin(char *cmd)
 {
@@ -47,11 +60,11 @@ int			is_builtin(char *cmd)
 int			sh_execute(char **args, char **env, int fd)
 {
 	if (args[0] == NULL)
-		return (1);
+		return (ft_atoi(g_env_question));
 	if (ft_strncmp(args[0], "cd", 3) == 0)
 		return (exec_cd(args, env));
 	else if (ft_cmp_ignore_case(args[0], "cd", 3) == 0)
-		return (1);
+		return (0);
 	if (ft_cmp_ignore_case(args[0], "pwd", 4) == 0)
 		return (exec_pwd(fd));
 	if (ft_cmp_ignore_case(args[0], "env", 4) == 0)

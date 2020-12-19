@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:14:10 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 18:52:44 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/19 12:28:08 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int			exec_env(char **args, char **env, int fd)
 	(void)fd;
 	set_env_value("_=/usr/bin/env");
 	show_env_list();
-	return (1);
+	return (0);
 }

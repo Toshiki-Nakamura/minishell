@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 22:20:06 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/19 15:09:10 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include <sys/param.h>
 #include <signal.h>
 #include "executor.h"
+#include "signal_handle.h"
+#include "env_list.h"
+#include "utils_string.h"
+#include "utils.h"
 
 static int	exec_pipe_command(int remain_cmd_num, char **pipe_list)
 {
@@ -61,20 +65,33 @@ int			fork_exec_commands(int cmd_num, char **pipe_list)
 	int		ret_value;
 	int		status;
 
-	ret_value = 1; /* 0 でreturn するとinput_promptが終了してしまう */
+	ret_value = 0;
 	pid = fork();
+	signal(SIGINT, sig_process);
+	signal(SIGQUIT, sig_process);
 	if (pid != 0)
 	{
 		wait(&status);
 		/* 子プロセスの終了コード => $? */
-		// if (WIFEXITED(status)) 
-			// printf("[exit code = %d]\n", WEXITSTATUS(status));
+		if (WIFEXITED(status))
+		{
+			ret_value =  WEXITSTATUS(status);
+		}
+		if (WIFSIGNALED(status) && WTERMSIG(status) == 2)
+		{
+			ret_value = 130;
+		}
+		else if (WIFSIGNALED(status) && WTERMSIG(status) == 3)
+		{
+			ret_value = 131;
+		}
+		// printf("[exit code = %d]\n", ret_value);
 		return (ret_value);
 	}
 	else
 	{
 		ret_value = exec_pipe_command(cmd_num - 1, pipe_list);
 		//printf("child_process finished(%d)\n", ret_value);
-		exit(1);// ? echo | cd => exit(0)
+		exit(ret_value);// ? echo | cd => exit(retvalue)
 	}
 }

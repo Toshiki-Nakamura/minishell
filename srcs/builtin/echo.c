@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:42:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/16 17:26:02 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/19 12:27:56 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int			exec_echo(char **args, int fd)
 	}
 	if (!args[1] || ft_strncmp(args[1], "-n", 3) != 0)
 		write(fd, "\n", 1);
-	return (1);
+	return (0);
 }

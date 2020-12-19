@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/11 17:16:24 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/18 21:24:46 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ const char			*get_env_value(const char *key)
 
 	if (!(ft_strcmp(key, ENV_KEY_QUESTION)))
 	{
-		printf("%p\n", g_env_question);
+		// printf("%p\n", g_env_question);
 		return (g_env_question);
 	}
 	if (!(p = find_env_info(key)))

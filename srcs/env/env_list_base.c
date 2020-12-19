@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:01:41 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/11 17:14:00 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/19 11:31:40 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void				initialize_env_list(char **env)
 	if (g_env_list_top)
 		return ;
 	g_env_list_top = NULL;
-	g_env_question = NULL;
+	g_env_question = ft_strdup("0");
 	g_env = env;
 	while ((p = *env))
 	{

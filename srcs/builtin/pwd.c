@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:35:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/06 17:39:25 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/19 12:32:20 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			exec_pwd(int fd)
 
 	ft_memset(path, 0, MAXPATHLEN);
 	if (!getcwd(path, MAXPATHLEN))
-		return (0);
+		return (1);
 	ft_putendl_fd(path, fd);
-	return (1);
+	return (0);
 }

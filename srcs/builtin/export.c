@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 18:54:18 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/19 12:30:58 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static int	search_equal(char *str)
 int			exec_export(char **args, int fd)
 {
 	int i;
+	int	ret_status;
 
 	(void)args;
 	(void)fd;
+	ret_status = 0;
 	if (args[1] == NULL)
 		show_export_list();
 	i = 0;
@@ -47,11 +49,12 @@ int			exec_export(char **args, int fd)
 			ft_putstr_fd("export: `", 2);
 			ft_putstr_fd(args[i], 2);
 			ft_putendl_fd("': not a valid identifier", 2);
+			ret_status = 1;
 		}
 		else if (search_equal(args[i]) == 1)
 			set_env_value(args[i]);
 		else if (get_env_value(args[i]) == NULL)
 			set_env_value(args[i]);
 	}
-	return (1);
+	return (ret_status);
 }

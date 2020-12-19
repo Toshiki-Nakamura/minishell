@@ -64,6 +64,20 @@ echo '----- test: quote 7 -----'
 echo '"''$HOME'' "'
 echo '----- test: quote 8 -----'
 echo '"$HOME ''$HOME''"'
+echo '----- test: $? status -----'
+ls hoge
+echo $?
+echo $?
+echo | cd hoge
+echo $?
+echo | cd
+echo $?
+hoge
+
+
+echo $?
+ls | cat -e
+echo $?
 echo '----- test: crazy case 1-----'
 CD ..
 PWd

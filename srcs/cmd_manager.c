@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/12 10:51:25 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/19 13:54:48 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		exec_command_line(const char *line)
 	char	**pipe_list;
 	char	**cmd_list;
 
-	ret_status = EXIT_FAILURE;
+	ret_status = g_old_status;
 	i = 0;
 	pipe_list = ft_split(line, '|');
 	while (pipe_list[i])
