@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/17 15:42:39 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:20:43 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,5 @@ char		*skip_to_next_quote(char *str)
 		str++;
 	}
 	perror("pair of quotation is not found!!!");
-	return (NULL);
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:28:43 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/18 11:36:43 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:22:49 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "utils_string_operation.h"
 #include "utils_string.h"
 #include "utils_redirect.h"
+#include "utils_quote.h"
 
 const char	*skip_redirect_mark(const char *cmd, t_redirection *type)
 {
@@ -91,19 +92,15 @@ int			get_redirect_length(const char *cmd)
 int			separate_redirect_word(char **cmd, char **word)
 {
 	char	*p;
-	char	quote;
 	int		len;
 	char	*ret_cmd;
 
 	p = *cmd;
-	quote = 0;
 	while (*p != '\0')
 	{
-		if (!quote && ((*p == '"') || (*p == '\'')))
-			quote = *p;
-		else if (quote && (*p == quote))
-			quote = 0;
-		else if (!quote && ((*p == '<') || (*p == '>')))
+		if ((*p == '"') || (*p == '\''))
+			p = skip_to_next_quote(p);
+		else if ((*p == '<') || (*p == '>'))
 		{
 			if (!(len = get_redirect_length(p)))
 				break ;

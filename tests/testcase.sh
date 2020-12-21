@@ -50,6 +50,7 @@ echo "aaa"'bb"c'" 'aaa'"
 echo 'aaa"CCC"'"eee"'ggggg'''
 echo 'bb"cccddd"ee"ff''ii"jj"k'
 echo "''''"'"""'
+echo "hoge   'fuga'   DD"
 echo '----- test: quote 2 -----'
 echo "'$HOME' $HOME"
 echo '----- test: quote 3 -----'
