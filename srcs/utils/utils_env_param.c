@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/18 20:46:49 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:15:18 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,23 @@
 #include "env_list.h"
 #include "utils_string.h"
 #include "utils_string_operation.h"
+#include "utils_quote.h"
 
 static char	*find_invalid_envparam_head(char *cmd)
 {
 	char	*p;
-	char	quote;
 	char	d_quote;
 
 	p = cmd;
-	quote = 0;
 	d_quote = 0;
 	while (*p != 0)
 	{
-		#if 1
-		if (*p == '"' && d_quote)
-			d_quote = 0;
-		else if (*p == '"' && !d_quote && !quote)
-			d_quote = *p;
-		if (!d_quote && !quote && *p == '\'')
-			quote = *p;
-		else if (quote && (*p == quote))
-			quote = 0;
-		else if (!quote && (*p == '$'))
+		if (*p == '\'' && !d_quote)
+			p = skip_to_next_quote(p);
+		else if (*p == '"')
+			d_quote = ~d_quote;
+		else if (*p == '$')
 			return (p);
-		#endif
-		#if 0
-		if (!quote && ((*p == '"') || (*p == '\'')))
-			quote = *p;
-		else if (quote && (*p == quote))
-			quote = 0;
-		else if (!quote && (*p == '$'))
-			return (p);
-		#endif
 		p++;
 	}
 	return (NULL);
