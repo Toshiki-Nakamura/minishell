@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/21 15:15:18 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:35:27 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			get_envparam_length(const char *cmd)
 	total_len = 0;
 	if (*p != '$')
 		return (0);
-	if (0 == ft_strcmp(p, "$?")) //?は本来使えない文字のため、$?だけ回避する
+	if (0 == ft_strncmp(p, "$?", 2)) //?は本来使えない文字のため、$?だけ回避する
 		return (2);
 	p++;
 	while (is_available_env_key(*p))
