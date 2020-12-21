@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/19 14:21:50 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/21 13:48:05 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@
 #include "redirect.h"
 #include "executor.h"
 
-void		set_exit_status(int status)
+void		set_exit_code(int code)
 {
 	char *s;
-	s = ft_itoa(status);
+	s = ft_itoa(code);
 	char *exit_code = ft_strjoin("?=", s);
 	free(s);
 	set_env_value(exit_code);
 	free(exit_code);
-	g_old_status = status;
 }
 
 int			is_builtin(char *cmd)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:52:47 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/15 23:19:22 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:13:04 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <sys/param.h>
 #include "libft.h"
 #include "env_list.h"
+#include "env_list_base.h"
 
 static int is_numeric(const char *arg)
 {
@@ -66,5 +67,6 @@ void		exec_exit(char **args)
 		status = error_handle("exit", NULL, "too many arguments", 1);
 	else if (i > 2)
 		status = error_handle("exit", args[1], ": numeric argument required", 255);
+	finalize_env_list();
 	exit(status); //引数によって終了ステータスを変更しなければならない
 }

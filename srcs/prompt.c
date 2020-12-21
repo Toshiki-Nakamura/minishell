@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/19 13:19:00 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:48:07 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		get_quote_mode(char **line, char quote)
 	#endif
 }
 
-//echo '"$HOME ''$HOME''" 
+//echo '"$HOME ''$HOME''"
 //>'
 
 void		check_quote(char **line)
@@ -111,7 +111,7 @@ void		check_quote(char **line)
 	get_quote_mode(line, quote);
 }
 
-void		input_prompt(int *status)
+void		input_prompt(void)
 {
 	int		fd;
 	char	*line;
@@ -127,7 +127,7 @@ void		input_prompt(int *status)
 	if (line != NULL)
 		free(line);
 	line = new;
-	*status = exec_command_line(line);
+	exec_command_line(line);
 	if (line != NULL)
 		free(line);
 }

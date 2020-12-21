@@ -6,13 +6,13 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:41:41 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/09 08:18:05 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:13:23 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROMPT_H
 # define PROMPT_H
 
-void	input_prompt(int *status);
+void	input_prompt(void);
 
 #endif
