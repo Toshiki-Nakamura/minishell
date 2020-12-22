@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/21 13:48:05 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:19:04 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ static int	exec_simple_command(char *cmd)
 	char	**cmd_list;
 	int		ret_value;
 
-	cmd_list = ft_split(cmd, ' ');
+	cmd_list = util_split(cmd, ' ');
+	iter_remove_quote(cmd_list);
 	ret_value = sh_execute(cmd_list, get_env_param(), 1);
 	if (cmd_list != NULL)
 		array_free(cmd_list);

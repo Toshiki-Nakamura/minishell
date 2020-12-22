@@ -79,6 +79,8 @@ hoge
 echo $?
 ls | cat -e
 echo $?
+echo '----- test: utils_split and quote -----'
+echo "lkanvl; ; ';s  ; kl ;ls| lsvk   " | cat -e
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
@@ -88,7 +90,7 @@ echo '----- test: crazy case 2-----'
 UnsEt
 EXPORT
 EXit
-echo '----- test: gcc <a.out cat -e> -----'
+echo '----- test: gcc a.out cat -e -----'
 gcc hello.c
 ./a.out | cat -e
 rm ./a.out

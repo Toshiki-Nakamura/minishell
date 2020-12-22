@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/21 15:20:43 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/22 23:18:28 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,76 @@ int			is_quote(int c)
 	return (0);
 }
 
+char		*skip_to_next_quote(char *str)
+{
+	int	target;
+
+	if (!str || ((*str != '"') && (*str != '\'')))
+	{
+		perror("head char is not quotation!!!");
+		return (NULL);
+	}
+	target = *str;
+	str++;
+	while (*str)
+	{
+		if (*str == target)
+			return (str);
+		str++;
+	}
+	perror("pair of quotation is not found!!!");
+	return (str);
+}
+
+#if 1
+char		*remove_quote(char *line)
+{
+	char	*new;
+	char	*p;
+	int		j;
+
+	j = 0;
+	new = malloc(sizeof(char) * (ft_strlen(line) + 1));
+	while (*line != '\0')
+	{
+		if (!is_quote(*line))
+			new[j++] = *line;
+		if ((is_quote(*line)) > 0)
+		{
+			p = line + 1;
+			line = skip_to_next_quote(line);
+			while (*p && *p != line[0])
+				new[j++] = *(p)++;
+		}
+		line++;
+	}
+	new[j] = '\0';
+	return (new);
+}
+
+void		parse_line(char *line, int *quote)
+{
+	while (line[0] != '\0')
+	{
+		if ((*quote = is_quote(line[0])) > 0)
+		{
+			line = skip_to_next_quote(line);
+			if (line[0] == '\0')
+			{
+				ft_putendl_fd("not closed", 2);
+				*quote = (*quote == 2) ? '\"' : '\'';
+				break ;
+			}
+		}
+		line++;
+	}
+}
+#endif
+
+#if 0
 static int	next_quote(char *new, char *line, int n, int *j)
 {
 	int i;
-
 	i = n + 1;
 	while (line[i] && line[i] != line[n])
 		i++;
@@ -45,31 +111,12 @@ static int	next_quote(char *new, char *line, int n, int *j)
 	return (-1);
 }
 
-#if 0
-int		cut_quote(char *new, char *line, int n, int *j)
-{
-	int i;
-	i = n + 1;
-	while (line[i] && line[i] != line[n])
-		i++;
-	if (line[i] == line[n])
-	{
-		i = n + 1;
-		while (line[i] != line[n])
-			new[(*j)++] = line[i++];
-		return (i);
-	}
-	return (-1);
-}
-#endif
-
 char		*remove_quote(char *line)
 {
 	char	*new;
 	char	quote;
 	int		i;
 	int		j;
-
 	i = -1;
 	j = 0;
 	quote = 0;
@@ -97,7 +144,6 @@ char		*parse_line(char *line, int *quote, int *idx)
 	char	*new;
 	int		i;
 	int		j;
-
 	i = -1;
 	j = 0;
 	new = malloc(sizeof(char) * (ft_strlen(line) + 1));
@@ -118,24 +164,4 @@ char		*parse_line(char *line, int *quote, int *idx)
 	new[j] = '\0';
 	return (new);
 }
-
-char		*skip_to_next_quote(char *str)
-{
-	int	target;
-
-	if (!str || ((*str != '"') && (*str != '\'')))
-	{
-		perror("head char is not quotation!!!");
-		return (NULL);
-	}
-	target = *str;
-	str++;
-	while (*str)
-	{
-		if (*str == target)
-			return (str);
-		str++;
-	}
-	perror("pair of quotation is not found!!!");
-	return (str);
-}
+#endif
