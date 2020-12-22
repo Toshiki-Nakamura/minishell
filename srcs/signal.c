@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:39:20 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 14:31:21 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/23 00:40:32 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sig_func(int sig)
 	if (sig == SIGINT) /* Ctrl-C */
 	{
 		set_exit_code(EXIT_FAILURE);
-		ft_putstr_fd("\n\033[32mshell$> \033[0m", 1);
+		ft_putstr_fd("\n\033[32mshell$> \033[0m", 2);
 	}
 	if (sig == SIGQUIT) /* Ctrl-\ */
 		write(2, "\b\b", 2);
