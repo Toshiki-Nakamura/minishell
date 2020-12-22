@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/19 15:09:10 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/22 13:43:45 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "env_list.h"
 #include "utils_string.h"
 #include "utils.h"
+#include "minishell.h"
 
 static int	exec_pipe_command(int remain_cmd_num, char **pipe_list)
 {
@@ -77,13 +78,13 @@ int			fork_exec_commands(int cmd_num, char **pipe_list)
 		{
 			ret_value =  WEXITSTATUS(status);
 		}
-		if (WIFSIGNALED(status) && WTERMSIG(status) == 2)
+		if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 		{
-			ret_value = 130;
+			ret_value = EXIT_INVALID + SIGINT;
 		}
-		else if (WIFSIGNALED(status) && WTERMSIG(status) == 3)
+		else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGQUIT)
 		{
-			ret_value = 131;
+			ret_value = EXIT_INVALID + SIGQUIT;
 		}
 		// printf("[exit code = %d]\n", ret_value);
 		return (ret_value);

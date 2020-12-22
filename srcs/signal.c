@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:39:20 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/21 14:17:37 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:31:21 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sig_func(int sig)
 {
 	if (sig == SIGINT) /* Ctrl-C */
 	{
-		set_exit_code(1);
+		set_exit_code(EXIT_FAILURE);
 		ft_putstr_fd("\n\033[32mshell$> \033[0m", 1);
 	}
 	if (sig == SIGQUIT) /* Ctrl-\ */

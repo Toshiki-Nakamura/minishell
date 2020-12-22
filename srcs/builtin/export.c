@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/19 12:30:58 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:01:06 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "libft.h"
 #include "env_list.h"
 #include "env_show.h"
+#include "utils.h"
+#include "minishell.h"
 
 static int	search_equal(char *str)
 {
@@ -46,10 +48,7 @@ int			exec_export(char **args, int fd)
 	{
 		if (!ft_isalpha(args[i][0]) && args[i][0] != '_')
 		{
-			ft_putstr_fd("export: `", 2);
-			ft_putstr_fd(args[i], 2);
-			ft_putendl_fd("': not a valid identifier", 2);
-			ret_status = 1;
+			ret_status = error_handle("export", args[i], INVAILD_ARG, 1);
 		}
 		else if (search_equal(args[i]) == 1)
 			set_env_value(args[i]);

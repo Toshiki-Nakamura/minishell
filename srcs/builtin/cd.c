@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/19 14:34:56 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:10:16 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <sys/param.h>
 #include "libft.h"
 #include "env_list.h"
+#include "utils.h"
 
 static void	set_pwd()
 {
@@ -42,8 +43,7 @@ int			exec_cd(char **args, char **env)
 	{
 		if (chdir(home) != 0)
 		{
-			ft_putendl_fd(strerror(errno), 2);
-			return (1);
+			return (error_handle("cd", args[1], strerror(errno), 1));
 		}
 	}
 	else
@@ -51,8 +51,7 @@ int			exec_cd(char **args, char **env)
 		// error -1, success  0
 		if (chdir(args[1]) != 0)
 		{
-			ft_putendl_fd(strerror(errno), 2);
-			return (1);
+			return (error_handle("cd", args[1], strerror(errno), 1));
 		}
 	}
 	set_pwd();

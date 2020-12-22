@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:58:24 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/10 22:18:17 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/22 12:53:58 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,17 @@ void	ft_swap(void **l1, void **l2)
 	tmp = *l1;
 	*l1 = *l2;
 	*l2 = tmp;
+}
+
+int		error_handle(char *cmd, char *arg, char *msg, int exitcode)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd, 2);
+	if (cmd != NULL)
+		ft_putstr_fd(": ", 2);
+	ft_putstr_fd(arg, 2);
+	if (arg != NULL)
+		ft_putstr_fd(": ", 2);
+	ft_putendl_fd(msg, 2);
+	return (exitcode);
 }

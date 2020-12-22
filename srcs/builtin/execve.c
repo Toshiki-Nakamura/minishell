@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 22:15:40 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:40:13 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #include <dirent.h>
 #include "libft.h"
 #include "env_list.h"
+#include "env_list_base.h"
 #include "utils_string.h"
 #include "utils.h"
+#include "minishell.h"
 
 static int	is_include(char *name, char c)
 {
@@ -62,7 +64,8 @@ int			parse_path(char **arg)
 	char	**path_lst;
 	int		i;
 
-	path_lst = ft_split(get_env_value("PATH"), ':');
+	if (!(path_lst = ft_split(get_env_value("PATH"), ':')))
+		return (0);
 	i = 0;
 	while (path_lst[i])
 	{
@@ -81,20 +84,25 @@ int			parse_path(char **arg)
 void		exec_execve(char **args, char **env, int fd)
 {
 	(void)fd;
-	if (is_include(args[0], '/') < 0)
+	unsigned int status;
+
+	status = EXIT_FAILURE;
+	if (is_include(args[0], '/') < 0 && get_env_value("PATH"))
 	{
 		if (!parse_path(&args[0]))
 		{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(args[0], 2);
-			ft_putendl_fd(": command not found", 2);
-			exit(127);
+			status = error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD);
+			exit(status);
 		}
 	}
 	if ((execve(args[0], args, env)) == -1)
 	{
 		ft_putstr_fd("shell: ", 2);
 		ft_putendl_fd(strerror(errno), 2);
+		if (errno == 13)
+			status = EXIT_PERMIT;
+		else if (!parse_path(&args[0]) && errno == 2)
+			status = EXIT_NOT_CMD;
 	}
-	exit(EXIT_FAILURE);
+	exit(status);
 }
