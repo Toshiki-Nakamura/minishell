@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:26:09 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 13:12:33 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/24 14:34:06 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 **	cが印刷可能文字(ファイル名に使えるか)を判定する。その際、exceptは例外とする
 */
 int		is_printable(char c, char *except);
-
-/*
-**	環境変数のキーに使用可能な文字か否か
-*/
-int		is_available_env_key(char c);
 
 /*
 **	headから開始する文字列のうち、cut_posの位置からcut_lenの長さを切り出し、wordに格納する

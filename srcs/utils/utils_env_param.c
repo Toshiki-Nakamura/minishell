@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/21 15:35:27 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/24 15:04:32 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 #include "utils_string.h"
 #include "utils_string_operation.h"
 #include "utils_quote.h"
+
+int			is_invalid_env_name(const char *key)
+{
+	const char	*p;
+
+	p = key;
+	if (*p == '$')
+		p++;
+	if (!ft_isalpha(*p) || (*p == '_'))
+		return (0);
+	while (*p && (*p != '='))
+	{
+		if (!ft_isalnum(*p) && (*p != '_'))
+			return (0);
+		p++;
+	}
+	return (1);
+}
 
 static char	*find_invalid_envparam_head(char *cmd)
 {
@@ -50,7 +68,7 @@ int			get_envparam_length(const char *cmd)
 	if (0 == ft_strncmp(p, "$?", 2)) //?は本来使えない文字のため、$?だけ回避する
 		return (2);
 	p++;
-	while (is_available_env_key(*p))
+	while (*p && (ft_isalnum(*p) || (*p == '_')))
 	{
 		param_len++;
 		p++;

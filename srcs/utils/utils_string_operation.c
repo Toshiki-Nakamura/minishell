@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:25:33 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 13:17:38 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/24 14:34:32 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ int		is_printable(char c, char *except)
 			if (*except++ == c)
 				return (0);
 		}
-		return (1);
-	}
-	return (0);
-}
-
-int		is_available_env_key(char c)
-{
-	if (
-		(('0' <= c) && (c <= '9'))
-		||
-		(('A' <= c) && (c <= 'Z'))
-		||
-		(('a' <= c) && (c <= 'z'))
-		||
-		((c == '_')))
-	{
 		return (1);
 	}
 	return (0);

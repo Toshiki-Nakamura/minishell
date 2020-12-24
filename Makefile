@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/22 18:04:05 by tnakamur         ###   ########.fr        #
+#    Updated: 2020/12/24 15:12:14 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= srcs/main.c
 #SRCS	= tests/main_quote.c
 #SRCS	= tests/main_find_redirect.c
+#SRCS	= tests/main_env.c
 
 SRCS	+= srcs/prompt.c \
 		srcs/cmd_manager.c \

@@ -6,12 +6,19 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:33:52 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/16 12:45:28 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/24 14:45:33 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_ENV_PARAM_H
 # define UTILS_ENV_PARAM_H
+
+/*
+**	環境変数のKeyとして使用可能か判定する
+**	$HOGE, HOGE,  HOGE=XXX などの入力に対応。
+**	先頭の$は読み飛ばす。=があれば判定を終了する
+*/
+int		is_invalid_env_name(const char *key);
 
 int		get_envparam_length(const char *cmd);
 
