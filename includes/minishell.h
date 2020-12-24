@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 14:40:00 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 16:31:39 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@
 # define MANY_ARG "too many arguments"
 # define INVAILD_ARG "not a valid identifier"
 # define NOT_COMMAND "command not found"
+# define IS_DIR "is a directory"
 
 #endif

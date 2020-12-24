@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/22 19:27:52 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 12:30:55 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,4 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	if (s2 != NULL)
 		free(s2);
 	return (new);
-}
-
-void	iter_remove_quote(char **cmd)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	new = NULL;
-	while (cmd[i])
-	{
-		new = remove_quote(cmd[i]);
-		free(cmd[i]);
-		cmd[i] = ft_strdup(new);
-		if (new)
-			free(new);
-		i++;
-	}
 }

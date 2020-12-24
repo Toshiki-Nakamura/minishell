@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 23:18:28 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 14:47:32 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ char		*skip_to_next_quote(char *str)
 	return (str);
 }
 
-#if 1
-char		*remove_quote(char *line)
+static char		*remove_quote(char *line)
 {
 	char	*new;
 	char	*p;
@@ -70,6 +69,24 @@ char		*remove_quote(char *line)
 	return (new);
 }
 
+void			iter_remove_quote(char **cmd)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	new = NULL;
+	while (cmd[i])
+	{
+		new = remove_quote(cmd[i]);
+		free(cmd[i]);
+		cmd[i] = ft_strdup(new);
+		if (new)
+			free(new);
+		i++;
+	}
+}
+
 void		parse_line(char *line, int *quote)
 {
 	while (line[0] != '\0')
@@ -87,7 +104,6 @@ void		parse_line(char *line, int *quote)
 		line++;
 	}
 }
-#endif
 
 #if 0
 static int	next_quote(char *new, char *line, int n, int *j)

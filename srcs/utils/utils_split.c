@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 17:56:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 20:39:05 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 12:11:22 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,54 @@ char				**util_split(const char *str, char c)
 	return (new);
 }
 
-/*
-** int		main(int ac, char **av)
-** {
-** 	char **tab;
-** 	int i = 0;
-** 	tab = util_split("", ' ');
-** 	while (tab[i])
-** 	{
-** 		ft_putchar_fd('[',1);
-** 		ft_putstr_fd(tab[i++], 1);
-** 		ft_putstr_fd("]\n",1);
-** 	}
-** 	return (0);
-** }
-*/
+#if 0
+/* gcc utils_split.c utils_quote.c utils_string.c ../../libft/libft.a -I../../includes -I../../libft  */
+#include <stdio.h>
+static void	get_cmd_line(char **line, char c)
+{
+	char	buf;
+	int		ret;
+
+	if (*line == NULL)
+		*line = ft_strdup("");
+	write(2, "\e[32mminishell$ \e[0m", 21);
+	while ((ret = read(0, &buf, 1)))
+	{
+		if (c != '\n' && buf == '\n')
+			ft_putstr_fd("> ", 2);
+		if (c != '\n' && c == buf)
+		{
+			*line = ft_join(*line, buf);
+			break ;
+		}
+		else if (buf == c)
+			break;
+		*line = ft_join(*line, buf);
+	}
+}
+int		main(int ac, char **av)
+{
+	char **tab;
+	char *line;
+
+	while (1)
+	{
+		line = NULL;
+		get_cmd_line(&line, '\n');
+		tab = util_split(line, ' ');
+		int i = 0;
+		while (tab[i])
+		{
+			char *new;
+			new = remove_quote(tab[i]);
+			free(tab[i]);
+			tab[i] = new;
+			printf("[%s]\n", tab[i]);
+			i++;
+		}
+		mem_free(tab);
+		free(line);
+	}
+	return (0);
+}
+#endif
