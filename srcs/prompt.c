@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/23 00:37:47 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 19:11:06 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	get_quote_line(char **line)
 			break;
 		*line = ft_join(*line, buf);
 	}
-	if (ret == -1)
-		exit(0);
 }
 
 static void	get_cmd_line(char **line, char c)
@@ -65,11 +63,11 @@ static void	get_cmd_line(char **line, char c)
 			break;
 		*line = ft_join(*line, buf);
 	}
-	// if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
-	// 	*line = ft_strjoin_free(*line, ft_strdup("exit"));
+	if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
+		*line = ft_strjoin_free(*line, ft_strdup("exit"));
 	// else if (c =='\n' && !ret)
 	// {
-	// 	// write(2, "  \b\b", 4);
+	// 	write(2, "  \b\b", 4);
 	// 	get_cmd_line(line, c);
 	// }
 }

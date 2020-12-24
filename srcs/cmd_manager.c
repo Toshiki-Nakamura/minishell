@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/22 23:18:55 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 14:49:15 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "executor.h"
 #include "pipe_executor.h"
 #include "env_list_base.h"
+#include "utils_quote.h"
 #include "utils_string.h"
 
 void	exec_command_line(const char *line)

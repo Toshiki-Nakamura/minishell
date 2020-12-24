@@ -6,13 +6,14 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:54:19 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 14:16:58 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 18:46:15 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_list.h"
 #include "utils.h"
 #include "minishell.h"
+#include "utils_env_param.h"
 
 int			exec_unset(char **args)
 {
@@ -23,7 +24,7 @@ int			exec_unset(char **args)
 	ret_status = 0;
 	while (args[i])
 	{
-		if (!ft_isalpha(args[i][0]) && args[i][0] != '_' && args[i][0] != '$')
+		if (!is_invalid_env_name(args[i]))
 		{
 			ret_status = error_handle("unset", args[i], INVAILD_ARG, 1);
 		}

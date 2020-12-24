@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 14:01:06 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 18:27:23 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "env_list.h"
 #include "env_show.h"
 #include "utils.h"
+#include "utils_env_param.h"
 #include "minishell.h"
 
 static int	search_equal(char *str)
@@ -35,8 +36,8 @@ static int	search_equal(char *str)
 
 int			exec_export(char **args, int fd)
 {
-	int i;
-	int	ret_status;
+	int		i;
+	int		ret_status;
 
 	(void)args;
 	(void)fd;
@@ -46,7 +47,8 @@ int			exec_export(char **args, int fd)
 	i = 0;
 	while (args[++i])
 	{
-		if (!ft_isalpha(args[i][0]) && args[i][0] != '_')
+		/* !ft_isalpha(args[i][0]) && args[i][0] != '_' */
+		if (!is_invalid_env_name(args[i]))
 		{
 			ret_status = error_handle("export", args[i], INVAILD_ARG, 1);
 		}

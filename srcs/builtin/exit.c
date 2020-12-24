@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:52:47 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 13:48:17 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 19:19:08 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ void		exec_exit(char **args)
 	unsigned int	status;
 	int				i;
 
-	status = 0;
+	status = EXIT_SUCCESS;
 	i = 0;
 	while (args[i])
 		i++;
 	ft_putstr_fd("exit\n", 1);
-	if (i == 1)
-		exit(status);
 	if (i == 2 && is_numeric(args[1]))
 	{
 		status = (unsigned char)ft_atoi(args[1]);
@@ -60,5 +58,6 @@ void		exec_exit(char **args)
 	else if (i > 2)
 		status = error_handle("exit", args[1], NUMERIC_ARG, EXIT_RANGE);
 	finalize_env_list();
+	// system("leaks minishell");
 	exit(status);
 }

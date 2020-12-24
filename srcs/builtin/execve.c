@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 14:40:13 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 18:08:10 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ int		search_dir(char *path_i, char **arg)
 	return (0);
 }
 
+static int			is_dir(char *arg)
+{
+	DIR				*dir;
+
+	if (!(dir = opendir(arg)))
+		return (0);
+	closedir(dir);
+	return (1);
+}
+
 int			parse_path(char **arg)
 {
 	char	**path_lst;
@@ -81,28 +91,31 @@ int			parse_path(char **arg)
 	return (0);
 }
 
-void		exec_execve(char **args, char **env, int fd)
+int		exec_execve(char **args, char **env, int fd)
 {
-	(void)fd;
-	unsigned int status;
+	unsigned int	status;
+	char			*err_msg;
 
+	(void)fd;
 	status = EXIT_FAILURE;
 	if (is_include(args[0], '/') < 0 && get_env_value("PATH"))
 	{
 		if (!parse_path(&args[0]))
-		{
-			status = error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD);
-			exit(status);
-		}
+			return (error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD));
 	}
 	if ((execve(args[0], args, env)) == -1)
 	{
-		ft_putstr_fd("shell: ", 2);
-		ft_putendl_fd(strerror(errno), 2);
-		if (errno == 13)
-			status = EXIT_PERMIT;
+		ft_putstr_fd("\e[31merror: \e[0m", 2);
+		err_msg = strerror(errno);
+		if (errno == 13) /* permission err */
+		{
+			if (!is_dir(args[0]))
+				status = error_handle(args[0], NULL, err_msg, EXIT_PERMIT);
+			else
+				status = error_handle(args[0], NULL, IS_DIR, EXIT_PERMIT);
+		}
 		else if (!parse_path(&args[0]) && errno == 2)
-			status = EXIT_NOT_CMD;
+			status = error_handle(args[0], NULL, err_msg, EXIT_NOT_CMD);
 	}
-	exit(status);
+	return (status);
 }

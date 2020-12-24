@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 13:43:45 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 18:58:38 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int			fork_exec_commands(int cmd_num, char **pipe_list)
 	{
 		ret_value = exec_pipe_command(cmd_num - 1, pipe_list);
 		//printf("child_process finished(%d)\n", ret_value);
+		// system("leaks minishell");
 		exit(ret_value);// ? echo | cd => exit(retvalue)
 	}
 }

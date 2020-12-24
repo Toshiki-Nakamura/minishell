@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/22 23:19:04 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 15:28:03 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "env_info.h"
 #include "redirect.h"
 #include "executor.h"
+#include "utils_quote.h"
 
 void		set_exit_code(int code)
 {
@@ -76,8 +77,7 @@ int			sh_execute(char **args, char **env, int fd)
 		return (exec_unset(args));
 	if (ft_strncmp(args[0], "export", 7) == 0)
 		return (exec_export(args, fd));
-	exec_execve(args, env, fd);
-	return (1);
+	return (exec_execve(args, env, fd));
 }
 
 static int	exec_simple_command(char *cmd)
