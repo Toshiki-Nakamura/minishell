@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 19:11:06 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/25 00:09:10 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	get_cmd_line(char **line, char c)
 
 	if (*line == NULL)
 		*line = ft_strdup("");
-	while ((ret = read(0, &buf, 1)))
+	while ((ret = read(0, &buf, 1)) >= 0)
 	{
 		if (c != '\n' && buf == '\n')
 			ft_putstr_fd("> ", 2);
@@ -61,10 +61,19 @@ static void	get_cmd_line(char **line, char c)
 		}
 		else if (buf == c)
 			break;
-		*line = ft_join(*line, buf);
+		if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
+		{
+			*line = ft_strjoin_free(*line, ft_strdup("exit"));
+			break ;
+		}
+		else if (!ret)
+			break;
+		// else if (c =='\n' && !ret)
+		// 	write(2, "  \b\b", 4);
+		*line = (ret) ? ft_join(*line, buf) : *line;
 	}
-	if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
-		*line = ft_strjoin_free(*line, ft_strdup("exit"));
+	// if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
+	// 	*line = ft_strjoin_free(*line, ft_strdup("exit"));
 	// else if (c =='\n' && !ret)
 	// {
 	// 	write(2, "  \b\b", 4);

@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/22 14:10:16 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/26 14:18:25 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "libft.h"
 #include "env_list.h"
 #include "utils.h"
+#include "utils_string.h"
+#include "env_list_base.h"
+#include "utils_env_param.h"
 
 static void	set_pwd()
 {
@@ -27,7 +30,7 @@ static void	set_pwd()
 	set_env_value(old);
 	free(old);
 	if (getcwd(path, MAXPATHLEN) == 0)
-		ft_putendl_fd(strerror(errno), 1);
+		ft_putendl_fd(strerror(errno), 2);
 	new = ft_strjoin("PWD=", path);
 	set_env_value(new);
 	free(new);
@@ -35,24 +38,26 @@ static void	set_pwd()
 
 int			exec_cd(char **args, char **env)
 {
-	const char	*home = get_env_value("HOME");
+	const char	*home;
 
 	(void)env;
-	if (args[1] == NULL || !ft_strncmp("~/", args[1], 3) ||\
-						 !ft_strncmp("~", args[1], 2))
+	home = get_env_value("HOME");
+	if (!home && !args[1])
+		return (error_handle("cd", args[1], "HOME not set", 1));
+	if (!home && (!ft_strncmp("~/", args[1], 3) || !ft_strncmp("~", args[1], 2)))
+	{
+		if (chdir(g_env_value("HOME")) != 0)
+			return (error_handle("cd", args[1], strerror(errno), 1));
+	}
+	else if (!args[1] || !ft_strncmp("~/", args[1], 2) || !ft_strncmp("~", args[1], 3))
 	{
 		if (chdir(home) != 0)
-		{
-			return (error_handle("cd", args[1], strerror(errno), 1));
-		}
+			return (error_handle("cd", (char *)home, strerror(errno), 1));
 	}
 	else
 	{
-		// error -1, success  0
 		if (chdir(args[1]) != 0)
-		{
 			return (error_handle("cd", args[1], strerror(errno), 1));
-		}
 	}
 	set_pwd();
 	return (0);

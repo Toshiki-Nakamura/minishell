@@ -30,8 +30,13 @@ unset KEY
 env | grep KEY
 export | grep KEY
 echo '----- test: unset 1 -----'
+echo $TEST_EXPORT
 unset TEST_EXPORT
 echo $TEST_EXPORT
+echo '----- test: unset 2 -----'
+unset 0A
+unset VAR?A
+unset VAR=A
 echo '----- test: execve 1 -----'
 ls
 ls -lt
@@ -73,6 +78,8 @@ echo | cd hoge
 echo $?
 echo | cd
 echo $?
+CD hoge
+echo $?
 hoge
 
 
@@ -92,9 +99,43 @@ echo '----- test: crazy case 2-----'
 UnsEt
 EXPORT
 EXit
+echo '----- test: error case -----'
+$HOME
+echo $?
+/bin/hoge
+echo $?
+hoge
+echo $?
+../a.out
+echo $?
 echo '----- test: <gcc a.out cat -e> -----'
 gcc hello.c
 ./a.out | cat -e
 rm ./a.out
+echo '----- test: reset PATH -----'
+unset "PATH"
+PWD
+pwd
+Env
+env
+CD ..
+ECHO "abc"
+echo "abc "
+cat hello.c
+export "PATH=/usr/bin"
+gcc -o 'testsA/tests' testsA/main.c
+gcc -o 'testsB/tests' testsB/main.c
+export "PATH=$PWD/testsA:$PWD/testsB:/bin"
+tests
+export "PATH=$PWD/testsB:$PWD/testsA:/bin"
+tests
+rm testsA/tests
+rm testsB/tests
+echo '----- test: reset HOME  -----'
+unset HOME
+cd
+pwd
+cd ~/
+pwd
 echo '========== test finished =============================='
 exit

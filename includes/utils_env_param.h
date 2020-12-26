@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env_param.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:33:52 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 14:45:33 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/27 00:59:35 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,11 @@ int		get_envparam_length(const char *cmd);
 **	return : 置き換えが発生したら1, 無ければ0
 */
 int		replace_env_param(char **cmd);
+
+/*
+**	g_envに格納した最初の環境変数から
+**	keyに紐づくvalueを返す。なければNULL
+*/
+const char	*g_env_value(char *key);
 
 #endif

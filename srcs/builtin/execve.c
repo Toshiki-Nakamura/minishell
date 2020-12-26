@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/24 18:08:10 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/26 20:44:33 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@
 #include "utils.h"
 #include "minishell.h"
 
-static int	is_include(char *name, char c)
-{
-	int i;
-
-	i = 0;
-	while (name[i])
-	{
-		if (name[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 int		search_dir(char *path_i, char **arg)
 {
 	DIR				*dir;
@@ -47,7 +33,8 @@ int		search_dir(char *path_i, char **arg)
 		return (0);
 	while ((ds = readdir(dir)) != NULL)
 	{
-		if (ft_strcmp(ds->d_name , *arg) == 0)
+		/* if (ft_strcmp(ds->d_name , *arg) == 0) */
+		if (ft_cmp_ignore_case(*arg, ds->d_name, ft_strlen(*arg) + 1) == 0)
 		{
 			full_path = ft_join(ft_strdup(path_i), '/');
 			*arg = ft_strjoin_free(full_path, *arg);
@@ -105,7 +92,7 @@ int		exec_execve(char **args, char **env, int fd)
 	}
 	if ((execve(args[0], args, env)) == -1)
 	{
-		ft_putstr_fd("\e[31merror: \e[0m", 2);
+		// ft_putstr_fd("\e[31merror: \e[0m", 2);
 		err_msg = strerror(errno);
 		if (errno == 13) /* permission err */
 		{

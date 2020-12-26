@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/24 14:47:32 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/24 22:06:20 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char		*skip_to_next_quote(char *str)
 
 	if (!str || ((*str != '"') && (*str != '\'')))
 	{
-		perror("head char is not quotation!!!");
+		// perror("head char is not quotation!!!");
 		return (NULL);
 	}
 	target = *str;
@@ -40,7 +40,7 @@ char		*skip_to_next_quote(char *str)
 			return (str);
 		str++;
 	}
-	perror("pair of quotation is not found!!!");
+	// perror("pair of quotation is not found!!!");
 	return (str);
 }
 

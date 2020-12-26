@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/24 18:27:23 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/26 22:05:22 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "utils.h"
 #include "utils_env_param.h"
 #include "minishell.h"
+#include "utils_string.h"
 
 static int	search_equal(char *str)
 {
@@ -39,7 +40,6 @@ int			exec_export(char **args, int fd)
 	int		i;
 	int		ret_status;
 
-	(void)args;
 	(void)fd;
 	ret_status = 0;
 	if (args[1] == NULL)

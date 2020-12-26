@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 15:28:03 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/27 01:01:21 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ int			is_builtin(char *cmd)
 {
 	if (cmd == NULL)
 		return (1);
-	if (ft_cmp_ignore_case(cmd, "cd", 3) == 0)
+	if (ft_strcmp(cmd, "cd") == 0) //大文字はexecveで実行
 		return (1);
-	if (ft_cmp_ignore_case(cmd, "pwd", 4) == 0)
+	if (ft_strcmp(cmd, "pwd") == 0) //大文字はexecveで実行
 		return (1);
-	if (ft_cmp_ignore_case(cmd, "env", 4) == 0)
+	if (ft_cmp_ignore_case(cmd, "env", 4) == 0) // return 0にするか検討中
 		return (1);
-	if (ft_strncmp(cmd, "exit", 5) == 0) //完全一致で動作
+	if (ft_strcmp(cmd, "exit") == 0)
 		return (1);
-	if (ft_cmp_ignore_case(cmd, "echo", 5) == 0)
+	if (ft_strcmp(cmd, "echo") == 0) //大文字はexecveで実行
 		return (1);
-	if (ft_strncmp(cmd, "unset", 6) == 0) //完全一致で動作
+	if (ft_strcmp(cmd, "unset") == 0)
 		return (1);
-	if (ft_strncmp(cmd, "export", 7) == 0) //完全一致で動作
+	if (ft_strcmp(cmd, "export") == 0)
 		return (1);
 	return (0);
 }
@@ -61,21 +61,19 @@ int			sh_execute(char **args, char **env, int fd)
 {
 	if (args[0] == NULL)
 		return (ft_atoi(g_env_question));
-	if (ft_strncmp(args[0], "cd", 3) == 0)
+	if (ft_strcmp(args[0], "cd") == 0)
 		return (exec_cd(args, env));
-	else if (ft_cmp_ignore_case(args[0], "cd", 3) == 0)
-		return (0);
-	if (ft_cmp_ignore_case(args[0], "pwd", 4) == 0)
+	if (ft_strcmp(args[0], "pwd") == 0)
 		return (exec_pwd(fd));
 	if (ft_cmp_ignore_case(args[0], "env", 4) == 0)
 		return (exec_env(args, env, fd));
-	if (ft_strncmp(args[0], "exit", 5) == 0)
+	if (ft_strcmp(args[0], "exit") == 0)
 		exec_exit(args);
-	if (ft_cmp_ignore_case(args[0], "echo", 5) == 0)
+	if (ft_strcmp(args[0], "echo") == 0)
 		return (exec_echo(args, fd));
-	if (ft_strncmp(args[0], "unset", 6) == 0)
+	if (ft_strcmp(args[0], "unset") == 0)
 		return (exec_unset(args));
-	if (ft_strncmp(args[0], "export", 7) == 0)
+	if (ft_strcmp(args[0], "export") == 0)
 		return (exec_export(args, fd));
 	return (exec_execve(args, env, fd));
 }

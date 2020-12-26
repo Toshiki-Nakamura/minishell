@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env_param.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 15:04:32 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/26 23:27:37 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "utils_string.h"
 #include "utils_string_operation.h"
 #include "utils_quote.h"
+#include "env_list_base.h"
 
 int			is_invalid_env_name(const char *key)
 {
@@ -98,4 +99,25 @@ int			replace_env_param(char **cmd)
 	if (!replace_env_param(cmd))
 		return (0);
 	return (1);
+}
+
+const char	*g_env_value(char *key)
+{
+	char		**env;
+	const char	*value;
+	size_t		len;
+
+	env = get_env_param();
+	len = ft_strlen(key);
+	while (*env)
+	{
+		if (ft_strncmp(*env, key, len) == 0)
+		{
+			value = ft_strchr(*env, '=');
+			value = value ? value + 1 : value;
+			return (value);
+		}
+		env++;
+	}
+	return (NULL);
 }
