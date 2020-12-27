@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:21 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 10:34:31 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/27 12:52:25 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void			separate_redirect_info(char **redirect, t_redirect_type *type);
 **	return : 分離が発生したら1, 無ければ0
 */
 int				separate_redirect_word(char **cmd, char **word);
+
+int				check_redirect_file(char **filename);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 11:09:32 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/27 14:24:54 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int			exec_command(char *cmd)
 		//<a.txt を REDIRECT_INPUT判定し、"a.txt"を抽出
 		separate_redirect_info(&redirect, &type);
 		//fdを適切に置き換える
+		check_redirect_file(&redirect);//TODO: 戻り値も確認する
 		if (-1 == set_redirect(redirect, &fd, type))
 			return (-1);
 		//redirectに入っているファイル名を解放する

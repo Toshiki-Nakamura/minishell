@@ -115,7 +115,13 @@ echo hoge>=d.test
 cat =d.test
 rm =d.test
 rm a.test b.test c.test d.test
-
+echo '----- test: redirect tilde filename case -----'
+echo foo >~/home.test
+cat < ~/home.test
+echo xxx > ~home.test
+echo yyy >~home.test
+cat <~home.test
+rm -f ~home.test ~/home.test
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
