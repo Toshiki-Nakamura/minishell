@@ -1,5 +1,7 @@
+rm -f *.test
 bash testcase.sh > answer.txt 2> a.txt
-sed -e "s/testcase.sh: //g" a.txt | cut -d : -f 2- > answer_error.txt && rm a.txt 
+sed -e "s/testcase.sh: //g" a.txt | cut -d : -f 2- > answer_error.txt && rm a.txt
+rm -f *.test
 ../minishell < testcase.sh 2> b.txt | sed 's/\[32mshell$> \[0m//g' | sed -e "/exit/d" > result.txt
 cut -d : -f 2- b.txt > result_error.txt && rm b.txt
 

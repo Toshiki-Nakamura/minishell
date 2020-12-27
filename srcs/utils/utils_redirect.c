@@ -6,110 +6,60 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:28:43 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/21 15:22:49 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:08:42 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdio.h>
-#include "libft.h"
-#include "utils_string_operation.h"
-#include "utils_string.h"
-#include "utils_redirect.h"
-#include "utils_quote.h"
+#include "minishell.h"
 
-const char	*skip_redirect_mark(const char *cmd, t_redirection *type)
+void	init_redirect_fd(t_fd *fd)
 {
-	const char	*p;
+	fd->input = STDIN;
+	fd->output = STDOUT;
+}
 
-	p = cmd;
-	*type = REDIRECT_NONE;
-	if ((p[0] == '>') && (p[1] == '>') && (is_printable(p[2], "<>&")))
-	{
-		*type = REDIRECT_APPEND;
-		p += 2;
-	}
-	else if ((p[0] == '>') && (is_printable(p[1], "<>&")))
-	{
-		*type = REDIRECT_OVERRIDE;
-		p += 1;
-	}
-	else if ((p[0] == '<') && (is_printable(p[1], "<>&")))
-	{
-		*type = REDIRECT_INPUT;
-		p += 1;
-	}
+int		set_redirect(char *filename, t_fd *fd, t_redirect_type type)
+{
+	int	*p_fd;
+	int	file_fd;
+	int	std_fd;
+	int flags;
+
+	if (type == REDIRECT_INPUT)
+		flags = O_RDONLY;
+	else if (type == REDIRECT_OVERRIDE)
+		flags = O_WRONLY | O_CREAT | O_TRUNC;
 	else
-		return (NULL);
-	return (p);
-}
-
-void		separate_redirect_info(char **cmd, t_redirection *type)
-{
-	const char	*p;
-	int			total_len;
-	int			file_len;
-	char		*ret;
-
-	total_len = 0;
-	file_len = 0;
-	if (!(p = skip_redirect_mark(*cmd, type)))
-		return ;
-	while (*p == ' ')
-		p++;
-	while (is_printable(p[file_len], " "))
+		flags = O_WRONLY | O_CREAT | O_APPEND;
+	if ((file_fd = open(filename, flags, 0666)) < 0)
 	{
-		file_len++;
+		close(file_fd);
+		return (-1);
 	}
-	if (!(ret = malloc(file_len + 1)))
-		return ;
-	ft_strlcpy(ret, p, file_len + 1);
-	free(*cmd);
-	*cmd = ret;
-}
-
-int			get_redirect_length(const char *cmd)
-{
-	const char		*p;
-	int				total_len;
-	int				file_len;
-	t_redirection	type;
-
-	total_len = 0;
-	file_len = 0;
-	if (!(p = skip_redirect_mark(cmd, &type)))
-		return (0);
-	while (*p == ' ')
-		p++;
-	while (is_printable(*p, " "))
-	{
-		file_len++;
-		p++;
-	}
-	total_len = file_len ? p - cmd : 0;
-	return (total_len);
-}
-
-int			separate_redirect_word(char **cmd, char **word)
-{
-	char	*p;
-	int		len;
-	char	*ret_cmd;
-
-	p = *cmd;
-	while (*p != '\0')
-	{
-		if ((*p == '"') || (*p == '\''))
-			p = skip_to_next_quote(p);
-		else if ((*p == '<') || (*p == '>'))
-		{
-			if (!(len = get_redirect_length(p)))
-				break ;
-			ret_cmd = extract_word(*cmd, p - *cmd, len, word);
-			free(*cmd);
-			*cmd = ret_cmd;
-			return (1);
-		}
-		p++;
-	}
+	p_fd = (type == REDIRECT_INPUT) ? &(fd->input) : &(fd->output);
+	std_fd = dup(*p_fd);
+	close(*p_fd);
+	dup2(file_fd, ((type == REDIRECT_INPUT) ? STDIN : STDOUT));
+	close(file_fd);
+	*p_fd = std_fd;
 	return (0);
+}
+
+void	undo_redirect_fd(t_fd fd)
+{
+	if (fd.input != STDIN)
+	{
+		dup2(fd.input, STDIN);
+		close(fd.input);
+	}
+	if (2 < fd.output)
+	{
+		dup2(fd.output, STDOUT);
+		close(fd.output);
+	}
 }

@@ -90,6 +90,32 @@ echo '----- test: utils_split and quote -----'
 echo "lkanvl; ; ';s  ; kl ;ls| lsvk   " | cat -e
 echo "  kasvjnsl " "|'a'a lacnln      ;lmav""aa "
 echo" "'kkk'
+echo '----- test: redirect output case -----'
+rm -f a.test b.test c.test d.test
+echo hoge>a.test
+echo fuga>       b.test
+echo foo      >c.test
+echo bar   >    d.test
+cat a.test b.test c.test d.test
+echo hoge>>a.test
+echo fuga>>      b.test
+echo foo     >>c.test
+echo bar   >>   d.test
+cat a.test b.test c.test
+echo '----- test: redirect input case -----'
+cat <a.test
+cat <        b.test
+echo '----- test: multiple redirect case -----'
+echo xxx>a.test<b.test>>c.test
+cat a.test c.test
+echo xxx >a.test<  b.test   >>   c.test
+cat a.test c.test
+echo '----- test: redirect unnormal filename case -----'
+echo hoge>=d.test
+cat =d.test
+rm =d.test
+rm a.test b.test c.test d.test
+
 echo '----- test: crazy case 1-----'
 CD ..
 PWd

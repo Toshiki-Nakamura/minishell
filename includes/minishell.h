@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/24 16:31:39 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/27 10:34:42 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,27 @@
 # define EXIT_INVALID 128
 # define EXIT_RANGE 255
 
+# define STDIN	0
+# define STDOUT	1
+
 # define NUMERIC_ARG "numeric argument required"
 # define MANY_ARG "too many arguments"
 # define INVAILD_ARG "not a valid identifier"
 # define NOT_COMMAND "command not found"
 # define IS_DIR "is a directory"
+# define SYNTAX_ERROR "syntax error near unexpected token"
+
+typedef enum	e_redirec_type {
+	REDIRECT_INPUT,
+	REDIRECT_OVERRIDE,
+	REDIRECT_APPEND,
+	REDIRECT_INVALID,
+	REDIRECT_NUM,
+}				t_redirect_type;
+
+typedef struct	s_fd {
+	int	input;
+	int	output;
+}				t_fd;
 
 #endif

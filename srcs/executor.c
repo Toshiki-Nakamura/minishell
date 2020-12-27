@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 01:01:21 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:09:32 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <sys/param.h>
 #include <stdio.h>
 #include <string.h>
+#include "minishell.h"
 #include "libft.h"
 #include "utils_string.h"
 #include "utils.h"
@@ -23,7 +24,6 @@
 #include "env_list.h"
 #include "env_info.h"
 #include "redirect.h"
-#include "executor.h"
 #include "utils_quote.h"
 
 void		set_exit_code(int code)
@@ -94,35 +94,27 @@ static int	exec_simple_command(char *cmd)
 int			exec_command(char *cmd)
 {
 	int		ret_value;
-	int 	fd_std_in;
-	int 	fd_std_out;
 	char 	*redirect;
 	char 	*str;
-	t_redirection	type;
+	t_fd 	fd;
+	t_redirect_type	type;
 
 	str = ft_strdup(cmd);
-	fd_std_in = 0;
-	fd_std_out = 1;
-	// TODO: echo hoge ><a.txt >b.txt の場合、 syntax error near unexpected token `<'で終了すべき
-	// TODO: echo '---<a.out>---' がリダイレクトとして認識されてしまう。promptで''を落としているのが原因
+	init_redirect_fd(&fd);
+	// cd hoge <a.txt を"cd hoge "と"<a.txt"に分離
 	while (separate_redirect_word(&str, &redirect))
 	{
-		undo_redirect_fd(fd_std_in, fd_std_out);
+		//<a.txt を REDIRECT_INPUT判定し、"a.txt"を抽出
 		separate_redirect_info(&redirect, &type);
-		if ((type == REDIRECT_INPUT)
-			&& (-1 == (fd_std_in = set_redirect_input(redirect))))
+		//fdを適切に置き換える
+		if (-1 == set_redirect(redirect, &fd, type))
 			return (-1);
-		else if ((type == REDIRECT_APPEND)
-			&& (-1 == (fd_std_out = set_redirect_output(redirect, 0))))
-			return (-1);
-		else if ((type == REDIRECT_OVERRIDE)
-			&& (-1 == (fd_std_out = set_redirect_output(redirect, 1))))
-			return (-1);
+		//redirectに入っているファイル名を解放する
 		free(redirect);
 	}
 	ret_value = exec_simple_command(str);
 	free(str);
-	undo_redirect_fd(fd_std_in, fd_std_out); //これはプロンプト表示のために毎回戻す
+	undo_redirect_fd(fd);//fdを元の標準出力に戻す
 	if (ret_value == -1)
 		ft_putendl_fd(strerror(errno), 2);
 	return (ret_value);
