@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/27 14:12:20 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/28 14:45:48 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ CC		= gcc
 INCLUDE = -I./libft -I./includes
 
 CFLAGS	= -Wall -Wextra -Werror
+ifeq ($(MAKECMDGOALS),test)
+CFLAGS  += -D TEST
+endif
 
 OBJS	= $(SRCS:.c=.o)
 DEPS	= $(SRCS:.c=.d)
@@ -66,6 +69,8 @@ $(LIBFT):
 		make -C libft bonus
 
 all:	$(NAME)
+
+test:	$(NAME)
 
 bonus:	$(NAME)
 
