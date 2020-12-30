@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/25 00:09:10 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/30 16:51:57 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void		input_prompt(void)
 	check_quote(&line);
 	replace_env_param(&line); /* $変数置換 */
 	//new = remove_quote(line); /* クォーテーション除去 */
-	exec_command_line(line);
+	exec_one_line(line);
 	if (line != NULL)
 		free(line);
 }
