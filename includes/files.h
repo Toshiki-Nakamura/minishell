@@ -1,14 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_file.c                                       :+:      :+:    :+:   */
+/*   files.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 14:08:06 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:12:55 by skohraku         ###   ########.fr       */
+/*   Created: 2020/12/30 15:56:53 by skohraku          #+#    #+#             */
+/*   Updated: 2020/12/30 15:57:06 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
+#ifndef FILES_H
+# define FILES_H
+
+void       replace_tilde(char **str);
+
+#endif

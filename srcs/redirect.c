@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 14:52:53 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/30 16:13:07 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,22 +136,4 @@ int				separate_redirect_word(char **cmd, char **word)
 		p++;
 	}
 	return (0);
-}
-
-int				check_redirect_file(char **filename)
-{
-	char	*replaced_path;
-
-	if (*filename[0] == '~')
-	{
-		replaced_path = ft_strjoin(get_env_value("HOME"), &(*filename)[1]);
-		if (is_capable_to_create(replaced_path))
-		{
-			free(*filename);
-			*filename = replaced_path;
-		}
-		else
-			free(replaced_path);
-	}
-	return (1);
 }
