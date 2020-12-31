@@ -6,6 +6,3 @@ minishell
 a.out
 .vscode
 .gitignore
-error.c
-utils_syntax.c
-utils_syntax.h
