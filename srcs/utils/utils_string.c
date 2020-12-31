@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 12:30:55 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/30 17:42:28 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	if (s2 != NULL)
 		free(s2);
 	return (new);
+}
+
+char	*free_set(char **value, char *next)
+{
+	if (*value != NULL)
+	{
+		free(*value);
+		*value = next;
+	}
+	return (*value);
 }
