@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:26:09 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 14:34:06 by skohraku         ###   ########.fr       */
+/*   Updated: 2020/12/30 16:43:34 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ char	*extract_word(const char *head, int cut_pos, int cut_len, char **word);
 */
 char	*replace_word(const char *head, int cut_pos, int cut_len,
 		const char *word);
+
+/*
+**	#以降をコメントとして削除する
+*/
+void	remove_comment(char **str);
 
 #endif

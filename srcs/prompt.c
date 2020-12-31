@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/31 12:45:40 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/31 13:45:37 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,8 @@ void		input_prompt(void)
 	if (!line)
 		return ;
 	replace_env_param(&line); /* $変数置換 */
-
 	// if ((line = check_token(line, '|')) != NULL)
-	exec_command_line(line);
-
+	exec_one_line(line);
 	if (line != NULL)
 		free(line);
 }

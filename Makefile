@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2020/12/27 14:12:20 by skohraku         ###   ########.fr        #
+#    Updated: 2020/12/30 16:07:30 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS	= srcs/main.c
 #SRCS	= tests/main_quote.c
 #SRCS	= tests/main_find_redirect.c
 #SRCS	= tests/main_env.c
+#SRCS	= tests/main_files.c
 
 SRCS	+= srcs/prompt.c \
 		srcs/cmd_manager.c \
@@ -41,13 +42,17 @@ SRCS	+= srcs/prompt.c \
 		srcs/utils/utils_redirect.c \
 		srcs/utils/utils_env_param.c \
 		srcs/utils/utils_split.c \
-		srcs/signal.c
+		srcs/signal.c \
+		srcs/files.c
 
 NAME	= minishell
 CC		= gcc
 INCLUDE = -I./libft -I./includes
 
 CFLAGS	= -Wall -Wextra -Werror
+ifeq ($(MAKECMDGOALS),test)
+CFLAGS  += -D TEST
+endif
 
 OBJS	= $(SRCS:.c=.o)
 DEPS	= $(SRCS:.c=.d)
@@ -66,6 +71,8 @@ $(LIBFT):
 		make -C libft bonus
 
 all:	$(NAME)
+
+test:	$(NAME)
 
 bonus:	$(NAME)
 

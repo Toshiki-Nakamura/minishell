@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/24 14:49:15 by tnakamur         ###   ########.fr       */
+/*   Updated: 2020/12/30 16:54:21 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "env_list_base.h"
 #include "utils_quote.h"
 #include "utils_string.h"
+#include "utils_string_operation.h"
 
-void	exec_command_line(const char *line)
+static void		exec_command_line(const char *line)
 {
 	int		i;
 	char	**pipe_list;
@@ -45,4 +46,15 @@ void	exec_command_line(const char *line)
 	if (pipe_list != NULL)
 		array_free(pipe_list);
 	return ;
+}
+
+void			exec_one_line(const char *line)
+{
+	char	*str;
+	// ;や#を含む1行を実行する
+	str = ft_strdup(line);
+	remove_comment(&str);
+	//TODO: ;がきたら分割する
+	exec_command_line(str);
+	free(str);
 }
