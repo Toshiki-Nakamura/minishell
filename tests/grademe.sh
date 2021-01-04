@@ -1,3 +1,8 @@
+echo 'make test exe'
+cd ..
+touch srcs/prompt.c
+make test
+cd tests
 rm -f *.test
 bash testcase.sh > answer.txt 2> a.txt
 sed -e "s/testcase.sh: //g" a.txt | cut -d : -f 2- > answer_error.txt && rm a.txt

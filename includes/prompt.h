@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:41:41 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 18:31:03 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/04 15:20:01 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROMPT_H
 # define PROMPT_H
 
-#define  var 0
-#ifdef TEST
-#define var 1
-#endif
+# ifdef TEST
+#  define VAR 1
+# else
+#  define VAR 0
+# endif
 
 void	input_prompt(void);
 

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 15:14:51 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/04 15:19:54 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	get_cmd_line(char **line, char c)
 
 	if (*line == NULL)
 		*line = ft_strdup("");
-	while ((ret = read(0, &buf, 1)) >= var)
+	while ((ret = read(0, &buf, 1)) >= VAR)
 	{
 		if (c != '\n' && buf == '\n' && ret)
 			ft_putstr_fd("> ", 2);
