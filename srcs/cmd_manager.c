@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 15:13:42 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:46:02 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "env_list_base.h"
 #include "utils_quote.h"
 #include "utils_string.h"
+#include "utils_string_operation.h"
 
 static void		exec_command_line(const char *line)
 {
@@ -32,7 +33,7 @@ static void		exec_command_line(const char *line)
 	if (i == 1)
 	{
 		cmd_list = util_split(pipe_list[0], ' ');
-		iter_remove_quote(cmd_list);
+		iter_array(cmd_list, &remove_quote);
 		if (is_builtin(cmd_list[0])) // 単体かつbuiltin(cd, echo, etc..)
 			set_exit_code(exec_command(pipe_list[0]));
 		else

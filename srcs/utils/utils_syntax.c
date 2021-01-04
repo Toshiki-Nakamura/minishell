@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/31 14:28:38 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:33:59 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ int		s_space(char *str)
 	return (0);
 }
 
-void	get_next_token(char **line)
+void	get_next_pipe(char **line)
 {
 	char	buf;
 	int		ret;
 
-	write(2, "not closed token\n> ", 19);
+	write(2, "not closed pipe\n> ", 19);
 	if (*line == NULL)
 		*line = ft_strdup("");
 	while ((ret = read(0, &buf, 1)) >= 0)
@@ -114,18 +114,18 @@ char		*check_token(char *line, char token)
 	next = NULL;
 	if (syntax_check(line, token) == 0)
 	{
-		set_exit_code(error_handle(NULL, SYNTAX_ERROR, "`|'", 258));
+		set_exit_code(error_handle(NULL, SYNTAX_ERROR, NULL, 258));
 		return (free_set(&line, NULL));
 	}
-	if (last_word(line, token) == 0)
+	if (token == '|' && last_word(line, token) == 0)
 	{
-		get_next_token(&next);
+		get_next_pipe(&next);
 		if (!next)
 			return (free_set(&line, NULL));
 		line = ft_strjoin_free(line, next);
 		if (syntax_check(line, token) == 1)
 			return (line);
-		set_exit_code(error_handle(NULL, SYNTAX_ERROR, "`|'", 258));
+		set_exit_code(error_handle(NULL, SYNTAX_ERROR, NULL, 258));
 		return (free_set(&line, NULL));
 	}
 	return (line);

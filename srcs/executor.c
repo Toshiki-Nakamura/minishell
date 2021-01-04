@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:07:18 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:46:31 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include "redirect.h"
 #include "utils_quote.h"
 #include "files.h"
+#include "utils_string_operation.h"
 
 void		set_exit_code(int code)
 {
@@ -85,7 +86,7 @@ static int	exec_simple_command(char *cmd)
 	int		ret_value;
 
 	cmd_list = util_split(cmd, ' ');
-	iter_remove_quote(cmd_list);
+	iter_array(cmd_list, &remove_quote);
 	ret_value = sh_execute(cmd_list, get_env_param(), 1);
 	if (cmd_list != NULL)
 		array_free(cmd_list);

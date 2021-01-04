@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 14:29:34 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/24 12:30:12 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:19:50 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 int			is_quote(int c);
 void		parse_line(char *line, int *quote);
 char		*skip_to_next_quote(char *str);
-void		iter_remove_quote(char **cmd);
+void		remove_quote(char **line);
 
 #endif

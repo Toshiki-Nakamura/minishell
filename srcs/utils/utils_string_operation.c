@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string_operation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:25:33 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:38:11 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:40:48 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,17 @@ void	remove_comment(char **str)
 			*str = ret_str;
 		}
 		p++;
+	}
+}
+
+void	iter_array(char **cmd, void (*str_operate)(char **line))
+{
+	int		i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		str_operate(&cmd[i]);
+		i++;
 	}
 }

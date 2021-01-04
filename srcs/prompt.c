@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 15:19:54 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/04 16:25:23 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,6 @@ void		get_quote_mode(char **line, int quote)
 		free_set(line, NULL);
 }
 
-//echo '"$HOME ''$HOME''"
-//>'
-
 void		check_quote(char **line)
 {
 	int		quote;
@@ -118,7 +115,7 @@ void		input_prompt(void)
 	char	*line;
 
 	line = NULL;
-	ft_putstr_fd("\033[32mshell$> \033[0m", 2);
+	ft_putstr_fd("\033[32mshell$> \033[0m", 1);
 	get_cmd_line(&line, '\n'); // !!! wait return !!!
 	check_quote(&line);
 	if (!line)
