@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:54:21 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/04 15:13:42 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "env_list_base.h"
 #include "utils_quote.h"
 #include "utils_string.h"
-#include "utils_string_operation.h"
 
 static void		exec_command_line(const char *line)
 {
@@ -50,11 +49,16 @@ static void		exec_command_line(const char *line)
 
 void			exec_one_line(const char *line)
 {
-	char	*str;
-	// ;や#を含む1行を実行する
-	str = ft_strdup(line);
-	remove_comment(&str);
-	//TODO: ;がきたら分割する
-	exec_command_line(str);
-	free(str);
+	char	**commands;
+	int		i;
+
+	commands = util_split(line, ';');
+	i = 0;
+	while (commands[i] != NULL)
+	{
+		exec_command_line(commands[i]);
+		i++;
+	}
+	if (commands != NULL)
+		array_free(commands);
 }

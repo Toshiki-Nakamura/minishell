@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/31 13:45:37 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/04 15:14:51 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include "minishell.h"
 #include "libft.h"
 #include "utils_string.h"
-#include "cmd_manager.h"
 #include "utils_quote.h"
 #include "utils_env_param.h"
-#include <stdio.h>
+#include "utils_string_operation.h"
 #include "prompt.h"
+#include "cmd_manager.h"
 #include "utils_syntax.h"
 #include "executor.h"
-#include "minishell.h"
 #include "utils.h"
 
 void	get_quote_line(char **line)
@@ -114,18 +115,16 @@ void		check_quote(char **line)
 
 void		input_prompt(void)
 {
-	int		fd;
 	char	*line;
 
-	fd = 1;
 	line = NULL;
 	ft_putstr_fd("\033[32mshell$> \033[0m", 2);
 	get_cmd_line(&line, '\n'); // !!! wait return !!!
 	check_quote(&line);
 	if (!line)
 		return ;
-	replace_env_param(&line); /* $変数置換 */
-	// if ((line = check_token(line, '|')) != NULL)
+	replace_env_param(&line);
+	remove_comment(&line);
 	exec_one_line(line);
 	if (line != NULL)
 		free(line);
