@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/04 16:33:59 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/07 00:06:59 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@
 #include "libft.h"
 #include <unistd.h>
 #include "utils_string.h"
+#include "utils_syntax.h"
 
-# define EOF_ERROR  "unexpected end of file"
+int		is_token(int c)
+{
+	if (c == '|' || c == ';')
+		return (1);
+	return (0);
+}
 
-int		syntax_check(const char *str, char token)
+int		invalid_syntax(const char *str)
 {
 	int		cmd;
 	char	*tmp;
@@ -29,24 +35,21 @@ int		syntax_check(const char *str, char token)
 	tmp = (char *)str;
 	while (*tmp == ' ' || *tmp == '\t')
 		tmp++;
-	if (*tmp == token)
-		return (0);
+	if (is_token(*tmp))
+		return (*tmp);
 	while (*tmp)
 	{
 		if (is_quote(*tmp))
-		{
-			cmd = 1;
 			tmp = skip_to_next_quote(tmp);
-		}
-		else if (*tmp != ' ' && *tmp != '\t' && *tmp != token)
+		if (*tmp != ' ' && *tmp != '\t' && !is_token(*tmp))
 			cmd = 1;
-		if (*tmp == token && cmd)
+		if (is_token(*tmp) && cmd)
 			cmd = 0;
-		else if (*tmp == token && !cmd)
-			return (0);
+		else if (is_token(*tmp) && !cmd)
+			return (*tmp);
 		tmp++;
 	}
-	return (1);
+	return (0);
 }
 
 int		last_word(char *str, char token)
@@ -60,11 +63,11 @@ int		last_word(char *str, char token)
 	while ((str[i] == ' ' || str[i] == '\t') && i > 0)
 		i--;
 	if (str[i] == token)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
-int		s_space(char *str)
+static int	only_space(char *str)
 {
 	int i;
 
@@ -88,9 +91,10 @@ void	get_next_pipe(char **line)
 		*line = ft_strdup("");
 	while ((ret = read(0, &buf, 1)) >= 0)
 	{
-		if ((buf == '\n') && (s_space(*line) || !last_word(*line, '|')))
+		if (ret && buf == '\n' && (only_space(*line) || \
+			(!invalid_syntax(*line) && last_word(*line, '|'))))
 			ft_putstr_fd("> ", 2);
-		else if (buf == '\n')
+		else if (ret && buf == '\n')
 			break;
 		else
 			*line = (ret) ? ft_join(*line, buf) : *line;
@@ -107,25 +111,35 @@ void	get_next_pipe(char **line)
 **	syntax error => -1  not close => 0, OK => 1
 */
 
+int		syntax_error(char *msg, char token, int exitcode)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(msg, 2);
+	write(2, " `", 2);
+	ft_putchar_fd(token, 2);
+	write(2, "'\n", 2);
+	return (exitcode);
+}
+
 char		*check_token(char *line, char token)
 {
 	char *next;
 
 	next = NULL;
-	if (syntax_check(line, token) == 0)
+	if ((token = invalid_syntax(line)))
 	{
-		set_exit_code(error_handle(NULL, SYNTAX_ERROR, NULL, 258));
+		set_exit_code(syntax_error(SYNTAX_ERROR, token, 258));
 		return (free_set(&line, NULL));
 	}
-	if (token == '|' && last_word(line, token) == 0)
+	if (last_word(line, '|') > 0)
 	{
 		get_next_pipe(&next);
 		if (!next)
 			return (free_set(&line, NULL));
 		line = ft_strjoin_free(line, next);
-		if (syntax_check(line, token) == 1)
+		if ((token = invalid_syntax(line)) == 0)
 			return (line);
-		set_exit_code(error_handle(NULL, SYNTAX_ERROR, NULL, 258));
+		set_exit_code(syntax_error(SYNTAX_ERROR, token, 258));
 		return (free_set(&line, NULL));
 	}
 	return (line);
