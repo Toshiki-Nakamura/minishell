@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 16:46:31 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/07 12:29:14 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static int	exec_simple_command(char *cmd)
 	int		ret_value;
 
 	cmd_list = util_split(cmd, ' ');
+	iter_array(cmd_list, &replace_tilde);
 	iter_array(cmd_list, &remove_quote);
 	ret_value = sh_execute(cmd_list, get_env_param(), 1);
 	if (cmd_list != NULL)

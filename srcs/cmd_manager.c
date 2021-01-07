@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 16:46:02 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/07 14:57:06 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		exec_command_line(const char *line)
 	if (i == 1)
 	{
 		cmd_list = util_split(pipe_list[0], ' ');
-		iter_array(cmd_list, &remove_quote);
+		// iter_array(cmd_list, &remove_quote);
 		if (is_builtin(cmd_list[0])) // 単体かつbuiltin(cd, echo, etc..)
 			set_exit_code(exec_command(pipe_list[0]));
 		else

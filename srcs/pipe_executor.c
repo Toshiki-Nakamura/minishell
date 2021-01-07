@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/04 16:54:04 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/07 14:39:42 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static int	exec_pipe_command(int remain_cmd_num, char **pipe_list)
 			close(fd[0]);
 			/* 子プロセス1にn番目のコマンドを実行させる(元々は親プロセスが実行していた) */
 			ret_value = exec_command(pipe_list[remain_cmd_num]);
+			exit(ret_value);
 		}
 		else
 		{
@@ -83,6 +84,7 @@ static int	exec_pipe_command(int remain_cmd_num, char **pipe_list)
 				close(fd[1]);
 				/* 子プロセス2には再帰でn-1番目のコマンドを実行させる */
 				ret_value = exec_pipe_command(remain_cmd_num - 1, pipe_list);
+				exit(ret_value);
 			}
 			ret_value = parent_wait(pid1, pid2, fd); /* 親たちはここで待機し,子プロセスの結果を返す */
 		}
