@@ -1,0 +1,57 @@
+
+
+@startuml
+title exec_pipe_command sequence diagram
+hide footbox
+
+participant "cmd親プロセス" as Parent1
+participant "cmd子プロセス1" as Child1
+participant "cmd子プロセス2" as Child2
+participant "cmd2親プロセス" as Parent2
+
+alt ex) % ls
+	[->Parent1 : exec_pipe_command(0)
+	activate Parent1
+	Parent1 -> Parent1 : exec_command(0)
+	activate Parent1
+	Parent1->] : "ls"
+	deactivate Parent1
+	[<--Parent1 : return
+	deactivate Parent1
+else ex) % ls | grep test
+	[->Parent1 : exec_pipe_command(1)
+	activate Parent1
+	Parent1->Parent1 : pipe()
+	Parent1->Child1 : fork()
+	activate Child1
+	Parent1->Child2 : fork()
+	activate Child2
+	Parent1->Parent1 : close_fd
+	note right: 親プロセスではパイプfdを使わないので\nfd[0],fd[1]共に閉じる
+	Parent1->Child1 : wait()
+	deactivate Parent1
+	Child1->Child1 : input fd setting
+	note left: cmd0の標準入力を受け取る設定
+	Child1->Child1 : exec_command(1)
+	note left: cmd1を実施
+	activate Child1
+	Child1->] : "grep test"
+	deactivate Child1
+	Parent1<--Child1 : exit()
+	deactivate Child1
+	activate Parent1
+	Parent1->Child2 : wait()
+	deactivate Parent1
+	Child2->Child2 : output fd setting
+	note left: cmd1に標準出力を渡す設定
+	Child2->Parent2 : exec_pipe_command(0)
+	note left: cmd0を実施
+	Parent1<--Child2 : exit()
+	deactivate Child2
+	activate Parent1
+	[<--Parent1 : return
+	deactivate Parent1
+end
+
+
+@enduml
