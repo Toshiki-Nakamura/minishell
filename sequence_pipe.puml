@@ -28,24 +28,24 @@ else ex) % ls | grep test
 	activate Child2
 	Parent1->Parent1 : close_fd
 	note right: 親プロセスではパイプfdを使わないので\nfd[0],fd[1]共に閉じる
-	Parent1->Child1 : wait()
+	Parent1->Child1 : waitpid(1)
 	deactivate Parent1
 	Child1->Child1 : input fd setting
-	note left: cmd0の標準入力を受け取る設定
-	Child1->Child1 : exec_command(1)
-	note left: cmd1を実施
-	activate Child1
-	Child1->] : "grep test"
-	deactivate Child1
+	note left: 標準入力をcmd0から受け取る設定
+	Child1->Parent2 : exec_pipe_command(1)\n"grep test"
+	note left: 再起呼び出しによりcmd1以降を実行
 	Parent1<--Child1 : exit()
 	deactivate Child1
 	activate Parent1
-	Parent1->Child2 : wait()
+	Parent1->Child2 : waitpid(2)
 	deactivate Parent1
 	Child2->Child2 : output fd setting
-	note left: cmd1に標準出力を渡す設定
-	Child2->Parent2 : exec_pipe_command(0)
-	note left: cmd0を実施
+	note left: 標準出力をcmd1に渡す設定
+	Child2->Child2 : exec_command(0)
+	activate Child2
+	Child2->] : "ls"
+	deactivate Child2
+	note left: cmd0を実行
 	Parent1<--Child2 : exit()
 	deactivate Child2
 	activate Parent1
