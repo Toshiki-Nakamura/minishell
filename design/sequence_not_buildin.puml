@@ -1,0 +1,30 @@
+
+
+@startuml
+title Builtin以外の単体コマンド実行のシーケンス図
+hide footbox
+
+participant "親プロセス" as Parent
+participant "子プロセス1" as Child1
+
+[-> Parent : fork_exec_commands
+activate Parent
+Parent -> Child1 : fork(子プロセスを生成)
+Parent -> Child1 : wait(子プロセスに切り替え)\nfork_exec_commands
+deactivate Parent
+activate Child1
+Child1 -> Child1 : exec_pipe_command
+activate Child1
+Child1 -> Child1 : exec_command
+activate Child1
+Child1->] : ex) "cat hoge.txt"
+Parent <-- Child1 : exit(親プロセスに戻る)
+deactivate Child1
+deactivate Child1
+deactivate Child1
+activate Parent
+Parent -> Parent : get_child_process_result_from status
+[<-- Parent : return
+deactivate Parent
+
+@enduml
