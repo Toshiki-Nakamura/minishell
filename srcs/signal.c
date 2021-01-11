@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:39:20 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/07 00:20:26 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/11 15:41:29 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,17 @@ void		sig_process(int sig)
 	if (sig == SIGQUIT) /* Ctrl-\ */
 	{
 		write(2, "Quit: 3\n", 8);
+	}
+}
+
+void		sig_child(int sig)
+{
+	if (sig == SIGINT)	/* Ctrl-C */
+	{
+		write(2, "\0", 1);
+	}
+	if (sig == SIGQUIT) /* Ctrl-\ */
+	{
+		write(2, "\0", 1);
 	}
 }

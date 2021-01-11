@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:41:12 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/19 13:40:03 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/11 15:41:50 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 void		sig_func(int sig);
 void		sig_process(int sig);
+void		sig_child(int sig);
 
 #endif
