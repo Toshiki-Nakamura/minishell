@@ -41,7 +41,7 @@ echo '----- test: execve 1 -----'
 ls
 ls -lt
 echo '----- test: pipe 1 -----'
-ls | cat -e | grep test
+ls | cat -e | cat -e | grep test
 echo '----- test: pipe 2 -----'
 pwd | cat -e
 echo '----- test: pipe 3 -----'
@@ -122,6 +122,8 @@ echo xxx > ~home.test
 echo yyy >>~/home.test
 cat <~/home.test
 rm -f ~home.test ~/home.test
+echo '----- test: semicoron -----'
+pwd; echo hoge; pwd
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
