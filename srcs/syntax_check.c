@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:24:42 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/14 14:53:28 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/14 15:33:08 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ static int	check_quote(const char *line)
 
 static int	check_invalid_operator(const char *line)
 {
+#if 0
 	while (*line != '\0')
 	{
 		if (ft_strchr(MINISHELL_INVALID_OPERATOR, *line))
 			return (0);
 		line++;
 	}
+#else
+	(void)line;
+#endif
 	return (1);
 }
 
