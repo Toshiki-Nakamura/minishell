@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/11 16:33:59 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/14 14:46:12 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	exec_pipe_command(char **pipe_list)
 		ret_value = exec_pipe_command(&pipe_list[1]);
 		exit(ret_value);
 	}
-	signal(SIGINT, sig_child);
+	signal(SIGINT, sig_ignore);
 	pid2 = fork();
 	if (pid2 == 0)
 	{
@@ -102,8 +102,8 @@ int			fork_exec_commands(char **pipe_list)
 
 	ret_value = 0;
 	pid = fork();
-	signal(SIGINT, sig_process);
-	(!pipe_list[1]) ? signal(SIGQUIT, sig_process) : signal(SIGQUIT, sig_child);
+	signal(SIGINT, in_process);
+	(!pipe_list[1]) ? signal(SIGQUIT, in_process) : signal(SIGQUIT, sig_ignore);
 	if (pid == 0)
 	{
 		ret_value = exec_pipe_command(pipe_list);

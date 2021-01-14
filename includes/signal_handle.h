@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:41:12 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/11 15:41:50 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/14 14:47:55 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "libft.h"
 
-void		sig_func(int sig);
-void		sig_process(int sig);
-void		sig_child(int sig);
+void		in_prompt(int sig);
+void		in_process(int sig);
+void		sig_ignore(int sig);
 
 #endif
