@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/21 14:14:20 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/14 14:46:30 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		main(int ac, char **av, char **env)
 	initialize_env_list(env);
 	while (1)
 	{
-		signal(SIGINT, sig_func);
-		signal(SIGQUIT, sig_func);
+		signal(SIGINT, in_prompt);
+		signal(SIGQUIT, in_prompt);
 		input_prompt();
 	}
 	return (0);

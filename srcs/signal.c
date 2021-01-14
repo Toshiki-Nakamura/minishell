@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:39:20 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/07 00:20:26 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/14 14:51:18 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "prompt.h"
 #include "utils_string.h"
 
-void	sig_func(int sig)
+void		in_prompt(int sig)
 {
 	if (sig == SIGINT) /* Ctrl-C */
 	{
@@ -34,7 +34,7 @@ void	sig_func(int sig)
 		write(2, "\b \b\b \b", 6);
 }
 
-void		sig_process(int sig)
+void		in_process(int sig)
 {
 	if (sig == SIGINT)	/* Ctrl-C */
 	{
@@ -44,4 +44,10 @@ void		sig_process(int sig)
 	{
 		write(2, "Quit: 3\n", 8);
 	}
+}
+
+void		sig_ignore(int sig)
+{
+	(void)sig;
+	return ;
 }
