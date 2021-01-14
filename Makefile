@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2021/01/14 13:27:13 by skohraku         ###   ########.fr        #
+#    Updated: 2021/01/14 16:34:41 by tnakamur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS	+= srcs/prompt.c \
 		srcs/utils/utils_redirect.c \
 		srcs/utils/utils_env_param.c \
 		srcs/utils/utils_split.c \
+		srcs/utils/utils_syntax.c \
 		srcs/signal.c \
 		srcs/files.c \
 		srcs/syntax_check.c
