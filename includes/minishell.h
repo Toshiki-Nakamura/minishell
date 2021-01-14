@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/14 14:52:35 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/14 20:47:15 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@
 # define NOT_COMMAND "command not found"
 # define IS_DIR "is a directory"
 # define SYNTAX_ERROR "syntax error near unexpected token"
+# define MINISHELL_ERROR "minishell error near unexpected token"
 
-# define MINISHELL_INVALID_OPERATOR "&(){}?*"
+# define MINISHELL_INVALID_OPERATOR "&(){}*"
 
 typedef enum	e_redirec_type {
 	REDIRECT_INPUT,

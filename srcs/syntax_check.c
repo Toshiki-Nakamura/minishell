@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:24:42 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/14 19:29:11 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/14 20:47:38 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,21 @@ static int	check_quote(const char *line)
 	}
 	if (quote <= 2)
 		return (1);
-	set_exit_code(error_handle(SYNTAX_ERROR, NULL, "quote", 258));
+	set_exit_code(error_handle(MINISHELL_ERROR, NULL, "quote", 258));
 	return (0);
 }
 
 static int	check_invalid_operator(const char *line)
 {
-#if 0
 	while (*line != '\0')
 	{
 		if (ft_strchr(MINISHELL_INVALID_OPERATOR, *line))
+		{
+			set_exit_code(put_syntax_err(MINISHELL_ERROR, *line, 258));
 			return (0);
+		}
 		line++;
 	}
-#else
-	(void)line;
-#endif
 	return (1);
 }
 
@@ -86,7 +85,6 @@ int			check_syntax(const char *line)
 	{
 		return (1);
 	}
-	// set_exit_code(error_handle(SYNTAX_ERROR, NULL, "quote", 258));
 	return (0);
 }
 
