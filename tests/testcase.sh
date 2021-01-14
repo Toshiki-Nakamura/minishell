@@ -70,6 +70,8 @@ echo '----- test: quote 7 -----'
 echo '"''$HOME'' "'
 echo '----- test: quote 8 -----'
 echo '"$HOME ''$HOME''"'
+echo '----- test: quote 9 -----'
+echo "( & {} * )"
 echo '----- test: $? status -----'
 ls hoge
 echo $?
