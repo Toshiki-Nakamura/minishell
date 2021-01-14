@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/04 16:22:32 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/14 14:45:14 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,4 @@ void		remove_quote(char **line)
 	new[j] = '\0';
 	free(*line);
 	*line = new;
-}
-
-void		parse_line(char *line, int *quote)
-{
-	while (line[0] != '\0')
-	{
-		if ((*quote = is_quote(line[0])) > 0)
-		{
-			line = skip_to_next_quote(line);
-			if (line[0] == '\0')
-			{
-				ft_putendl_fd("not closed", 2);
-				*quote = (*quote == 2) ? '\"' : '\'';
-				break ;
-			}
-		}
-		line++;
-	}
 }
