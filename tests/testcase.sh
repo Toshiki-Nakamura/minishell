@@ -1,11 +1,20 @@
-echo '========== test start =============================='
-echo '----- test: empty new line -----'
-
-echo '----- test: pwd 1 -----'
-pwd
-echo '----- test: cd 1 -----'
+echo '======================================'
+echo '========== [BLACK BOX TEST] =========='
+echo '======================================'
+echo '----- test: Search and launch the right executable -----'
+ls
+ls -lt ..
+echo '----- test: echo with option -n -----'
+echo hoge
+echo -n hoge
+echo -x hoge
+echo '----- test: cd with only a relative or absolute path -----'
 cd ..
+echo '----- test: pwd without any options -----'
 pwd
+cd tests
+pwd
+echo '----- test: export without any options -----'
 echo '----- test: export 1 -----'
 export TEST_EXPORT=hoge
 echo $TEST_EXPORT
@@ -15,20 +24,7 @@ echo $NO_VALUE_
 echo '----- test: export 3 -----'
 export KEY
 export | sed /SHLVL/d
-echo '----- test: export 4 -----'
-env | grep KEY
-export | grep KEY
-echo '----- test: export 4 -----'
-export KEY=value
-env | grep KEY
-export | grep KEY
-export KEY
-env | grep KEY
-export | grep KEY
-echo '----- test: export 5 -----'
-unset KEY
-env | grep KEY
-export | grep KEY
+echo '----- test: unset without any options -----'
 echo '----- test: unset 1 -----'
 echo $TEST_EXPORT
 unset TEST_EXPORT
@@ -37,18 +33,25 @@ echo '----- test: unset 2 -----'
 unset 0A
 unset VAR?A
 unset VAR=A
-echo '----- test: execve 1 -----'
-ls
-ls -lt
-echo '----- test: pipe 1 -----'
-ls | cat -e | cat -e | grep test
-echo '----- test: pipe 2 -----'
-pwd | cat -e
-echo '----- test: pipe 3 -----'
-cd .. | ls
-pwd
-echo '----- test: pipe4 -----'
-exit | echo hoge | ls
+echo '----- test: env without any options and any arguments -----'
+echo 'NOTE: 単体での env は表示順に差分が出るため実行していない'
+echo '----- test: env & export & unset 1 -----'
+env | grep KEY
+export | grep KEY
+echo '----- test: env & export & unset 2 -----'
+export KEY=value
+env | grep KEY
+export | grep KEY
+export KEY
+env | grep KEY
+export | grep KEY
+echo '----- test: env & export & unset 3 -----'
+unset KEY
+env | grep KEY
+export | grep KEY
+echo '----- test: ; in the command should separate commands -----'
+pwd; echo hoge; pwd
+echo '----- test: ’ and " should work like in bash except for multiline commands -----'
 echo '----- test: quote 1 -----'
 echo "ddd' ss 'DD"
 echo "aaa"'bb"c'" 'aaa'"
@@ -70,28 +73,7 @@ echo '----- test: quote 7 -----'
 echo '"''$HOME'' "'
 echo '----- test: quote 8 -----'
 echo '"$HOME ''$HOME''"'
-echo '----- test: quote 9 -----'
-echo "( & {} * )"
-echo '----- test: $? status -----'
-ls hoge
-echo $?
-echo $?
-echo | cd hoge
-echo $?
-echo | cd
-echo $?
-CD hoge
-echo $?
-hoge
-
-
-echo $?
-ls | cat -e
-echo $?
-echo '----- test: utils_split and quote -----'
-echo "lkanvl; ; ';s  ; kl ;ls| lsvk   " | cat -e
-echo "  kasvjnsl " "|'a'a lacnln      ;lmav""aa "
-echo" "'kkk'
+echo '----- test: Redirections < > “>>” should work like in bash except for file descriptor aggregation -----'
 echo '----- test: redirect output case -----'
 rm -f a.test b.test c.test d.test
 echo hoge>a.test
@@ -115,17 +97,55 @@ cat a.test c.test
 echo '----- test: redirect unnormal filename case -----'
 echo hoge>=d.test
 cat =d.test
-rm =d.test
-rm a.test b.test c.test d.test
-echo '----- test: redirect tilde filename case -----'
+echo '----- test: Pipes | should work -----'
+echo '----- test: pipe 1 -----'
+ls | cat -e | cat -e | grep test
+echo '----- test: pipe 2 -----'
+pwd | cat -e
+echo '----- test: pipe 3 -----'
+cd .. | ls
+pwd
+echo '----- test: pipe4 -----'
+exit | echo hoge | ls
+echo '----- test: Environment variables ($ followed by characters) should work -----'
+echo $HOME
+echo $USER
+echo '----- test: $? should work -----'
+ls hoge
+echo $?
+echo $?
+echo | cd hoge
+echo $?
+echo | cd
+echo $?
+CD hoge
+echo $?
+hoge
+echo $?
+ls | cat -e
+echo $?
+echo ''
+echo ''
+echo '======================================'
+echo '========== [WHITE BOX TEST] =========='
+echo '======================================'
+echo '----- test: empty new line -----'
+
+
+
+echo '----- test: utils_split and quote -----'
+echo "lkanvl; ; ';s  ; kl ;ls| lsvk   " | cat -e
+echo "  kasvjnsl " "|'a'a lacnln      ;lmav""aa "
+echo" "'kkk'
+echo '----- test: tilde replace -----'
+echo ~
+echo ~$USER
 echo foo > ~/home.test
 cat < ~/home.test
 echo xxx > ~home.test
 echo yyy >>~/home.test
 cat <~/home.test
 rm -f ~home.test ~/home.test
-echo '----- test: semicoron -----'
-pwd; echo hoge; pwd
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
@@ -167,11 +187,6 @@ export "PATH=$PWD/testsB:$PWD/testsA:/bin"
 tests
 rm testsA/tests
 rm testsB/tests
-echo '----- test: reset HOME  -----'
-unset HOME
-cd
-pwd
-cd ~/
-pwd
-echo '========== test finished =============================='
+echo '----- test: exit without any options -----';
+
 exit
