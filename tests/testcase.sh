@@ -187,6 +187,4 @@ export "PATH=$PWD/testsB:$PWD/testsA:/bin"
 tests
 rm testsA/tests
 rm testsB/tests
-echo '----- test: exit without any options -----';
-
-exit
+echo '----- test: EXIT without any options -----';exit
