@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:24:42 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/14 22:35:32 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/15 17:37:16 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int		check_valid_operator(const char *line)
 
 	if ((token = parse_syntax(line)))
 	{
-		set_exit_code(put_syntax_err(SYNTAX_ERROR, token, 258));
+		if (ft_isprint(token))
+			set_exit_code(put_syntax_err(SYNTAX_ERROR, token, 258));
 		return (0);
 	}
 	if (check_closed(line, '|') > 0)

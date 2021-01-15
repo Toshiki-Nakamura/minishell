@@ -11,6 +11,9 @@ rm -f *.test
 cut -d : -f 2- std.test > result_error.txt
 ../minishell < testcase_minishell_error.sh 2> result_ms_error.txt > /dev/null
 rm -f *.test
+../minishell < syntax_error.sh 2> res.test | sed 's/\[32mshell$> \[0m//g' |sed -e "/exit/d" 
+cut -d : -f 2- res.test > result_syntax_error.txt
+rm -f *.test
 
 ESC=$(printf '\033')
 echo =================================

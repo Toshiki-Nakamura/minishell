@@ -146,6 +146,17 @@ echo xxx > ~home.test
 echo yyy >>~/home.test
 cat <~/home.test
 rm -f ~home.test ~/home.test
+echo '----- test: pipe and redirect case-----'
+cat<../Makefile|grep minishell
+cat < ../Makefile | grep minishell > b
+cat b
+cat < hello.c | cat -e > a ; cat < a | grep hello >> b
+cat a b
+ls | cat -e >> a | cat -n
+rm a b
+echo '----- test: pipe and redirect case 2-----'
+echo hoge | >> a
+rm a
 echo '----- test: crazy case 1-----'
 CD ..
 PWd
