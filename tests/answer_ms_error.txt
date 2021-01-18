@@ -2,6 +2,5 @@ minishell: minishell error near unexpected token `*'
 minishell: minishell error near unexpected token `&'
 minishell: minishell error near unexpected token `('
 minishell: minishell error near unexpected token `{'
-minishell: syntax error near unexpected token `|'
-not closed
 minishell: minishell error near unexpected token: quote
+minishell: syntax error near unexpected token `|'

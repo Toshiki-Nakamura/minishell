@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:24:42 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/15 17:37:16 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/18 11:41:53 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	check_quote(const char *line)
 			line = skip_to_next_quote(line);
 			if (line[0] == '\0')
 			{
-				ft_putendl_fd("not closed", 2);
 				quote = (quote == 2) ? '\"' : '\'';
 				break ;
 			}

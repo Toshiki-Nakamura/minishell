@@ -4,25 +4,31 @@ echo '======================================'
 echo '----- test: Search and launch the right executable -----'
 ls
 ls -lt ..
+ls fuga
 echo '----- test: echo with option -n -----'
 echo hoge
 echo -n hoge
 echo -x hoge
+echo
 echo '----- test: cd with only a relative or absolute path -----'
 cd ..
+cd hoge
 echo '----- test: pwd without any options -----'
 pwd
 cd tests
 pwd
+pwd adlskfajsdlfajdfajlsdkfjasdlkfjasdlkfjalskdagkjsdfhkgjhsdfkjhdfkjahf
 echo '----- test: export without any options -----'
 echo '----- test: export 1 -----'
 export TEST_EXPORT=hoge
 echo $TEST_EXPORT
 echo '----- test: export 2 -----'
 export NO_VALUE=
-echo $NO_VALUE_
+echo $NO_VALUE
 echo '----- test: export 3 -----'
 export KEY
+export | grep KEY
+echo '----- test: export 4 -----'
 export | sed /SHLVL/d
 echo '----- test: unset without any options -----'
 echo '----- test: unset 1 -----'
@@ -110,6 +116,7 @@ exit | echo hoge | ls
 echo '----- test: Environment variables ($ followed by characters) should work -----'
 echo $HOME
 echo $USER
+echo $TESTTESTTEST
 echo '----- test: $? should work -----'
 ls hoge
 echo $?
@@ -126,6 +133,8 @@ ls | cat -e
 echo $?
 echo ''
 echo ''
+cat ..
+echo $?
 echo '======================================'
 echo '========== [WHITE BOX TEST] =========='
 echo '======================================'
@@ -198,4 +207,5 @@ export "PATH=$PWD/testsB:$PWD/testsA:/bin"
 tests
 rm testsA/tests
 rm testsB/tests
-echo '----- test: EXIT without any options -----';exit
+echo '----- test: EXIT without any options -----'
+exit
