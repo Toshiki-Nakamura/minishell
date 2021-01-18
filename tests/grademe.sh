@@ -4,14 +4,19 @@ touch srcs/prompt.c
 make test
 cd tests
 rm -f *.test
+echo '----- execute bash std test -----'
 bash testcase.sh > answer.txt 2> std.test
 sed -e "s/testcase.sh: //g" std.test | cut -d : -f 2- > answer_error.txt
 rm -f *.test
-../minishell < testcase.sh 2> std.test | sed 's/\[32mshell$> \[0m//g' | sed -e "/exit/d" > result.txt
+echo '----- execute minishell std test -----'
+../minishell < testcase.sh 2> std.test | sed 's/\[32mshell$> \[0m//g' | sed -e "/exit/d" > result_tmp.txt
+tail -n 19 result_tmp.txt > result_leaks.txt
+tail -r result_tmp.txt | sed '1,19d' | tail -r > result.txt
 cut -d : -f 2- std.test > result_error.txt
-../minishell < testcase_minishell_error.sh 2> result_ms_error.txt > /dev/null
+echo '----- execute minishell error test -----'
+../minishell < testcase_minishell_error.sh >dummy.test 2> result_ms_error.txt
 rm -f *.test
-../minishell < syntax_error.sh 2> res.test | sed 's/\[32mshell$> \[0m//g' |sed -e "/exit/d" 
+../minishell < syntax_error.sh 2> res.test | sed 's/\[32mshell$> \[0m//g' |sed -e "/exit/d"  >/dev/null
 cut -d : -f 2- res.test > result_syntax_error.txt
 rm -f *.test
 
@@ -32,10 +37,15 @@ if [ $? = 0 ]; then echo "$ESC[32m SUCCESS $ESC[0m"
 else echo "$ESC[31m FAILED $ESC[0m"
 fi
 
-echo =======================================
+echo ========================================
 echo ====== Minishell ERROR Output Test =====
-echo =======================================
+echo ========================================
 diff answer_ms_error.txt result_ms_error.txt
 if [ $? = 0 ]; then echo "$ESC[32m SUCCESS $ESC[0m"
 else echo "$ESC[31m FAILED $ESC[0m"
 fi
+
+echo =============================
+echo ====== Memory Leak Test =====
+echo =============================
+tail -n +16 result_leaks.txt

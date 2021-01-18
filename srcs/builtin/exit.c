@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:52:47 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/24 19:19:08 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/18 16:00:40 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@
 #include "env_list_base.h"
 #include "utils.h"
 #include "minishell.h"
+
+#ifdef TEST
+static void	minishell_exit(int status)
+{
+	system("leaks minishell 2> /dev/null");
+	exit(status);
+}
+#else
+static void	minishell_exit(int status)
+{
+	exit(status);
+}
+#endif
 
 static int is_numeric(const char *arg)
 {
@@ -58,6 +71,5 @@ void		exec_exit(char **args)
 	else if (i > 2)
 		status = error_handle("exit", args[1], NUMERIC_ARG, EXIT_RANGE);
 	finalize_env_list();
-	// system("leaks minishell");
-	exit(status);
+	minishell_exit(status);
 }
