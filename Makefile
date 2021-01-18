@@ -6,7 +6,7 @@
 #    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2021/01/14 16:34:41 by tnakamur         ###   ########.fr        #
+#    Updated: 2021/01/18 19:19:09 by tnakamur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS	+= srcs/prompt.c \
 		srcs/utils/utils_env_param.c \
 		srcs/utils/utils_split.c \
 		srcs/utils/utils_syntax.c \
+		srcs/utils/utils_stdlib.c \
 		srcs/signal.c \
 		srcs/files.c \
 		srcs/syntax_check.c
