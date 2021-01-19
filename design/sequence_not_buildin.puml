@@ -1,7 +1,7 @@
 
 
 @startuml
-title Builtin以外の単体コマンド実行のシーケンス図
+title single command except builtin sequence diagram
 hide footbox
 
 participant "親プロセス" as Parent
