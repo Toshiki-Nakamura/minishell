@@ -159,6 +159,9 @@ echo xxx > ~home.test
 echo yyy >>~/home.test
 cat <~/home.test
 rm -f ~home.test ~/home.test
+echo '----- test: remove quotation -----'
+echo hoge > "hoge.test"
+ls hoge.test
 echo '----- test: pipe and redirect case-----'
 cat<../Makefile|grep minishell
 cat < ../Makefile | grep minishell > b
