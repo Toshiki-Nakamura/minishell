@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/15 18:13:41 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:26:25 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include "utils_quote.h"
 #include "executor.h"
-#include "minishell.h"
 #include "utils.h"
 #include "libft.h"
 #include <unistd.h>
@@ -70,7 +70,7 @@ static char		*redirect_parse(const char *p)
 	if (!ft_strncmp(str, ">>", 2))
 		str++;
 	str++;
-	while (*str != '\0' && (*str == ' ' || *str == '\t'))
+	while (*str != '\0' && ft_strchr(COMMAND_SEPARATE_CHAR, *str))
 	{
 		str++;
 	}
@@ -90,7 +90,7 @@ int		parse_syntax(const char *str)
 
 	cmd = 0;
 	p = (char *)str;
-	while (*p == ' ' || *p == '\t')
+	while (ft_strchr(COMMAND_SEPARATE_CHAR, *p))
 		p++;
 	if (is_operator(*p))
 		return (*p);
@@ -100,7 +100,7 @@ int		parse_syntax(const char *str)
 			return (1);
 		if (is_quote(*p))
 			p = skip_to_next_quote(p);
-		if (*p != ' ' && *p != '\t' && !is_operator(*p))
+		if (!ft_strchr(COMMAND_SEPARATE_CHAR, *p) && !is_operator(*p))
 			cmd = 1;
 		if (is_operator(*p) && cmd)
 			cmd = 0;
@@ -119,7 +119,7 @@ int		check_closed(const char *str, char token)
 	while (str[i])
 		i++;
 	i--;
-	while ((str[i] == ' ' || str[i] == '\t') && i > 0)
+	while (ft_strchr(COMMAND_SEPARATE_CHAR, str[i]) && i > 0)
 		i--;
 	if (str[i] == token)
 		return (1);

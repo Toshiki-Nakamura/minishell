@@ -6,11 +6,12 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 21:42:31 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:23:48 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "minishell.h"
 #include "libft.h"
 #include "utils.h"
 #include "executor.h"
@@ -32,8 +33,7 @@ static void		exec_command_line(const char *line)
 		i++;
 	if (i == 1)
 	{
-		cmd_list = util_split(pipe_list[0], " \t");
-		// iter_array(cmd_list, &remove_quote);
+		cmd_list = util_split(pipe_list[0], COMMAND_SEPARATE_CHAR);
 		if (is_builtin(cmd_list[0])) // 単体かつbuiltin(cd, echo, etc..)
 			set_exit_code(exec_command(pipe_list[0]));
 		else
