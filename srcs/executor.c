@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 21:24:52 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:13:18 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	exec_simple_command(char *cmd)
 	char	**cmd_list;
 	int		ret_value;
 
-	cmd_list = util_split(cmd, ' ');
+	cmd_list = util_split(cmd, " \t");
 	iter_array(cmd_list, &replace_tilde);
 	iter_array(cmd_list, &remove_quote);
 	ret_value = sh_execute(cmd_list, get_env_param());
@@ -110,6 +110,7 @@ int			exec_command(char *cmd)
 		//<a.txt を REDIRECT_INPUT判定し、"a.txt"を抽出
 		separate_redirect_info(&redirect, &type);
 		replace_tilde(&redirect);
+		remove_quote(&redirect);
 		//fdを適切に置き換える
 		if (-1 == set_redirect(redirect, &fd, type))
 			return (-1);

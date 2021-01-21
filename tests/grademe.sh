@@ -1,6 +1,7 @@
 echo '----- make test exe -----'
 cd ..
 touch srcs/prompt.c
+touch srcs/builtin/exit.c
 make test
 cd tests
 rm -f *.test

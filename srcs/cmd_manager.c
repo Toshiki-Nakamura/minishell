@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/08 16:46:22 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:42:31 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void		exec_command_line(const char *line)
 	char	**cmd_list;
 
 	i = 0;
-	pipe_list = util_split(line, '|');
+	pipe_list = util_split(line, "|");
 	while (pipe_list[i])
 		i++;
 	if (i == 1)
 	{
-		cmd_list = util_split(pipe_list[0], ' ');
+		cmd_list = util_split(pipe_list[0], " \t");
 		// iter_array(cmd_list, &remove_quote);
 		if (is_builtin(cmd_list[0])) // 単体かつbuiltin(cd, echo, etc..)
 			set_exit_code(exec_command(pipe_list[0]));
@@ -53,7 +53,7 @@ void			exec_one_line(const char *line)
 	char	**commands;
 	int		i;
 
-	commands = util_split(line, ';');
+	commands = util_split(line, ";");
 	i = 0;
 	while (commands[i] != NULL)
 	{

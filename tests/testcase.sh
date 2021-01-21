@@ -150,6 +150,8 @@ echo '----- test: utils_split and quote -----'
 echo "lkanvl; ; ';s  ; kl ;ls| lsvk   " | cat -e
 echo "  kasvjnsl " "|'a'a lacnln      ;lmav""aa "
 echo" "'kkk'
+echo 	hoge	 	 fuga
+echo "	hoge	 	 fuga"
 echo '----- test: tilde replace -----'
 echo ~
 echo ~$USER
@@ -159,6 +161,9 @@ echo xxx > ~home.test
 echo yyy >>~/home.test
 cat <~/home.test
 rm -f ~home.test ~/home.test
+echo '----- test: remove quotation -----'
+echo hoge > "hoge.test"
+ls hoge.test
 echo '----- test: pipe and redirect case-----'
 cat<../Makefile|grep minishell
 cat < ../Makefile | grep minishell > b
@@ -215,7 +220,7 @@ export "PATH=/usr/local/bin:/usr/bin:/bin"
 env | grep "_="
 export "PATH=:/usr/bin////:/bin"
 env | grep "_="
-export PATH="/usr/local/bin:/usr/bin// //:/bin"
+export PATH="/usr/bin/:/bin"
 env | grep "_="
 echo '----- test: EXIT without any options -----'
 exit
