@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_executor.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:40:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/08 16:46:34 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:28:53 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define PIPE_EXECUTOR_H
 
 int		fork_exec_commands(char **pipe_list);
+int		exec_pipe_command(char **pipe_list);
 
 #endif
