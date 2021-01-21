@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/26 14:18:25 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 15:02:54 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,13 @@ int			exec_cd(char **args, char **env)
 	(void)env;
 	home = get_env_value("HOME");
 	if (!home && !args[1])
-		return (error_handle("cd", args[1], "HOME not set", 1));
-	if (!home && (!ft_strncmp("~/", args[1], 3) || !ft_strncmp("~", args[1], 2)))
-	{
-		if (chdir(g_env_value("HOME")) != 0)
-			return (error_handle("cd", args[1], strerror(errno), 1));
-	}
-	else if (!args[1] || !ft_strncmp("~/", args[1], 2) || !ft_strncmp("~", args[1], 3))
+		return (error_handle("cd", NULL, "HOME not set", 1));
+	else if (!args[1])
 	{
 		if (chdir(home) != 0)
 			return (error_handle("cd", (char *)home, strerror(errno), 1));
 	}
-	else
+	else if (args[1][0] != '\0')
 	{
 		if (chdir(args[1]) != 0)
 			return (error_handle("cd", args[1], strerror(errno), 1));

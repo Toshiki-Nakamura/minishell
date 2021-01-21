@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:14:10 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/27 01:14:19 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 18:08:49 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "utils_string.h"
 #include "minishell.h"
 
-static int	path_check(char **path)
+static int	path_check(char **path, char **key)
 {
 	char	**array;
 	int		i;
@@ -38,6 +38,7 @@ static int	path_check(char **path)
 				array_free(array);
 			if (size == 2)
 			{
+				*key = ft_strjoin("_=", path[i]);
 				array_free(path);
 				return (1);
 			}
@@ -52,18 +53,22 @@ int			exec_env(char **args, char **env, int fd)
 	const char	*path;
 	char		**path_lst;
 	char		*cmd;
+	char		*key;
 
 	(void)env;
 	(void)fd;
 	path = get_env_value("PATH");
-	if (!path)
+	if (!path || !ft_strcmp(path, ""))
 		return (error_handle(args[0], NULL, strerror(2), EXIT_NOT_CMD));
 	path_lst = ft_split(path, ':');
-	if (path_check(path_lst) == 0)
-		return (error_handle(args[0], NULL, strerror(2), EXIT_NOT_CMD));
-	cmd = ft_strjoin("_=/usr/bin/", args[0]);
+	if (path_check(path_lst, &key) == 0)
+		return (error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD));
+	if (ft_strcmp(key, "_=/usr/bin") == 0)
+		key = ft_join(key, '/');
+	cmd = ft_strjoin(key, args[0]);
 	set_env_value(cmd);
 	free(cmd);
+	free(key);
 	show_env_list();
 	return (0);
 }
