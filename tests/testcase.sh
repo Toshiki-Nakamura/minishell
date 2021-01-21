@@ -12,6 +12,9 @@ echo -x hoge
 echo
 echo '----- test: cd with only a relative or absolute path -----'
 cd ..
+pwd
+cd $OLDPWD
+pwd
 cd hoge
 echo '----- test: pwd without any options -----'
 pwd
@@ -106,6 +109,7 @@ cat =d.test
 echo '----- test: Pipes | should work -----'
 echo '----- test: pipe 1 -----'
 ls | cat -e | cat -e | grep test
+ls ../ | cat -e | cat -n | grep dia | awk '{print $2}'
 echo '----- test: pipe 2 -----'
 pwd | cat -e
 echo '----- test: pipe 3 -----'
@@ -207,5 +211,11 @@ export "PATH=$PWD/testsB:$PWD/testsA:/bin"
 tests
 rm testsA/tests
 rm testsB/tests
+export "PATH=/usr/local/bin:/usr/bin:/bin"
+env | grep "_="
+export "PATH=:/usr/bin////:/bin"
+env | grep "_="
+export PATH="/usr/local/bin:/usr/bin// //:/bin"
+env | grep "_="
 echo '----- test: EXIT without any options -----'
 exit

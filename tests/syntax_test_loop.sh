@@ -1,6 +1,7 @@
-cp syntax_error.sh tmp.txt
+cp testcase_syntax_error.sh tmp.txt
  > answer_syntax.txt
-for i in `seq 1 35` #syntax_error.shにコマンドを追加するごとにループを増やす
+FILE_LINE=`wc -l tmp.txt | awk '{print $1}'`
+for i in `seq 1 $FILE_LINE`
 do
 bash < tmp.txt 2> a.txt
 sed -e '2d' a.txt | awk -F'[:]' '{ print $3 }' >> answer_syntax.txt

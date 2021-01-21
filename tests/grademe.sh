@@ -20,7 +20,7 @@ echo '----- execute minishell error test -----'
 rm -f *.test
 
 echo '----- execute syntax error test -----'
-../minishell < syntax_error.sh 2> res.test | sed 's/\[32mshell$> \[0m//g' |sed -e "/exit/d"  >/dev/null
+../minishell < ./testcase_syntax_error.sh 2> res.test | sed 's/\[32mshell$> \[0m//g' |sed -e "/exit/d"  >/dev/null
 cut -d : -f 2- res.test > result_syntax.txt
 ./syntax_test_loop.sh
 rm -f *.test
