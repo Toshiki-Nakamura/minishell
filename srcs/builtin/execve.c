@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/26 20:44:33 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:16:00 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,11 @@ int			parse_path(char **arg)
 	return (0);
 }
 
-int		exec_execve(char **args, char **env, int fd)
+int		exec_execve(char **args, char **env)
 {
 	unsigned int	status;
 	char			*err_msg;
 
-	(void)fd;
 	status = EXIT_FAILURE;
 	if (is_include(args[0], '/') < 0 && get_env_value("PATH"))
 	{

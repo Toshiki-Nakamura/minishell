@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:14:10 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 18:08:49 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:10:54 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,13 @@ static int	path_check(char **path, char **key)
 	return (0);
 }
 
-int			exec_env(char **args, char **env, int fd)
+int			exec_env(char **args)
 {
 	const char	*path;
 	char		**path_lst;
 	char		*cmd;
 	char		*key;
 
-	(void)env;
-	(void)fd;
 	path = get_env_value("PATH");
 	if (!path || !ft_strcmp(path, ""))
 		return (error_handle(args[0], NULL, strerror(2), EXIT_NOT_CMD));

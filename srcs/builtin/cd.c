@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 15:02:54 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:02:47 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ static void	set_pwd()
 	free(new);
 }
 
-int			exec_cd(char **args, char **env)
+int			exec_cd(char **args)
 {
 	const char	*home;
 
-	(void)env;
 	home = get_env_value("HOME");
 	if (!home && !args[1])
 		return (error_handle("cd", NULL, "HOME not set", 1));
