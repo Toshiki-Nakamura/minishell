@@ -220,7 +220,7 @@ export "PATH=/usr/local/bin:/usr/bin:/bin"
 env | grep "_="
 export "PATH=:/usr/bin////:/bin"
 env | grep "_="
-export PATH="/usr/local/bin:/usr/bin// //:/bin"
+export PATH="/usr/bin/:/bin"
 env | grep "_="
 echo '----- test: EXIT without any options -----'
 exit

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 21:58:21 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:13:18 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,25 @@ int			is_builtin(char *cmd)
 	return (0);
 }
 
-int			sh_execute(char **args, char **env, int fd)
+int			sh_execute(char **args, char **env)
 {
 	if (args[0] == NULL)
 		return (ft_atoi(g_env_question));
 	if (ft_strcmp(args[0], "cd") == 0)
-		return (exec_cd(args, env));
+		return (exec_cd(args));
 	if (ft_strcmp(args[0], "pwd") == 0)
-		return (exec_pwd(fd));
+		return (exec_pwd());
 	if (ft_cmp_ignore_case(args[0], "env", 4) == 0)
-		return (exec_env(args, env, fd));
+		return (exec_env(args));
 	if (ft_strcmp(args[0], "exit") == 0)
 		exec_exit(args);
 	if (ft_strcmp(args[0], "echo") == 0)
-		return (exec_echo(args, fd));
+		return (exec_echo(args));
 	if (ft_strcmp(args[0], "unset") == 0)
 		return (exec_unset(args));
 	if (ft_strcmp(args[0], "export") == 0)
-		return (exec_export(args, fd));
-	return (exec_execve(args, env, fd));
+		return (exec_export(args));
+	return (exec_execve(args, env));
 }
 
 static int	exec_simple_command(char *cmd)
@@ -88,7 +88,7 @@ static int	exec_simple_command(char *cmd)
 	cmd_list = util_split(cmd, " \t");
 	iter_array(cmd_list, &replace_tilde);
 	iter_array(cmd_list, &remove_quote);
-	ret_value = sh_execute(cmd_list, get_env_param(), 1);
+	ret_value = sh_execute(cmd_list, get_env_param());
 	if (cmd_list != NULL)
 		array_free(cmd_list);
 	return (ret_value);

@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/26 22:05:22 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:15:14 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ static int	search_equal(char *str)
 	return (0);
 }
 
-int			exec_export(char **args, int fd)
+int			exec_export(char **args)
 {
 	int		i;
 	int		ret_status;
 
-	(void)fd;
 	ret_status = 0;
 	if (args[1] == NULL)
 		show_export_list();
