@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/07 12:29:14 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:56:06 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int			exec_command(char *cmd)
 		//<a.txt を REDIRECT_INPUT判定し、"a.txt"を抽出
 		separate_redirect_info(&redirect, &type);
 		replace_tilde(&redirect);
+		remove_quote(&redirect);
 		//fdを適切に置き換える
 		if (-1 == set_redirect(redirect, &fd, type))
 			return (-1);
