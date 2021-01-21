@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 22:13:18 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:47:05 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	exec_simple_command(char *cmd)
 	char	**cmd_list;
 	int		ret_value;
 
-	cmd_list = util_split(cmd, " \t");
+	cmd_list = util_split(cmd, COMMAND_SEPARAT_SPACES);
 	iter_array(cmd_list, &replace_tilde);
 	iter_array(cmd_list, &remove_quote);
 	ret_value = sh_execute(cmd_list, get_env_param());

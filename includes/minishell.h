@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 21:18:26 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:46:05 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define MINISHELL_ERROR "minishell error near unexpected token"
 
 # define MINISHELL_INVALID_OPERATOR "&(){}*"
+# define COMMAND_SEPARAT_SPACES " \t"
 
 typedef enum	e_redirec_type {
 	REDIRECT_INPUT,

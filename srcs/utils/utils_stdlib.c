@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_stdlib.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 19:12:28 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/18 19:20:15 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:48:13 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
