@@ -1,7 +1,7 @@
 
 
 @startuml
-title single command except builtin sequence diagram
+title 2.Single_Command_Except_Builtin_Sequence_Diagram
 hide footbox
 
 participant "親プロセス" as Parent

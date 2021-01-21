@@ -1,7 +1,7 @@
 
 
 @startuml
-title minishell sequence diagram
+title 1.Minishell_Sequence_Diagram
 hide footbox
 
 participant "main" as Main
@@ -16,17 +16,19 @@ activate Main
 loop
 Main->Prompt: input_prompt\n入力待ち
 activate Prompt
-Prompt->Prompt: get_cmd_line\nコマンド文字列を受け取る
+Prompt->Prompt: get_cmd_line\n入力文字列を受け取る
 activate Prompt
 note left: read\n標準入力待ち
 deactivate Prompt
-Prompt->CmdMgr: exec_one_line\nコマンド文字列を実行
+Prompt->CmdMgr: exec_one_line\n入力文字列の実行処理
 activate CmdMgr
+CmdMgr->CmdMgr: 入力文字列をセミコロン(;)で分割
 loop Command Num times
-	CmdMgr->PipeExe: fork_exec_command\nセミコロン(;)で分割された\nコマンド実行
+	CmdMgr->PipeExe: fork_exec_command\n(パイプ含む)コマンド群実行処理
 	activate PipeExe
+	PipeExe->PipeExe: コマンド群をパイプ(|)で分割
 	loop Pipe Num times
-		PipeExe->PipeExe: exec_pipe_command\nパイプ(|)で分割された\nコマンド実行
+		PipeExe->PipeExe: exec_pipe_command\nコマンド実行処理
 		activate PipeExe
 		PipeExe->Exec: exec_command
 		activate Exec
@@ -36,7 +38,7 @@ loop Command Num times
 			Exec<--Redirect
 			deactivate Redirect
 		end
-		Exec->Builtin: exec_xxx\n単体コマンド実行
+		Exec->Builtin: exec_xxx\nコマンド実行
 		activate Builtin
 		Exec<--Builtin
 		deactivate Builtin

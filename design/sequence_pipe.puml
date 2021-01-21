@@ -1,7 +1,7 @@
 
 
 @startuml
-title exec_pipe_command sequence diagram
+title 3.Exec_Pipe_Command_Sequence_Diagram
 hide footbox
 
 participant "cmd親プロセス" as Parent1
@@ -33,8 +33,12 @@ else ex) % ls | grep test
 	deactivate Parent1
 	Child1->Child1 : input fd setting
 	note left: 標準入力をcmd0から受け取る設定
-	Child1->Parent2 : exec_pipe_command(1)\n"grep test"
+	Child1->Parent2 : exec_pipe_command(1)
 	note left: 再起呼び出しによりcmd1以降を実行
+	activate Parent2
+	Parent2->] : "grep test"
+	Child1<--Parent2
+	deactivate Parent2
 	Parent1<--Child1 : exit()
 	deactivate Child1
 	destroy Child1
