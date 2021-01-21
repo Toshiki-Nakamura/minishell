@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:25:07 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:18:26 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define SYNTAX_ERROR "syntax error near unexpected token"
 # define MINISHELL_ERROR "minishell error near unexpected token"
 
-# define COMMAND_SEPARATE_CHAR " \t"
 # define MINISHELL_INVALID_OPERATOR "&(){}*"
 
 typedef enum	e_redirec_type {

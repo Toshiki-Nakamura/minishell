@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:52:47 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:21:07 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/18 19:18:47 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@
 #include "utils_stdlib.h"
 
 #ifdef TEST
-
 static void	minishell_exit(int status)
 {
 	system("leaks minishell 2> /dev/null");
 	exit(status);
 }
 #else
-
 static void	minishell_exit(int status)
 {
 	exit(status);
@@ -71,7 +69,7 @@ void		exec_exit(char **args)
 	status = EXIT_SUCCESS;
 	i = array_size(args);
 	ft_putstr_fd("exit\n", 2);
-	arg = (args[1] != NULL) ? ft_strtrim(args[1], COMMAND_SEPARATE_CHAR) : NULL;
+	arg = (args[1] != NULL) ? ft_strtrim(args[1], " \t") : NULL;
 	if (i == 2 && is_numeric(arg))
 	{
 		status = (unsigned char)ft_atol(arg);
