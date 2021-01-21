@@ -1,0 +1,60 @@
+
+
+@startuml
+title minishell sequence diagram
+hide footbox
+
+participant "main" as Main
+participant "prompt" as Prompt
+participant "cmd_manager" as CmdMgr
+participant "pipe_executor" as PipeExe
+participant "executor" as Exec
+participant "redirect" as Redirect
+participant "builtin" as Builtin
+
+activate Main
+loop
+Main->Prompt: input_prompt\n入力待ち
+activate Prompt
+Prompt->Prompt: get_cmd_line\nコマンド文字列を受け取る
+activate Prompt
+note left: read\n標準入力待ち
+deactivate Prompt
+Prompt->CmdMgr: exec_one_line\nコマンド文字列を実行
+activate CmdMgr
+loop Command Num times
+	CmdMgr->PipeExe: fork_exec_command\nセミコロン(;)で分割された\nコマンド実行
+	activate PipeExe
+	loop Pipe Num times
+		PipeExe->PipeExe: exec_pipe_command\nパイプ(|)で分割された\nコマンド実行
+		activate PipeExe
+		PipeExe->Exec: exec_command
+		activate Exec
+		loop Redirect Num times
+			Exec->Redirect: separate_redirect_word\nリダイレクト指定
+			activate Redirect
+			Exec<--Redirect
+			deactivate Redirect
+		end
+		Exec->Builtin: exec_xxx\n単体コマンド実行
+		activate Builtin
+		Exec<--Builtin
+		deactivate Builtin
+		PipeExe<--Exec
+		deactivate Exec
+		deactivate PipeExe
+	end
+	CmdMgr<--PipeExe
+	deactivate PipeExe
+end
+Prompt<--CmdMgr
+deactivate CmdMgr
+Main<--Prompt
+deactivate Prompt
+end
+
+deactivate Main
+
+
+
+@enduml

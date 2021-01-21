@@ -22,13 +22,14 @@ else ex) % ls | grep test
 	[->Parent1 : exec_pipe_command(1)
 	activate Parent1
 	Parent1->Parent1 : pipe()
+	create Child1
 	Parent1->Child1 : fork()
-	activate Child1
+	create Child2
 	Parent1->Child2 : fork()
-	activate Child2
 	Parent1->Parent1 : close_fd
 	note right: 親プロセスではパイプfdを使わないので\nfd[0],fd[1]共に閉じる
 	Parent1->Child1 : waitpid(1)
+	activate Child1
 	deactivate Parent1
 	Child1->Child1 : input fd setting
 	note left: 標準入力をcmd0から受け取る設定
@@ -36,8 +37,10 @@ else ex) % ls | grep test
 	note left: 再起呼び出しによりcmd1以降を実行
 	Parent1<--Child1 : exit()
 	deactivate Child1
+	destroy Child1
 	activate Parent1
 	Parent1->Child2 : waitpid(2)
+	activate Child2
 	deactivate Parent1
 	Child2->Child2 : output fd setting
 	note left: 標準出力をcmd1に渡す設定
@@ -48,6 +51,7 @@ else ex) % ls | grep test
 	note left: cmd0を実行
 	Parent1<--Child2 : exit()
 	deactivate Child2
+	destroy Child2
 	activate Parent1
 	[<--Parent1 : return
 	deactivate Parent1
