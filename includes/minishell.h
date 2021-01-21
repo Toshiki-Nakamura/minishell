@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/14 20:47:15 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:18:26 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef enum	e_redirec_type {
 	REDIRECT_INPUT,
 	REDIRECT_OVERRIDE,
 	REDIRECT_APPEND,
-	REDIRECT_INVALID,
 	REDIRECT_NUM,
 }				t_redirect_type;
 

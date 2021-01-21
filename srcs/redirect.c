@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:13:07 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/21 21:18:35 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,8 @@ typedef struct	s_redirect {
 }				t_redirect;
 
 static t_redirect	g_redirect_marks[] = {
-	{ "<&",		REDIRECT_INVALID },
-	{ "<<<",	REDIRECT_INVALID },
-	{ "<<",		REDIRECT_INVALID },
 	{ "<",		REDIRECT_INPUT },
-	{ "&>",		REDIRECT_INVALID },	//標準・エラー出力両方を同じファイルに書き出す
-	{ "2>>",	REDIRECT_INVALID },	//エラー出力をファイルに追記
-	{ "2>&1",	REDIRECT_INVALID }, //2と1の出力先を同一にする
-	{ "2>",		REDIRECT_INVALID },	//エラー出力をファイルに書き出す
 	{ ">>",		REDIRECT_APPEND },
-	{ ">|",		REDIRECT_INVALID },
-	{ ">&",		REDIRECT_INVALID },
 	{ ">",		REDIRECT_OVERRIDE },
 	{ NULL,		REDIRECT_NUM}
 };
@@ -70,8 +61,6 @@ int				get_redirect_length(const char *redirect)
 
 	if (!(p = skip_redirect_mark(redirect, &type)))
 		return (0);
-	if (type == REDIRECT_INVALID)
-		return (-1);
 	total_len = p - redirect;
 	while (*p == ' ')
 		p++;
