@@ -150,6 +150,8 @@ echo '----- test: utils_split and quote -----'
 echo "lkanvl; ; ';s  ; kl ;ls| lsvk   " | cat -e
 echo "  kasvjnsl " "|'a'a lacnln      ;lmav""aa "
 echo" "'kkk'
+echo 	hoge	 	 fuga
+echo "	hoge	 	 fuga"
 echo '----- test: tilde replace -----'
 echo ~
 echo ~$USER
