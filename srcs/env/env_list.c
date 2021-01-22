@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/18 21:24:46 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:12:06 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ const char			*get_env_value(const char *key)
 	t_env_info	*p;
 
 	if (!(ft_strcmp(key, ENV_KEY_QUESTION)))
-	{
-		// printf("%p\n", g_env_question);
 		return (g_env_question);
-	}
 	if (!(p = find_env_info(key)))
 		return (NULL);
 	return (p->value);
