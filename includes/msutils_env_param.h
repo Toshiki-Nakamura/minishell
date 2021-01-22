@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:33:52 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:27:08 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:16:25 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ int		get_envparam_length(const char *cmd);
 */
 int		replace_env_param(char **cmd);
 
-/*
-**	g_envに格納した最初の環境変数から
-**	keyに紐づくvalueを返す。なければNULL
-*/
-const char	*g_env_value(char *key);
+void	set_exit_code(int code);
 
 #endif

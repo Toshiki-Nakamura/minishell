@@ -6,19 +6,18 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:24:42 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:23:31 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:26:27 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "minishell.h"
 #include "libft.h"
-#include "executor.h"
 #include "utils.h"
 #include "utils_is.h"
 #include "utils_quote.h"
 #include "utils_string.h"
 #include "msutils_syntax.h"
+#include "msutils_env_param.h"
 
 static int	check_quote(const char *line)
 {

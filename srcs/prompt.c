@@ -6,13 +6,12 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:27:15 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:24:45 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
-#include "utils.h"
 #include "utils_string.h"
 #include "msutils_env_param.h"
 #include "msutils_convert.h"

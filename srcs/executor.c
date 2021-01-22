@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:25:28 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:19:35 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,11 @@
 #include "utils_string_operation.h"
 #include "msutils_convert.h"
 #include "msutils_redirect.h"
-#include "builtin.h"
 #include "env_list_base.h"
 #include "env_list.h"
 #include "env_info.h"
 #include "redirect.h"
-
-void		set_exit_code(int code)
-{
-	char *s;
-	s = ft_itoa(code);
-	char *exit_code = ft_strjoin("?=", s);
-	free(s);
-	set_env_value(exit_code);
-	free(exit_code);
-}
+#include "builtin.h"
 
 int			is_builtin(char *cmd)
 {

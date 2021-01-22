@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 22:48:50 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:19:13 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include "minishell.h"
 #include "libft.h"
 #include "utils.h"
-#include "executor.h"
-#include "pipe_executor.h"
-#include "env_list_base.h"
 #include "utils_quote.h"
 #include "utils_string.h"
 #include "utils_string_operation.h"
+#include "env_list_base.h"
+#include "msutils_env_param.h"
+#include "pipe_executor.h"
+#include "executor.h"
 
 static void		exec_command_line(const char *line)
 {

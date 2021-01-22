@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:40:59 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:39:00 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:13:52 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	remove_comment(char **str)
 	}
 }
 
-void       replace_tilde(char **str)
+void	replace_tilde(char **str)
 {
     char	    *p;
 	char		*ret_str;

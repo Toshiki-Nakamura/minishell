@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:23:38 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:18:13 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include "utils.h"
 #include "utils_is.h"
 #include "utils_string.h"
-#include "msutils_syntax.h"
 #include "utils_quote.h"
-#include "executor.h"
+#include "msutils_syntax.h"
+#include "msutils_env_param.h"
 #include "prompt.h"
 #include "my_signal.h"
 

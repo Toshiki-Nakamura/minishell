@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 13:35:21 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:23:53 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@
 #include <string.h>
 #include <errno.h>
 #include <sys/param.h>
-#include <signal.h>
+#include "minishell.h"
 #include "executor.h"
 #include "my_signal.h"
-#include "env_list.h"
-#include "utils_string.h"
-#include "utils.h"
-#include "minishell.h"
-#include "pipe_executor.h"
 
 static int	get_child_process_result_from(int status)
 {

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:28:18 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:16:10 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,23 +101,12 @@ int			replace_env_param(char **cmd)
 	return (1);
 }
 
-const char	*g_env_value(char *key)
+void		set_exit_code(int code)
 {
-	char		**env;
-	const char	*value;
-	size_t		len;
-
-	env = get_env_param();
-	len = ft_strlen(key);
-	while (*env)
-	{
-		if (ft_strncmp(*env, key, len) == 0)
-		{
-			value = ft_strchr(*env, '=');
-			value = value ? value + 1 : value;
-			return (value);
-		}
-		env++;
-	}
-	return (NULL);
+	char *s;
+	s = ft_itoa(code);
+	char *exit_code = ft_strjoin("?=", s);
+	free(s);
+	set_env_value(exit_code);
+	free(exit_code);
 }
