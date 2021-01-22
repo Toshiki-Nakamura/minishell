@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 10:10:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:37:45 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:52:16 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,17 @@ void	ft_lst_remove_next(t_list *lst, void (*del)(void *))
 	lst->next = tmp;
 }
 
+t_list	*ft_list_dup(t_list *lst, void *(copy(t_list *)))
+{
+	t_list	*new;
+	t_list	*tmp;
+
+	new = NULL;
+	tmp = lst;
+	while (tmp)
+	{
+		ft_lstadd_back(&new, ft_lstnew(copy(tmp)));
+		tmp = tmp->next;
+	}
+	return (new);
+}

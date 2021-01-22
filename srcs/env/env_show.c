@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 18:36:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:39:54 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:01:33 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "utils_string.h"
 #include "env_info.h"
 #include "env_list.h"
-#include "msutils_env_list.h"
 
 static void		show_info_for_env(void *info)
 {
@@ -53,11 +52,43 @@ void			show_env_list(void)
 	ft_lstiter(g_env_list_top, show_info_for_env);
 }
 
+static void		*copy_env_info(t_list *lst)
+{
+	t_env_info *new;
+
+	new = malloc(sizeof(t_env_info *));
+	new->key = ft_strdup(((t_env_info *)lst->content)->key);
+	new->value = ft_strdup(((t_env_info *)lst->content)->value);
+	return (new);
+}
+
+static void		sort_env_list(t_list **env, int (*cmp)(const char *, const char *))
+{
+	t_list *tmp_i;
+	t_list *tmp_j;
+
+	tmp_i = *env;
+	while (tmp_i)
+	{
+		tmp_j = tmp_i->next;
+		while (tmp_j)
+		{
+			if (cmp(((t_env_info *)tmp_i->content)->key, \
+								((t_env_info *)tmp_j->content)->key) > 0)
+			{
+				ft_swap(&tmp_i->content, &tmp_j->content);
+			}
+			tmp_j = tmp_j->next;
+		}
+		tmp_i = tmp_i->next;
+	}
+}
+
 void			show_export_list(void)
 {
 	t_list *p;
 
-	p = list_dup(g_env_list_top);
+	p = ft_list_dup(g_env_list_top, copy_env_info);
 	sort_env_list(&p, &ft_strcmp);
 	ft_lstiter(p, show_info_for_export);
 	ft_lstclear(&p, &delete_env_info);
