@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 12:31:53 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 13:33:56 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,20 @@ static int	parent_wait(pid_t pid1, pid_t pid2, int fd[2])
 	return (get_child_process_result_from(status));
 }
 
-static void	recursive_pipe_exec(int fd[2], int std_fd, char **pipe_list)
+static void	close_and_dup(int fd[2], int std_fd)
 {
-	int	ret_value;
-
-	ret_value = 0;
 	if (std_fd == STDIN)
 	{
 		close(fd[1]);
 		dup2(fd[0], 0);
 		close(fd[0]);
-		ret_value = exec_pipe_command(&pipe_list[1]);
-		exit(ret_value);
 	}
-	close(fd[0]);
-	dup2(fd[1], 1);
-	close(fd[1]);
-	ret_value = exec_command(pipe_list[0]);
-	exit(ret_value);
+	else
+	{
+		close(fd[0]);
+		dup2(fd[1], 1);
+		close(fd[1]);
+	}
 }
 
 int			exec_pipe_command(char **pipe_list)
@@ -82,27 +78,24 @@ int			exec_pipe_command(char **pipe_list)
 	int		fd[2];
 	pid_t	pid1;
 	pid_t	pid2;
-	int		ret_value;
 
 	if (pipe_list[1] == NULL)
-	{
-		ret_value = exec_command(pipe_list[0]);
-		return (ret_value);
-	}
+		return (exec_command(pipe_list[0]));
 	pipe(fd);
 	pid1 = fork();
 	if (pid1 == 0)
 	{
-		recursive_pipe_exec(fd, STDIN, pipe_list);
+		close_and_dup(fd, STDIN);
+		exit(exec_pipe_command(&pipe_list[1]));
 	}
 	signal(SIGINT, sig_ignore);
 	pid2 = fork();
 	if (pid2 == 0)
 	{
-		recursive_pipe_exec(fd, STDOUT, pipe_list);
+		close_and_dup(fd, STDOUT);
+		exit(exec_command(pipe_list[0]));
 	}
-	ret_value = parent_wait(pid1, pid2, fd);
-	return (ret_value);
+	return (parent_wait(pid1, pid2, fd));
 }
 
 int			fork_exec_commands(char **pipe_list)
