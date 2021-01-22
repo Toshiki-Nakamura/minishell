@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:31:42 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:31:53 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <sys/param.h>
 #include <signal.h>
 #include "executor.h"
-#include "signal_handle.h"
+#include "my_signal.h"
 #include "env_list.h"
 #include "utils_string.h"
 #include "utils.h"

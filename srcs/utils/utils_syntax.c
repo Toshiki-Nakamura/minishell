@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:49:09 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:32:01 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "utils_string.h"
 #include "utils_syntax.h"
 #include "prompt.h"
-#include "signal_handle.h"
+#include "my_signal.h"
 #include <stdio.h>
 
 int		put_syntax_err(char *msg, char token, int exitcode)

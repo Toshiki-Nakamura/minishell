@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_handle.h                                    :+:      :+:    :+:   */
+/*   my_signal.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:41:12 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/14 14:47:55 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:30:56 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_HANDLE_H
-# define SIGNAL_HANDLE_H
+#ifndef MY_SIGNAL_H
+# define MY_SIGNAL_H
 
 # include "libft.h"
 

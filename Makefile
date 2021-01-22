@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2021/01/22 12:04:14 by skohraku         ###   ########.fr        #
+#    Updated: 2021/01/22 12:31:19 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRCS	+= srcs/prompt.c \
 		srcs/utils/utils_split.c \
 		srcs/utils/utils_syntax.c \
 		srcs/utils/utils_stdlib.c \
-		srcs/signal.c \
+		srcs/my_signal.c \
 		srcs/files.c \
 		srcs/syntax_check.c
 
