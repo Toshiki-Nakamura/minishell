@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 21:16:00 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:09:19 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		exec_execve(char **args, char **env)
 	char			*err_msg;
 
 	status = EXIT_FAILURE;
-	if (is_include(args[0], '/') < 0 && get_env_value("PATH"))
+	if (!ft_strchr(args[0], '/') && get_env_value("PATH"))
 	{
 		if (!parse_path(&args[0]))
 			return (error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD));

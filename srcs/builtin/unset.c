@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:54:19 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/27 01:35:21 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:08:12 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "env_list.h"
 #include "utils.h"
 #include "minishell.h"
@@ -26,7 +27,7 @@ int			exec_unset(char **args)
 	ret_status = 0;
 	while (args[i])
 	{
-		if (!is_invalid_env_name(args[i]) || is_include(args[i], '=') != -1)
+		if (!is_invalid_env_name(args[i]) || ft_strchr(args[i], '='))
 		{
 			arg = ft_join(ft_strdup(args[i]), '\'');
 			arg = ft_strjoin_free(ft_strdup("`"), arg);

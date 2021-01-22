@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:58:24 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/26 20:45:51 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:10:48 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,4 @@ int		error_handle(char *cmd, char *arg, char *msg, int exitcode)
 		ft_putstr_fd(": ", 2);
 	ft_putendl_fd(msg, 2);
 	return (exitcode);
-}
-
-int		is_include(char *name, char c)
-{
-	int i;
-
-	i = 0;
-	while (name[i])
-	{
-		if (name[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
 }
