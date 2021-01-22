@@ -10,11 +10,12 @@ bash testcase.sh > answer.txt 2> std.test
 sed -e "s/testcase.sh: //g" std.test | cut -d : -f 2- > answer_error.txt
 rm -f *.test
 echo '----- execute minishell std test -----'
-../minishell < testcase.sh 2> std.test | sed 's/\[32mshell$> \[0m//g' | sed -e "/exit/d" > result_tmp.txt
-LEAKS_HEAD=`grep -n "minishell \[" result_tmp.txt | awk -F':' '{print$1}'`
-FILE_LINE=`wc -l result_tmp.txt | awk '{print $1}'`
-sed "$LEAKS_HEAD,${FILE_LINE}d" result_tmp.txt > result.txt
-sed -n "$LEAKS_HEAD,${FILE_LINE}p" result_tmp.txt > result_leaks.txt
+../minishell < testcase.sh 2> std.test | sed 's/\[32mshell$> \[0m//g' | sed -e "/exit/d" > result.txt
+LEAKS_HEAD=`grep -n "minishell \[" result.txt | awk -F':' '{print$1}'`
+FILE_LINE=`wc -l result.txt | awk '{print $1}'`
+sed -n "$LEAKS_HEAD,${FILE_LINE}p" result.txt > result_leaks.txt
+cp result.txt result_tmp.test
+sed "$LEAKS_HEAD,${FILE_LINE}d" result_tmp.test > result.txt
 cut -d : -f 2- std.test | sed -e "/exit/d" > result_error.txt
 echo '----- execute minishell error test -----'
 ../minishell < testcase_minishell_error.sh >dummy.test 2> result_ms_error.txt
