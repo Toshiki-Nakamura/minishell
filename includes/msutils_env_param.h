@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_env_param.h                                  :+:      :+:    :+:   */
+/*   msutils_env_param.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:33:52 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 00:59:35 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:27:08 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_ENV_PARAM_H
-# define UTILS_ENV_PARAM_H
+#ifndef MSUTILS_ENV_PARAM_H
+# define MSUTILS_ENV_PARAM_H
 
 /*
 **	環境変数のKeyとして使用可能か判定する

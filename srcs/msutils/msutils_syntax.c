@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_syntax.c                                     :+:      :+:    :+:   */
+/*   msutils_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:19:06 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:23:38 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "utils.h"
 #include "utils_is.h"
 #include "utils_string.h"
-#include "utils_syntax.h"
+#include "msutils_syntax.h"
 #include "utils_quote.h"
 #include "executor.h"
 #include "prompt.h"

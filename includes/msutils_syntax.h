@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_redirect.h                                   :+:      :+:    :+:   */
+/*   msutils_syntax.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/14 15:20:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 11:08:34 by skohraku         ###   ########.fr       */
+/*   Created: 2020/12/28 23:55:07 by tnakamur          #+#    #+#             */
+/*   Updated: 2021/01/22 14:23:24 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_REDIRECT_H
-# define UTILS_REDIRECT_H
+#ifndef MSUTILS_SYNTAX_H
+# define MSUTILS_SYNTAX_H
 
-# include "minishell.h"
+# define EOF_ERROR  "unexpected end of file"
 
-void	init_redirect_fd(t_fd *fd);
-int		set_redirect(char *filename, t_fd *fd, t_redirect_type type);
-void	undo_redirect_fd(t_fd fd);
+int		put_syntax_err(char *msg, char token, int exitcode);
+int		parse_syntax(const char *str);
+int		check_closed(const char *str, char token);
 
 #endif

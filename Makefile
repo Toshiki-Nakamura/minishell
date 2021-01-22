@@ -6,7 +6,7 @@
 #    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2021/01/22 14:09:55 by skohraku         ###   ########.fr        #
+#    Updated: 2021/01/22 14:33:20 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,16 +29,17 @@ SRCS	+= srcs/builtin/cd.c \
 		srcs/env/env_list_base.c \
 		srcs/env/env_show.c \
 		srcs/msutils/msutils_convert.c \
+		srcs/msutils/msutils_env_list.c \
+		srcs/msutils/msutils_env_param.c \
+		srcs/msutils/msutils_redirect.c \
+		srcs/msutils/msutils_syntax.c \
 		srcs/utils/utils.c \
 		srcs/utils/utils_is.c \
 		srcs/utils/utils_string.c \
 		srcs/utils/utils_string_operation.c \
 		srcs/utils/utils_quote.c \
 		srcs/utils/utils_list.c \
-		srcs/utils/utils_redirect.c \
-		srcs/utils/utils_env_param.c \
 		srcs/utils/utils_split.c \
-		srcs/utils/utils_syntax.c \
 		srcs/utils/utils_stdlib.c \
 		srcs/cmd_manager.c \
 		srcs/executor.c \

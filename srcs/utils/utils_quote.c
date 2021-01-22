@@ -6,13 +6,12 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:08:18 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:37:13 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 #include "utils.h"
 #include "utils_is.h"
 

@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_syntax.h                                     :+:      :+:    :+:   */
+/*   msutils_env_list.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 23:55:07 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/14 19:18:57 by tnakamur         ###   ########.fr       */
+/*   Created: 2021/01/22 14:34:58 by skohraku          #+#    #+#             */
+/*   Updated: 2021/01/22 14:35:20 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_SYNTAX_H
-# define UTILS_SYNTAX_H
+#ifndef MSUTILS_ENV_LIST_H
+# define MSUTILS_ENV_LIST_H
 
-# define EOF_ERROR  "unexpected end of file"
-
-int		put_syntax_err(char *msg, char token, int exitcode);
-int		parse_syntax(const char *str);
-int		check_closed(const char *str, char token);
+t_list	*list_dup(t_list *lst);
+void	sort_env_list(t_list **env, int (*cmp)(const char *, const char *));
 
 #endif

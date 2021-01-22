@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_list.c                                       :+:      :+:    :+:   */
+/*   msutils_redirect.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 10:10:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:37:45 by skohraku         ###   ########.fr       */
+/*   Created: 2020/12/14 15:20:51 by skohraku          #+#    #+#             */
+/*   Updated: 2021/01/22 14:25:00 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "utils.h"
+#ifndef MSUTILS_REDIRECT_H
+# define MSUTILS_REDIRECT_H
 
-void	ft_swap(void **l1, void **l2)
-{
-	void *tmp;
+# include "minishell.h"
 
-	tmp = *l1;
-	*l1 = *l2;
-	*l2 = tmp;
-}
+void	init_redirect_fd(t_fd *fd);
+int		set_redirect(char *filename, t_fd *fd, t_redirect_type type);
+void	undo_redirect_fd(t_fd fd);
 
-void	ft_lst_remove_next(t_list *lst, void (*del)(void *))
-{
-	t_list *tmp;
-
-	if (!lst || !del || !lst->next)
-		return ;
-	tmp = lst->next->next;
-	ft_lstdelone(lst->next, del);
-	lst->next = tmp;
-}
-
+#endif

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:01:41 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/19 11:31:40 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:39:33 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
-#include "env_info.h"
 #include "utils_string.h"
 #include "utils_list.h"
 #include "env_info.h"

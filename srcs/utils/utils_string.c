@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 17:42:28 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:36:11 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils_quote.h"
 
 int		ft_strcmp(const char *str1, const char *str2)
 {

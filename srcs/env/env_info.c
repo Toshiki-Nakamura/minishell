@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   env_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/11 19:01:11 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:39:20 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
-#include "env_info.h"
 #include "utils_list.h"
 #include "utils_string.h"
+#include "env_info.h"
 
 t_list	*g_env_list_top;
 char	*g_env_question;

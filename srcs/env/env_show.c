@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   env_show.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 18:36:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2020/12/11 18:48:40 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:39:54 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "utils_list.h"
 #include "utils_string.h"
 #include "env_info.h"
 #include "env_list.h"
-#include "libft.h"
+#include "msutils_env_list.h"
 
 static void		show_info_for_env(void *info)
 {

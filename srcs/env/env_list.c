@@ -6,17 +6,15 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 12:14:45 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:39:45 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include <stdlib.h>
 #include "libft.h"
-#include "env_info.h"
 #include "utils_string.h"
 #include "utils_list.h"
+#include "env_info.h"
 
 
 static t_env_info	*find_env_info(const char *key)

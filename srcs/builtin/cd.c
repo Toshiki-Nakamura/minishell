@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 21:02:47 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:27:30 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <errno.h>
 #include <sys/param.h>
 #include "libft.h"
-#include "env_list.h"
 #include "utils.h"
 #include "utils_string.h"
+#include "env_list.h"
 #include "env_list_base.h"
-#include "utils_env_param.h"
+#include "msutils_env_param.h"
 
 static void	set_pwd()
 {

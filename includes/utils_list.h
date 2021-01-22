@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 10:09:51 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/10 17:54:04 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:34:52 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 
+void	ft_swap(void **l1, void **l2);
 /*
 ** remove next list.
 ** lst->nextの項目を削除し、その先につながるリストを繋ぎ直す
@@ -27,7 +28,5 @@
 ** envのリストをkeyの辞書順でsort
 */
 void	ft_lst_remove_next(t_list *lst, void (*del)(void *));
-t_list	*list_dup(t_list *lst);
-void	sort_env_list(t_list **env, int (*cmp)(const char *, const char *));
 
 #endif
