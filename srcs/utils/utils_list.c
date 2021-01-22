@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 10:10:44 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/10 17:57:48 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:17:44 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 #include "env_info.h"
 #include "utils.h"
 
-void	ft_lst_remove_next(t_list *lst, void (*del)(void *))
+static void			ft_swap(void **l1, void **l2)
+{
+	void *tmp;
+
+	tmp = *l1;
+	*l1 = *l2;
+	*l2 = tmp;
+}
+
+void				ft_lst_remove_next(t_list *lst, void (*del)(void *))
 {
 	t_list *tmp;
 
@@ -25,7 +34,7 @@ void	ft_lst_remove_next(t_list *lst, void (*del)(void *))
 	lst->next = tmp;
 }
 
-void	sort_env_list(t_list **env, int (*cmp)(const char *, const char *))
+void				sort_env_list(t_list **env, int (*cmp)(const char *, const char *))
 {
 	t_list *tmp_i;
 	t_list *tmp_j;

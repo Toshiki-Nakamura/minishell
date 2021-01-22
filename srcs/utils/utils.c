@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:58:24 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 12:10:48 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 12:17:49 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,6 @@ int		array_size(char **array)
 	while (array[i])
 		i++;
 	return (i);
-}
-
-void	ft_swap(void **l1, void **l2)
-{
-	void *tmp;
-
-	tmp = *l1;
-	*l1 = *l2;
-	*l2 = tmp;
 }
 
 int		error_handle(char *cmd, char *arg, char *msg, int exitcode)
