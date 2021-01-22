@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2021/01/18 19:19:09 by tnakamur         ###   ########.fr        #
+#    Updated: 2021/01/22 12:04:14 by skohraku         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS	+= srcs/prompt.c \
 		srcs/env/env_list_base.c \
 		srcs/env/env_show.c \
 		srcs/utils/utils.c \
-		srcs/utils/utils_file.c \
 		srcs/utils/utils_string.c \
 		srcs/utils/utils_string_operation.c \
 		srcs/utils/utils_quote.c \
