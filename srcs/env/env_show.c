@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 18:36:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 15:01:33 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:06:28 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,6 @@ static void		show_info_for_export(void *info)
 void			show_env_list(void)
 {
 	ft_lstiter(g_env_list_top, show_info_for_env);
-}
-
-static void		*copy_env_info(t_list *lst)
-{
-	t_env_info *new;
-
-	new = malloc(sizeof(t_env_info *));
-	new->key = ft_strdup(((t_env_info *)lst->content)->key);
-	new->value = ft_strdup(((t_env_info *)lst->content)->value);
-	return (new);
 }
 
 static void		sort_env_list(t_list **env, int (*cmp)(const char *, const char *))

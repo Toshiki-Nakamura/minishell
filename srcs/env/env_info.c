@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:39:20 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:05:46 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ t_env_info	*create_env_info(const char *env)
 	p++;
 	info->value = ft_strdup(p);
 	return (info);
+}
+
+void		*copy_env_info(t_list *lst)
+{
+	t_env_info *new;
+
+	new = malloc(sizeof(t_env_info));
+	new->key = ft_strdup(((t_env_info *)lst->content)->key);
+	new->value = ft_strdup(((t_env_info *)lst->content)->value);
+	return (new);
 }
 
 void		delete_env_info(void *info)

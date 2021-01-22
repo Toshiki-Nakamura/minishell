@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_info.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:39:08 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/11 18:46:25 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:06:10 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ extern char		*g_env_question;
 extern char		**g_env;
 
 t_env_info		*create_env_info(const char *env);
+void			*copy_env_info(t_list *lst);
 void			delete_env_info(void *info);
 int				cmp_env_key(void *info, const char *key);
 
