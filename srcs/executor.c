@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 22:47:05 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 11:41:16 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			is_builtin(char *cmd)
 	return (0);
 }
 
-int			sh_execute(char **args, char **env)
+static int	sh_execute(char **args, char **env)
 {
 	if (args[0] == NULL)
 		return (ft_atoi(g_env_question));
@@ -102,25 +102,20 @@ int			exec_command(char *cmd)
 	t_fd 	fd;
 	t_redirect_type	type;
 
+	ret_value = 0;
 	str = ft_strdup(cmd);
 	init_redirect_fd(&fd);
-	// cd hoge <a.txt を"cd hoge "と"<a.txt"に分離
-	while (separate_redirect_word(&str, &redirect))
+	while (!ret_value && separate_redirect_word(&str, &redirect))
 	{
-		//<a.txt を REDIRECT_INPUT判定し、"a.txt"を抽出
 		separate_redirect_info(&redirect, &type);
 		replace_tilde(&redirect);
 		remove_quote(&redirect);
-		//fdを適切に置き換える
-		if (-1 == set_redirect(redirect, &fd, type))
-			return (-1);
-		//redirectに入っているファイル名を解放する
+		ret_value = set_redirect(redirect, &fd, type);
 		free(redirect);
 	}
-	ret_value = exec_simple_command(str);
+	if (!ret_value)
+		ret_value = exec_simple_command(str);
 	free(str);
-	undo_redirect_fd(fd);//fdを元の標準出力に戻す
-	if (ret_value == -1)
-		ft_putendl_fd(strerror(errno), 2);
+	undo_redirect_fd(fd);
 	return (ret_value);
 }

@@ -106,6 +106,15 @@ cat a.test c.test
 echo '----- test: redirect unnormal filename case -----'
 echo hoge>=d.test
 cat =d.test
+echo '----- test: redirect invalid filename case -----'
+echo hoge > ..
+echo 'redirect out to dir is' $?
+echo hoge > fuga/fuga
+echo 'redirect out to unexist name is' $?
+cat < ..
+echo 'redirect in from dir is' $?
+cat < fuga/fuga
+echo 'redirect in from unexist name is' $?
 echo '----- test: Pipes | should work -----'
 echo '----- test: pipe 1 -----'
 ls | cat -e | cat -e | grep test

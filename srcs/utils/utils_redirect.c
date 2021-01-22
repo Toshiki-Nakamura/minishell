@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:28:43 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/27 13:18:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 11:34:56 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 #include "minishell.h"
+#include "utils.h"
 
 void	init_redirect_fd(t_fd *fd)
 {
@@ -38,9 +41,8 @@ int		set_redirect(char *filename, t_fd *fd, t_redirect_type type)
 		flags = O_WRONLY | O_CREAT | O_APPEND;
 	if ((file_fd = open(filename, flags, 0666)) < 0)
 	{
-		close(file_fd);
-		printf("open failure %s\n", filename);
-		return (-1);
+		error_handle(filename, NULL, strerror(errno), 1);
+		return (1);
 	}
 	p_fd = (type == REDIRECT_INPUT) ? &(fd->input) : &(fd->output);
 	std_fd = dup(*p_fd);
