@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/14 14:45:14 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:08:18 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "utils.h"
-
-int			is_quote(int c)
-{
-	if (c == '\'')
-		return (1);
-	if (c == '\"')
-		return (2);
-	return (0);
-}
+#include "utils_is.h"
 
 char		*skip_to_next_quote(char *str)
 {

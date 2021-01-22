@@ -6,13 +6,14 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 21:18:35 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:14:49 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "minishell.h"
 #include "libft.h"
+#include "utils_is.h"
 #include "utils_string_operation.h"
 #include "utils_string.h"
 #include "utils_quote.h"

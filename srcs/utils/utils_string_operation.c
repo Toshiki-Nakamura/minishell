@@ -6,26 +6,12 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:25:33 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 13:43:23 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:10:38 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
-
-int		is_printable(char c, char *except)
-{
-	if ((' ' <= c) && (c <= '~'))
-	{
-		while (*except != 0)
-		{
-			if (*except++ == c)
-				return (0);
-		}
-		return (1);
-	}
-	return (0);
-}
 
 char	*extract_word(const char *head, int cut_pos, int cut_len, char **word)
 {

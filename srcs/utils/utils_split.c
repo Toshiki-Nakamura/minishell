@@ -6,14 +6,15 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 17:56:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:01:05 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:09:06 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "utils.h"
+#include "utils_is.h"
 #include "utils_string.h"
 #include "utils_quote.h"
-#include "utils.h"
 
 static char			**mem_free(char **tab)
 {

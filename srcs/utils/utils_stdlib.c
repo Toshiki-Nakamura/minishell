@@ -6,17 +6,11 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 19:12:28 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:48:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:14:14 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		is_space(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\r' || c == '\v' ||
-		c == '\n' || c == '\f')
-		return (1);
-	return (0);
-}
+#include "utils_is.h"
 
 long	ft_atol(const char *str)
 {

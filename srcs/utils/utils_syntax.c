@@ -6,21 +6,22 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 12:32:01 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:19:06 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils_quote.h"
-#include "executor.h"
-#include "minishell.h"
-#include "utils.h"
-#include "libft.h"
+#include <stdio.h>
 #include <unistd.h>
+#include "minishell.h"
+#include "libft.h"
+#include "utils.h"
+#include "utils_is.h"
 #include "utils_string.h"
 #include "utils_syntax.h"
+#include "utils_quote.h"
+#include "executor.h"
 #include "prompt.h"
 #include "my_signal.h"
-#include <stdio.h>
 
 int		put_syntax_err(char *msg, char token, int exitcode)
 {
@@ -30,20 +31,6 @@ int		put_syntax_err(char *msg, char token, int exitcode)
 	ft_putchar_fd(token, 2);
 	write(2, "'\n", 2);
 	return (exitcode);
-}
-
-static int		is_operator(int c)
-{
-	if (c == '|' || c == ';')
-		return (1);
-	return (0);
-}
-
-static int		is_rdrct(int c)
-{
-	if (c == '<' || c == '>')
-		return (1);
-	return (0);
 }
 
 static void		redirect_error(char *str)
@@ -65,7 +52,7 @@ static char		*redirect_parse(const char *p)
 	char *str;
 
 	str = (char *)p;
-	if (is_rdrct(str[0]) == 0)
+	if (is_redirect_operator(str[0]) == 0)
 		return (str);
 	if (!ft_strncmp(str, ">>", 2))
 		str++;
@@ -74,7 +61,7 @@ static char		*redirect_parse(const char *p)
 	{
 		str++;
 	}
-	if (is_rdrct(*str) || *str == '\0' || is_operator(*str))
+	if (is_redirect_operator(*str) || *str == '\0' || is_control_operator(*str))
 	{
 		redirect_error(str);
 		return (NULL);
@@ -92,7 +79,7 @@ int		parse_syntax(const char *str)
 	p = (char *)str;
 	while (ft_strchr(COMMAND_SEPARAT_SPACES, *p))
 		p++;
-	if (is_operator(*p))
+	if (is_control_operator(*p))
 		return (*p);
 	while (*p)
 	{
@@ -100,11 +87,11 @@ int		parse_syntax(const char *str)
 			return (1);
 		if (is_quote(*p))
 			p = skip_to_next_quote(p);
-		if (!ft_strchr(COMMAND_SEPARAT_SPACES, *p) && !is_operator(*p))
+		if (!ft_strchr(COMMAND_SEPARAT_SPACES, *p) && !is_control_operator(*p))
 			cmd = 1;
-		if (is_operator(*p) && cmd)
+		if (is_control_operator(*p) && cmd)
 			cmd = 0;
-		else if (is_operator(*p) && !cmd)
+		else if (is_control_operator(*p) && !cmd)
 			return (*p);
 		p++;
 	}
