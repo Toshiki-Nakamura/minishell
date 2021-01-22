@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files.h                                            :+:      :+:    :+:   */
+/*   msutils_convert.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 15:56:53 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 15:57:06 by skohraku         ###   ########.fr       */
+/*   Created: 2021/01/22 13:41:07 by skohraku          #+#    #+#             */
+/*   Updated: 2021/01/22 13:50:39 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILES_H
-# define FILES_H
+#ifndef MSUTILS_CONVERT_H
+# define MSUTILS_CONVERT_H
 
-void       replace_tilde(char **str);
+/*
+**	#以降をコメントとして削除する
+*/
+void	remove_comment(char **str);
+
+/*
+**	~をホームパスに置き換える
+*/
+void	replace_tilde(char **str);
+
+/*
+**	各コマンドリストにreplace_tildeなどの関数を適用
+*/
+void	iter_array(char **cmd, void (*str_operate)(char **line));
 
 #endif

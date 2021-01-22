@@ -6,21 +6,19 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/14 14:43:59 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:00:46 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "minishell.h"
 #include "libft.h"
+#include "utils.h"
 #include "utils_string.h"
 #include "utils_env_param.h"
-#include "utils_string_operation.h"
+#include "msutils_convert.h"
+#include "syntax_check.h"
 #include "prompt.h"
 #include "cmd_manager.h"
-#include "executor.h"
-#include "utils.h"
-#include "syntax_check.h"
 
 static void	get_cmd_line(char **line, char c)
 {
@@ -35,7 +33,6 @@ static void	get_cmd_line(char **line, char c)
 			break;
 		if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
 		{
-			// *line = ft_strjoin_free(*line, ft_strdup("exit"));
 			free_set(line, ft_strdup("exit"));
 			break ;
 		}

@@ -1,18 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   files.c                                            :+:      :+:    :+:   */
+/*   msutils_convert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 15:17:34 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/15 11:25:06 by skohraku         ###   ########.fr       */
+/*   Created: 2021/01/22 13:40:59 by skohraku          #+#    #+#             */
+/*   Updated: 2021/01/22 13:44:08 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
+//#include <stdio.h>
+#include "libft.h"
 #include "utils_string.h"
 #include "env_list.h"
+
+void	remove_comment(char **str)
+{
+	char	*p;
+	char	*ret_str;
+	size_t	len;
+
+	p = *str;
+	while (*p)
+	{
+		if (*p == '#')
+		{
+			len = p - *str;
+			if (!(ret_str = malloc(len + 1)))
+			{
+				ft_putstr_fd("", 2);
+			}
+			ft_strlcpy(ret_str, *str, len + 1);
+			free(*str);
+			*str = ret_str;
+		}
+		p++;
+	}
+}
 
 void       replace_tilde(char **str)
 {
@@ -28,5 +54,17 @@ void       replace_tilde(char **str)
 		ret_str = ft_strjoin(get_env_value("HOME"), p);
 		free(*str);
 		*str = ret_str;
+	}
+}
+
+void	iter_array(char **cmd, void (*str_operate)(char **line))
+{
+	int		i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		str_operate(&cmd[i]);
+		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string_operation.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:26:09 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 16:46:52 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 13:42:31 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,5 @@ char	*extract_word(const char *head, int cut_pos, int cut_len, char **word);
 */
 char	*replace_word(const char *head, int cut_pos, int cut_len,
 		const char *word);
-
-/*
-**	#以降をコメントとして削除する
-*/
-void	remove_comment(char **str);
-
-/*
-**	各コマンドリストにreplace_tildeなどの関数を適用
-*/
-void	iter_array(char **cmd, void (*str_operate)(char **line));
 
 #endif

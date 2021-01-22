@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string_operation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:25:33 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/04 16:40:48 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/22 13:43:23 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,40 +71,4 @@ char	*replace_word(const char *head, int cut_pos, int cut_len,
 	ft_strlcat(ret, str + cut_pos + cut_len, length + 1);
 	free(str);
 	return (ret);
-}
-
-void	remove_comment(char **str)
-{
-	char	*p;
-	char	*ret_str;
-	size_t	len;
-
-	p = *str;
-	while (*p)
-	{
-		if (*p == '#')
-		{
-			len = p - *str;
-			if (!(ret_str = malloc(len + 1)))
-			{
-				ft_putstr_fd("", 2);
-			}
-			ft_strlcpy(ret_str, *str, len + 1);
-			free(*str);
-			*str = ret_str;
-		}
-		p++;
-	}
-}
-
-void	iter_array(char **cmd, void (*str_operate)(char **line))
-{
-	int		i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		str_operate(&cmd[i]);
-		i++;
-	}
 }
