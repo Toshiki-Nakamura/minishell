@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:19:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:32:50 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ static void		exec_command_line(const char *line)
 	char	**cmd_list;
 
 	i = 0;
-	pipe_list = util_split(line, "|");
+	if (!(pipe_list = util_split(line, "|")))
+		error_force_exit(MALLOC_ERROR);
 	while (pipe_list[i])
 		i++;
 	if (i == 1)
 	{
-		cmd_list = util_split(pipe_list[0], COMMAND_SEPARAT_SPACES);
+		if (!(cmd_list = util_split(pipe_list[0], COMMAND_SEPARAT_SPACES)))
+			error_force_exit(MALLOC_ERROR);
 		// iter_array(cmd_list, &remove_quote);
 		if (is_builtin(cmd_list[0])) // 単体かつbuiltin(cd, echo, etc..)
 			set_exit_code(exec_command(pipe_list[0]));
@@ -55,7 +57,8 @@ void			exec_one_line(const char *line)
 	char	**commands;
 	int		i;
 
-	commands = util_split(line, ";");
+	if (!(commands = util_split(line, ";")))
+		error_force_exit(MALLOC_ERROR);
 	i = 0;
 	while (commands[i] != NULL)
 	{
