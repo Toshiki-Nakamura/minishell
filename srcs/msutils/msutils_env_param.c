@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:02:18 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:48:33 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int			replace_env_param(char **cmd)
 	if (!(len = get_envparam_length(p)))
 		return (0);
 	if (!(env_key = malloc(len)))
-		return (0);
+		error_force_exit(MALLOC_ERROR);
 	ft_strlcpy(env_key, (p + 1), len);
 	if (!(ret_cmd = replace_word(*cmd, (p - *cmd), len, get_env_value(env_key))))
 		error_force_exit(MALLOC_ERROR);
