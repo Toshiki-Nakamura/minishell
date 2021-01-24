@@ -58,6 +58,26 @@ echo '----- test: env & export & unset 3 -----'
 unset KEY
 env | grep KEY
 export | grep KEY
+export NEW=one
+unset "$NEW"
+export | grep KEY
+unset '$NEW'
+export | grep KEY
+unset 'NEW'
+export | grep KEY
+export '=='
+unset '='
+export 'hoge=value' '$hoge=a' 'zzz=Z'
+echo $?
+export _new=one
+export | grep one
+unset _new zzz hoge
+export 5abc
+unset 5abc
+export a769=one
+export | grep a769
+unset a769
+export $HOGE=a
 echo '----- test: ; in the command should separate commands -----'
 pwd; echo hoge; pwd
 echo '----- test: ’ and " should work like in bash except for multiline commands -----'
