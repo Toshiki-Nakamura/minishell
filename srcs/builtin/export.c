@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:45:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:27:46 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 10:41:55 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			exec_export(char **args)
 {
 	int		i;
 	int		ret_status;
+	char	*arg;
 
 	ret_status = 0;
 	if (args[1] == NULL)
@@ -46,10 +47,12 @@ int			exec_export(char **args)
 	i = 0;
 	while (args[++i])
 	{
-		/* !ft_isalpha(args[i][0]) && args[i][0] != '_' */
-		if (!is_invalid_env_name(args[i]))
+		if ((!is_invalid_env_name(args[i])))
 		{
-			ret_status = error_handle("export", args[i], INVAILD_ARG, 1);
+			arg = ft_join(ft_strdup(args[i]), '\'');
+			arg = ft_strjoin_free(ft_strdup("`"), arg);
+			ret_status = error_handle("export", arg, INVAILD_ARG, 1);
+			free(arg);
 		}
 		else if (search_equal(args[i]) == 1)
 			set_env_value(args[i]);

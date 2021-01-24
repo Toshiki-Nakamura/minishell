@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msutils_env_param.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:16:10 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/23 20:13:32 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int			is_invalid_env_name(const char *key)
 	const char	*p;
 
 	p = key;
-	if (*p == '$')
-		p++;
-	if (!ft_isalpha(*p) || (*p == '_'))
+
+	if (!ft_isalpha(*p) && (*p != '_'))
 		return (0);
 	while (*p && (*p != '='))
 	{
