@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:37:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:34:52 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void		remove_quote(char **line)
 
 	j = 0;
 	tmp = *line;
-	new = malloc(sizeof(char) * (ft_strlen(*line) + 1));
+	if (!(new = malloc(sizeof(char) * (ft_strlen(*line) + 1))))
+		error_force_exit(MALLOC_ERROR);
 	while (*tmp != '\0')
 	{
 		if (!is_quote(*tmp))
