@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 21:51:29 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:42:02 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void			separate_redirect_info(char **redirect,
 		file_len++;
 	}
 	if (!(ret = malloc(file_len + 1)))
-		return ;
+		error_force_exit(MALLOC_ERROR);
 	ft_strlcpy(ret, p, file_len + 1);
 	free(*redirect);
 	*redirect = ret;
