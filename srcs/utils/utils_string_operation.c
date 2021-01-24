@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:25:33 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:10:38 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 21:11:00 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ char	*extract_word(const char *head, int cut_pos, int cut_len, char **word)
 	char	*cut;
 	char	*ret;
 
-	str = ft_strdup(head);
+	if (!head || !word)
+		return (NULL);
+	if (!(str = ft_strdup(head)))
+		return (NULL);
 	if (!(*word = malloc(cut_len + 1)))
 	{
 		free(str);
@@ -41,7 +44,8 @@ char	*replace_word(const char *head, int cut_pos, int cut_len,
 	char	*ret;
 	int		length;
 
-	str = ft_strdup(head);
+	if (!(str = ft_strdup(head)))
+		return (NULL);
 	if (!word)
 		word = "";
 	length = ft_strlen(head) - cut_len + ft_strlen(word);

@@ -6,12 +6,13 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:25:37 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 21:51:29 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+#include "utils.h"
 #include "utils_is.h"
 #include "utils_string_operation.h"
 #include "utils_quote.h"
@@ -115,7 +116,8 @@ int				separate_redirect_word(char **cmd, char **word)
 				ft_putstr_fd("]\n" , 2);
 				return(0);
 			}
-			ret_cmd = extract_word(*cmd, p - *cmd, len, word);
+			if (!(ret_cmd = extract_word(*cmd, p - *cmd, len, word)))
+				error_force_exit(MALLOC_ERROR);
 			free(*cmd);
 			*cmd = ret_cmd;
 			return (1);

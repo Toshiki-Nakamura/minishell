@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:46:05 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 21:47:31 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define IS_DIR "is a directory"
 # define SYNTAX_ERROR "syntax error near unexpected token"
 # define MINISHELL_ERROR "minishell error near unexpected token"
+# define MALLOC_ERROR "malloc error! The application will be forced to close."
 
 # define MINISHELL_INVALID_OPERATOR "&(){}*"
 # define COMMAND_SEPARAT_SPACES " \t"
