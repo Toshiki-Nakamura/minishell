@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   msutils_env_param.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/23 20:13:32 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:48:33 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "env_list.h"
+#include "utils.h"
 #include "utils_string.h"
 #include "utils_string_operation.h"
 #include "utils_quote.h"
@@ -89,9 +90,10 @@ int			replace_env_param(char **cmd)
 	if (!(len = get_envparam_length(p)))
 		return (0);
 	if (!(env_key = malloc(len)))
-		return (0);
+		error_force_exit(MALLOC_ERROR);
 	ft_strlcpy(env_key, (p + 1), len);
-	ret_cmd = replace_word(*cmd, (p - *cmd), len, get_env_value(env_key));
+	if (!(ret_cmd = replace_word(*cmd, (p - *cmd), len, get_env_value(env_key))))
+		error_force_exit(MALLOC_ERROR);
 	free(env_key);
 	free(*cmd);
 	*cmd = ret_cmd;

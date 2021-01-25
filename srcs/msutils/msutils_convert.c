@@ -6,12 +6,13 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:40:59 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:13:52 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:46:03 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+#include "utils.h"
 #include "utils_string.h"
 #include "env_list.h"
 
@@ -28,9 +29,7 @@ void	remove_comment(char **str)
 		{
 			len = p - *str;
 			if (!(ret_str = malloc(len + 1)))
-			{
-				ft_putstr_fd("", 2);
-			}
+				error_force_exit(MALLOC_ERROR);
 			ft_strlcpy(ret_str, *str, len + 1);
 			free(*str);
 			*str = ret_str;

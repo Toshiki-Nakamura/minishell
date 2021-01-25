@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:58:24 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:35:56 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 21:45:30 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,11 @@ int		error_handle(char *cmd, char *arg, char *msg, int exitcode)
 		ft_putstr_fd(": ", 2);
 	ft_putendl_fd(msg, 2);
 	return (exitcode);
+}
+
+void	error_force_exit(char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putendl_fd(msg, 2);
+	exit(1);
 }

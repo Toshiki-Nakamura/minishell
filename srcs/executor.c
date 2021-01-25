@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:19:35 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:30:50 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static int	exec_simple_command(char *cmd)
 	char	**cmd_list;
 	int		ret_value;
 
-	cmd_list = util_split(cmd, COMMAND_SEPARAT_SPACES);
+	if (!(cmd_list = util_split(cmd, COMMAND_SEPARAT_SPACES)))
+		error_force_exit(MALLOC_ERROR);
 	iter_array(cmd_list, &replace_tilde);
 	iter_array(cmd_list, &remove_quote);
 	ret_value = sh_execute(cmd_list, get_env_param());

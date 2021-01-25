@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:36:11 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:24:43 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_join(char *s, char c)
 	char	*new;
 	size_t	i;
 
+	if (!s)
+		return (NULL);
 	if (!(new = malloc(ft_strlen(s) + 2)))
 		return (NULL);
 	i = 0;
