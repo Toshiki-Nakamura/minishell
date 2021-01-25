@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "libft.h"
 #include "files.h"
-#include "env_list_base.h"
+#include "env_config.h"
 
 void	test_replace_tilde(char *str)
 {

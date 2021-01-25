@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:32:50 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:24:43 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "utils_quote.h"
 #include "utils_string.h"
 #include "utils_string_operation.h"
-#include "env_list_base.h"
 #include "msutils_env_param.h"
 #include "pipe_executor.h"
 #include "executor.h"

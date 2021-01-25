@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 15:18:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 11:39:48 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #include "utils_quote.h"
 #include "msutils_syntax.h"
 #include "msutils_env_param.h"
-#include "prompt.h"
-#include "my_signal.h"
 
 int		put_syntax_err(char *msg, char token, int exitcode)
 {

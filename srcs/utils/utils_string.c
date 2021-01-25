@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 21:39:37 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:24:43 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 12:57:05 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char *new;
 
-	new = ft_strjoin(s1, s2);
+	if (!(new = ft_strjoin(s1, s2)))
+		return (NULL);
 	if (s1 != NULL)
 		free(s1);
 	if (s2 != NULL)

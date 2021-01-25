@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 12:09:19 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:35:36 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include <sys/param.h>
 #include <unistd.h>
 #include <dirent.h>
+#include "minishell.h"
 #include "libft.h"
-#include "env_list.h"
-#include "env_list_base.h"
 #include "utils_string.h"
 #include "utils.h"
-#include "minishell.h"
+#include "env_config.h"
+#include "env_list.h"
 
 int		search_dir(char *path_i, char **arg)
 {
@@ -37,7 +37,8 @@ int		search_dir(char *path_i, char **arg)
 		if (ft_cmp_ignore_case(*arg, ds->d_name, ft_strlen(*arg) + 1) == 0)
 		{
 			full_path = ft_join(ft_strdup(path_i), '/');
-			*arg = ft_strjoin_free(full_path, *arg);
+			if (!(*arg = ft_strjoin_free(full_path, *arg)))
+				error_force_exit(MALLOC_ERROR);
 			closedir(dir);
 			return (1);
 		}
@@ -78,7 +79,7 @@ int			parse_path(char **arg)
 	return (0);
 }
 
-int		exec_execve(char **args, char **env)
+int		exec_execve(char **args)
 {
 	unsigned int	status;
 	char			*err_msg;
@@ -89,7 +90,7 @@ int		exec_execve(char **args, char **env)
 		if (!parse_path(&args[0]))
 			return (error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD));
 	}
-	if ((execve(args[0], args, env)) == -1)
+	if ((execve(args[0], args, get_env_param())) == -1)
 	{
 		// ft_putstr_fd("\e[31merror: \e[0m", 2);
 		err_msg = strerror(errno);

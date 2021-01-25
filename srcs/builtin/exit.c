@@ -6,19 +6,18 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:52:47 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 22:47:01 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:35:39 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <errno.h>
 #include <sys/param.h>
-#include "libft.h"
-#include "env_list.h"
-#include "env_list_base.h"
-#include "utils.h"
 #include "minishell.h"
+#include "libft.h"
+#include "utils.h"
 #include "utils_stdlib.h"
+#include "env_config.h"
 
 #ifdef TEST
 static void	minishell_exit(int status)

@@ -6,18 +6,26 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:24:45 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:00:11 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+#include "utils.h"
 #include "utils_string.h"
 #include "msutils_env_param.h"
 #include "msutils_convert.h"
 #include "syntax_check.h"
-#include "prompt.h"
 #include "cmd_manager.h"
+
+#ifdef TEST
+# define VAR 1
+#else
+# define VAR 0
+#endif
+
+char	*g_line;
 
 static void	get_cmd_line(char **line, char c)
 {
@@ -38,6 +46,8 @@ static void	get_cmd_line(char **line, char c)
 		else if (ret == 0)
 			write(2, "  \b\b", 4);
 		*line = (ret) ? ft_join(*line, buf) : *line;
+		if (!*line)
+			error_force_exit(MALLOC_ERROR);
 	}
 }
 

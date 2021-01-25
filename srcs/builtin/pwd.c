@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:35:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 21:17:00 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:22:52 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <errno.h>
 #include <sys/param.h>
 #include "libft.h"
-#include "env_list.h"
 
 int			exec_pwd(void)
 {

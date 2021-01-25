@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:54:19 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/24 10:42:05 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 12:59:10 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int			exec_unset(char **args)
 	{
 		if (!is_invalid_env_name(args[i]) || ft_strchr(args[i], '='))
 		{
-			arg = ft_join(ft_strdup(args[i]), '\'');
-			arg = ft_strjoin_free(ft_strdup("`"), arg);
+			if (!(arg = ft_join(ft_strdup(args[i]), '\'')))
+				error_force_exit(MALLOC_ERROR);
+			if (!(arg = ft_strjoin_free(ft_strdup("`"), arg)))
+				error_force_exit(MALLOC_ERROR);
 			ret_status = error_handle("unset", arg, INVAILD_ARG, 1);
 			free(arg);
 		}

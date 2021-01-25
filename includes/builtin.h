@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:54:33 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/21 21:25:48 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:27:44 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	exec_exit(char **args);
 int		exec_echo(char **args);
 int		exec_unset(char **args);
 int		exec_export(char **args);
-int		exec_execve(char **args, char **env);
+int		exec_execve(char **args);
 
 #endif

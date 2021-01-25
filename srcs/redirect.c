@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:42:02 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:20:37 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "utils_is.h"
 #include "utils_string_operation.h"
 #include "utils_quote.h"
-#include "env_list.h"
 
 #define IS_NOT_REDIRECT_WORD "<>& |;"
 
