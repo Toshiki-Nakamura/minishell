@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:24:45 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 12:15:36 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,15 @@
 #include "msutils_env_param.h"
 #include "msutils_convert.h"
 #include "syntax_check.h"
-#include "prompt.h"
 #include "cmd_manager.h"
+
+#ifdef TEST
+# define VAR 1
+#else
+# define VAR 0
+#endif
+
+char	*g_line;
 
 static void	get_cmd_line(char **line, char c)
 {
