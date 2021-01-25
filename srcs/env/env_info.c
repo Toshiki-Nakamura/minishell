@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:11:10 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:41:09 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 t_list	*g_env_list_top;
 char	*g_env_question;
-char	**g_env;
 
 static t_env_info		*set_key_only(const char *key)
 {

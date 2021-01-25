@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:39:08 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:06:10 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:40:27 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct	s_env_info
 
 extern t_list	*g_env_list_top;
 extern char		*g_env_question;
-extern char		**g_env;
 
 t_env_info		*create_env_info(const char *env);
 void			*copy_env_info(t_list *lst);

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:26:15 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:50:52 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include "msutils_convert.h"
 #include "msutils_redirect.h"
 #include "env_list.h"
-#include "env_info.h"
 #include "redirect.h"
 #include "builtin.h"
 
@@ -51,7 +50,7 @@ int			is_builtin(char *cmd)
 static int	sh_execute(char **args)
 {
 	if (args[0] == NULL)
-		return (ft_atoi(g_env_question));
+		return (ft_atoi(get_env_value("?")));
 	if (ft_strcmp(args[0], "cd") == 0)
 		return (exec_cd(args));
 	if (ft_strcmp(args[0], "pwd") == 0)

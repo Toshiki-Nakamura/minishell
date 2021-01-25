@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:01:41 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:35:57 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:41:26 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "env_info.h"
 #include "env_list.h"
 
+static char		**g_env_param;
+
 void				initialize_env_list(char **env)
 {
 	char		*p;
@@ -28,7 +30,7 @@ void				initialize_env_list(char **env)
 		return ;
 	g_env_list_top = NULL;
 	g_env_question = ft_strdup("0");
-	g_env = env;
+	g_env_param = env;
 	while ((p = *env))
 	{
 		if (!(pinfo = create_env_info(p)))
@@ -49,5 +51,5 @@ void				finalize_env_list(void)
 
 char				**get_env_param(void)
 {
-	return (g_env);
+	return (g_env_param);
 }
