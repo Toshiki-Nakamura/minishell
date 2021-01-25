@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:42:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 21:09:39 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:20:18 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <errno.h>
 #include <sys/param.h>
 #include "libft.h"
-#include "env_list.h"
 #include "utils_string.h"
 
 

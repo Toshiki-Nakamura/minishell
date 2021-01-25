@@ -6,17 +6,16 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:48:33 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:30:27 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "env_list.h"
 #include "utils.h"
 #include "utils_string.h"
 #include "utils_string_operation.h"
 #include "utils_quote.h"
-#include "env_list_base.h"
+#include "env_list.h"
 
 int			is_invalid_env_name(const char *key)
 {

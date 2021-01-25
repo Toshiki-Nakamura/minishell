@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 14:27:30 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:30:01 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "utils.h"
 #include "utils_string.h"
 #include "env_list.h"
-#include "env_list_base.h"
 #include "msutils_env_param.h"
 
 static void	set_pwd()

@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:30:50 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:26:15 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 #include "utils_string_operation.h"
 #include "msutils_convert.h"
 #include "msutils_redirect.h"
-#include "env_list_base.h"
 #include "env_list.h"
 #include "env_info.h"
 #include "redirect.h"
@@ -49,7 +48,7 @@ int			is_builtin(char *cmd)
 	return (0);
 }
 
-static int	sh_execute(char **args, char **env)
+static int	sh_execute(char **args)
 {
 	if (args[0] == NULL)
 		return (ft_atoi(g_env_question));
@@ -67,7 +66,7 @@ static int	sh_execute(char **args, char **env)
 		return (exec_unset(args));
 	if (ft_strcmp(args[0], "export") == 0)
 		return (exec_export(args));
-	return (exec_execve(args, env));
+	return (exec_execve(args));
 }
 
 static int	exec_simple_command(char *cmd)
@@ -79,7 +78,7 @@ static int	exec_simple_command(char *cmd)
 		error_force_exit(MALLOC_ERROR);
 	iter_array(cmd_list, &replace_tilde);
 	iter_array(cmd_list, &remove_quote);
-	ret_value = sh_execute(cmd_list, get_env_param());
+	ret_value = sh_execute(cmd_list);
 	if (cmd_list != NULL)
 		array_free(cmd_list);
 	return (ret_value);
