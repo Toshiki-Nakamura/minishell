@@ -6,12 +6,13 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:39:45 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:07:13 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+#include "utils.h"
 #include "utils_string.h"
 #include "utils_list.h"
 #include "env_info.h"
@@ -49,7 +50,8 @@ void				set_env_value(const char *env)
 	t_env_info	*input;
 	t_env_info	*p;
 
-	input = create_env_info(env);
+	if (!(input = create_env_info(env)))
+		error_force_exit(MALLOC_ERROR);
 	if (!(ft_strcmp(input->key, ENV_KEY_QUESTION)))
 	{
 		free(g_env_question);

@@ -6,12 +6,13 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:01:41 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:39:33 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:08:21 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+#include "utils.h"
 #include "utils_string.h"
 #include "utils_list.h"
 #include "env_info.h"
@@ -19,8 +20,9 @@
 
 void				initialize_env_list(char **env)
 {
-	char	*p;
-	t_list	*plist;
+	char		*p;
+	t_list		*plist;
+	t_env_info	*pinfo;
 
 	if (g_env_list_top)
 		return ;
@@ -29,7 +31,9 @@ void				initialize_env_list(char **env)
 	g_env = env;
 	while ((p = *env))
 	{
-		plist = ft_lstnew(create_env_info(p));
+		if (!(pinfo = create_env_info(p)))
+			error_force_exit(MALLOC_ERROR);
+		plist = ft_lstnew(pinfo);
 		ft_lstadd_back(&g_env_list_top, plist);
 		env++;
 	}
