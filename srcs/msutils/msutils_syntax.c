@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msutils_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 11:39:48 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 18:40:43 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		parse_syntax(const char *str)
 
 	cmd = 0;
 	p = (char *)str;
-	while (ft_strchr(COMMAND_SEPARAT_SPACES, *p))
+	while (*p != '\0' && ft_strchr(COMMAND_SEPARAT_SPACES, *p))
 		p++;
 	if (is_control_operator(*p))
 		return (*p);
