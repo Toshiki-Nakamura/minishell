@@ -6,11 +6,12 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 18:36:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 15:06:28 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:03:40 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "utils.h"
 #include "utils_list.h"
 #include "utils_string.h"
 #include "env_info.h"
@@ -78,7 +79,8 @@ void			show_export_list(void)
 {
 	t_list *p;
 
-	p = ft_list_dup(g_env_list_top, copy_env_info);
+	if (!(p = ft_list_dup(g_env_list_top, copy_env_info)))
+		error_force_exit(MALLOC_ERROR);
 	sort_env_list(&p, &ft_strcmp);
 	ft_lstiter(p, show_info_for_export);
 	ft_lstclear(&p, &delete_env_info);
