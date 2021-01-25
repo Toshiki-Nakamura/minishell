@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 12:09:19 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 12:57:29 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int		search_dir(char *path_i, char **arg)
 		if (ft_cmp_ignore_case(*arg, ds->d_name, ft_strlen(*arg) + 1) == 0)
 		{
 			full_path = ft_join(ft_strdup(path_i), '/');
-			*arg = ft_strjoin_free(full_path, *arg);
+			if (!(*arg = ft_strjoin_free(full_path, *arg)))
+				error_force_exit(MALLOC_ERROR);
 			closedir(dir);
 			return (1);
 		}

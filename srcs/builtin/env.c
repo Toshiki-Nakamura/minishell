@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:14:10 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/21 21:10:54 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 12:56:24 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int			exec_env(char **args)
 		return (error_handle(args[0], NULL, NOT_COMMAND, EXIT_NOT_CMD));
 	if (ft_strcmp(key, "_=/usr/bin") == 0)
 		key = ft_join(key, '/');
-	cmd = ft_strjoin(key, args[0]);
+	if (!(cmd = ft_strjoin(key, args[0])))
+		error_force_exit(MALLOC_ERROR);
 	set_env_value(cmd);
 	free(cmd);
 	free(key);
