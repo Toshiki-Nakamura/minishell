@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:14:10 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 12:56:24 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 18:57:23 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int			exec_env(char **args)
 	char		*cmd;
 	char		*key;
 
+	if (args[1] != NULL)
+		return (error_handle(args[0], NULL, MINISHELL_ERROR_ARG, EXIT_USAGE));
 	path = get_env_value("PATH");
 	if (!path || !ft_strcmp(path, ""))
 		return (error_handle(args[0], NULL, strerror(2), EXIT_NOT_CMD));
