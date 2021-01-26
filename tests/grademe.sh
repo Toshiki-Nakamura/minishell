@@ -5,6 +5,9 @@ touch srcs/builtin/exit.c
 make test
 cd tests
 rm -f *.test
+
+touch result.txt result_error.txt answer_error.txt answer.txt
+
 echo '----- execute bash std test -----'
 bash testcase.sh > answer.txt 2> std.test
 sed -e "s/testcase.sh: //g" std.test | cut -d : -f 2- > answer_error.txt
