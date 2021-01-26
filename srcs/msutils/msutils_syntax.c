@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 23:52:57 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 18:40:43 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:03:24 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "msutils_syntax.h"
 #include "msutils_env_param.h"
 
-int		put_syntax_err(char *msg, char token, int exitcode)
+int				put_syntax_err(char *msg, char token, int exitcode)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
@@ -64,11 +64,10 @@ static char		*redirect_parse(const char *p)
 		redirect_error(str);
 		return (NULL);
 	}
-	// return ((is_quote(*str)) ? str - 1 : str);
 	return (str);
 }
 
-int		parse_syntax(const char *str)
+int				parse_syntax(const char *str)
 {
 	int		cmd;
 	char	*p;
@@ -96,7 +95,7 @@ int		parse_syntax(const char *str)
 	return (0);
 }
 
-int		check_closed(const char *str, char token)
+int				check_closed(const char *str, char token)
 {
 	int i;
 
@@ -110,5 +109,3 @@ int		check_closed(const char *str, char token)
 		return (1);
 	return (0);
 }
-
-

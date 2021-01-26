@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msutils_env_param.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 00:32:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:30:27 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:05:24 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int			is_invalid_env_name(const char *key)
 	const char	*p;
 
 	p = key;
-
 	if (!ft_isalpha(*p) && (*p != '_'))
 		return (0);
 	while (*p && (*p != '='))
@@ -65,7 +64,7 @@ int			get_envparam_length(const char *cmd)
 	total_len = 0;
 	if (*p != '$')
 		return (0);
-	if (0 == ft_strncmp(p, "$?", 2)) //?は本来使えない文字のため、$?だけ回避する
+	if (0 == ft_strncmp(p, "$?", 2))
 		return (2);
 	p++;
 	while (*p && (ft_isalnum(*p) || (*p == '_')))
@@ -91,7 +90,8 @@ int			replace_env_param(char **cmd)
 	if (!(env_key = malloc(len)))
 		error_force_exit(MALLOC_ERROR);
 	ft_strlcpy(env_key, (p + 1), len);
-	if (!(ret_cmd = replace_word(*cmd, (p - *cmd), len, get_env_value(env_key))))
+	if (!(ret_cmd = replace_word(*cmd, (p - *cmd), len, \
+								get_env_value(env_key))))
 		error_force_exit(MALLOC_ERROR);
 	free(env_key);
 	free(*cmd);
@@ -104,8 +104,10 @@ int			replace_env_param(char **cmd)
 void		set_exit_code(int code)
 {
 	char *s;
+	char *exit_code;
+
 	s = ft_itoa(code);
-	char *exit_code = ft_strjoin("?=", s);
+	exit_code = ft_strjoin("?=", s);
 	free(s);
 	set_env_value(exit_code);
 	free(exit_code);

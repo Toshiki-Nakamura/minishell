@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msutils_redirect.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:20:51 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 14:25:00 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:34:41 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

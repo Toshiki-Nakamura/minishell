@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:46:54 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:50:52 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:11:02 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int			is_builtin(char *cmd)
 {
 	if (cmd == NULL)
 		return (1);
-	if (ft_strcmp(cmd, "cd") == 0) //大文字はexecveで実行
+	if (ft_strcmp(cmd, "cd") == 0)
 		return (1);
-	if (ft_strcmp(cmd, "pwd") == 0) //大文字はexecveで実行
+	if (ft_strcmp(cmd, "pwd") == 0)
 		return (1);
-	if (ft_cmp_ignore_case(cmd, "env", 4) == 0) // return 0にするか検討中
+	if (ft_cmp_ignore_case(cmd, "env", 4) == 0)
 		return (1);
 	if (ft_strcmp(cmd, "exit") == 0)
 		return (1);
-	if (ft_strcmp(cmd, "echo") == 0) //大文字はexecveで実行
+	if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
 	if (ft_strcmp(cmd, "unset") == 0)
 		return (1);
@@ -85,10 +85,10 @@ static int	exec_simple_command(char *cmd)
 
 int			exec_command(char *cmd)
 {
-	int		ret_value;
-	char 	*redirect;
-	char 	*str;
-	t_fd 	fd;
+	int				ret_value;
+	char			*redirect;
+	char			*str;
+	t_fd			fd;
 	t_redirect_type	type;
 
 	ret_value = 0;

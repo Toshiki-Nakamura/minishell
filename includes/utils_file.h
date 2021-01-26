@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_file.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 14:09:30 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:12:48 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:37:08 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_FILE_H
 # define UTILS_FILE_H
-
 
 #endif

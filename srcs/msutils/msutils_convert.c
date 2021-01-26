@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msutils_convert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:40:59 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/24 22:46:03 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:59:59 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	remove_comment(char **str)
 
 void	replace_tilde(char **str)
 {
-    char	    *p;
+	char		*p;
 	char		*ret_str;
 
-    p = *str;
-    if (*p != '~')
-        return ;
-    p++;
+	p = *str;
+	if (*p != '~')
+		return ;
+	p++;
 	if (!*p || *p == '/')
 	{
 		ret_str = ft_strjoin(get_env_value("HOME"), p);

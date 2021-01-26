@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:00:11 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/26 10:41:37 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	get_cmd_line(char **line, char c)
 	while ((ret = read(0, &buf, 1)) >= VAR)
 	{
 		if (buf == c)
-			break;
+			break ;
 		if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
 		{
 			free_set(line, ft_strdup("exit"));
@@ -55,7 +55,7 @@ void		input_prompt(void)
 {
 	g_line = NULL;
 	ft_putstr_fd("\033[32mshell$> \033[0m", 1);
-	get_cmd_line(&g_line, '\n'); // !!! wait return !!!
+	get_cmd_line(&g_line, '\n');
 	if (check_syntax(g_line))
 	{
 		replace_env_param(&g_line);

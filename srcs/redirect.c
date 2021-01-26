@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:44 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:20:37 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:41:32 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,15 @@
 #include "utils_string_operation.h"
 #include "utils_quote.h"
 
-#define IS_NOT_REDIRECT_WORD "<>& |;"
-
-typedef struct	s_redirect {
-	char			*mark;
-	t_redirect_type	type;
-}				t_redirect;
-
 static t_redirect	g_redirect_marks[] = {
-	{ "<",		REDIRECT_INPUT },
-	{ ">>",		REDIRECT_APPEND },
-	{ ">",		REDIRECT_OVERRIDE },
-	{ NULL,		REDIRECT_NUM}
+	{"<", REDIRECT_INPUT},
+	{">>", REDIRECT_APPEND},
+	{">", REDIRECT_OVERRIDE},
+	{NULL, REDIRECT_NUM}
 };
 
-const char		*skip_redirect_mark(const char *redirect, t_redirect_type *type)
+const char			*skip_redirect_mark(const char *redirect,
+					t_redirect_type *type)
 {
 	size_t		length;
 	int			i;
@@ -51,7 +45,7 @@ const char		*skip_redirect_mark(const char *redirect, t_redirect_type *type)
 	return (NULL);
 }
 
-int				get_redirect_length(const char *redirect)
+int					get_redirect_length(const char *redirect)
 {
 	const char		*p;
 	int				total_len;
@@ -70,7 +64,7 @@ int				get_redirect_length(const char *redirect)
 	return (total_len);
 }
 
-void			separate_redirect_info(char **redirect,
+void				separate_redirect_info(char **redirect,
 				t_redirect_type *type)
 {
 	const char	*p;
@@ -95,7 +89,7 @@ void			separate_redirect_info(char **redirect,
 	*redirect = ret;
 }
 
-int				separate_redirect_word(char **cmd, char **word)
+int					separate_redirect_word(char **cmd, char **word)
 {
 	char	*p;
 	int		len;
@@ -106,15 +100,8 @@ int				separate_redirect_word(char **cmd, char **word)
 	{
 		if ((*p == '"') || (*p == '\''))
 			p = skip_to_next_quote(p);
-		else if (0 != (len = get_redirect_length(p)))
+		else if (0 < (len = get_redirect_length(p)))
 		{
-			if (len == -1)
-			{
-				ft_putstr_fd("Error: Invalid redirect is included [" , 2);
-				ft_putstr_fd(*cmd, 2);
-				ft_putstr_fd("]\n" , 2);
-				return(0);
-			}
 			if (!(ret_cmd = extract_word(*cmd, p - *cmd, len, word)))
 				error_force_exit(MALLOC_ERROR);
 			free(*cmd);

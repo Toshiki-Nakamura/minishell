@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 19:14:07 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:41:46 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 
 # define MINISHELL_INVALID_OPERATOR "&(){}*"
 # define COMMAND_SEPARAT_SPACES " \t"
+# define IS_NOT_REDIRECT_WORD "<>& |;"
 
 typedef enum	e_redirec_type {
 	REDIRECT_INPUT,
@@ -51,5 +52,10 @@ typedef struct	s_fd {
 	int	input;
 	int	output;
 }				t_fd;
+
+typedef struct	s_redirect {
+	char			*mark;
+	t_redirect_type	type;
+}				t_redirect;
 
 #endif

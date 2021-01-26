@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 20:32:13 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:41:09 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:56:15 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include "utils_string.h"
 #include "env_info.h"
 
-t_list	*g_env_list_top;
-char	*g_env_question;
+t_list				*g_env_list_top;
+char				*g_env_question;
 
-static t_env_info		*set_key_only(const char *key)
+static t_env_info	*set_key_only(const char *key)
 {
 	t_env_info	*info;
 
@@ -32,7 +32,7 @@ static t_env_info		*set_key_only(const char *key)
 	return (info);
 }
 
-t_env_info	*create_env_info(const char *env)
+t_env_info			*create_env_info(const char *env)
 {
 	t_env_info	*info;
 	char		*p;
@@ -57,7 +57,7 @@ t_env_info	*create_env_info(const char *env)
 	return (info);
 }
 
-void		*copy_env_info(t_list *lst)
+void				*copy_env_info(t_list *lst)
 {
 	t_env_info *new;
 
@@ -68,7 +68,7 @@ void		*copy_env_info(t_list *lst)
 	return (new);
 }
 
-void		delete_env_info(void *info)
+void				delete_env_info(void *info)
 {
 	t_env_info	*p;
 
@@ -82,7 +82,7 @@ void		delete_env_info(void *info)
 	free(p);
 }
 
-int			cmp_env_key(void *info, const char *key)
+int					cmp_env_key(void *info, const char *key)
 {
 	t_env_info	*p;
 
