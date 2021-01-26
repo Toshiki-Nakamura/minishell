@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/26 10:41:37 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/26 12:49:04 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	get_cmd_line(char **line, char c)
 void		input_prompt(void)
 {
 	g_line = NULL;
-	ft_putstr_fd("\033[32mshell$> \033[0m", 1);
+	ft_putstr_fd(PROMPT, STDOUT);
 	get_cmd_line(&g_line, '\n');
 	if (check_syntax(g_line))
 	{

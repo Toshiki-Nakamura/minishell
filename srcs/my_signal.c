@@ -6,13 +6,14 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 22:39:20 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/26 10:41:06 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/26 12:53:37 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
 #include "libft.h"
+#include "minishell.h"
 #include "utils_string.h"
 #include "msutils_env_param.h"
 #include "prompt.h"
@@ -27,7 +28,8 @@ void		in_prompt(int sig)
 			free_set(&g_line, ft_strdup(""));
 		}
 		set_exit_code(EXIT_FAILURE);
-		ft_putstr_fd("\n\033[32mshell$> \033[0m", 2);
+		write(2, "\n", 1);
+		ft_putstr_fd(PROMPT, 2);
 	}
 	if (sig == SIGQUIT)
 		write(2, "\b \b\b \b", 6);
