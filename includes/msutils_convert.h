@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:41:07 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 13:50:39 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/26 14:49:08 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 # define MSUTILS_CONVERT_H
 
 /*
-**	#以降をコメントとして削除する
+**	remove after # as comment message
 */
 void	remove_comment(char **str);
 
 /*
-**	~をホームパスに置き換える
+**	replace ~ to home path
 */
 void	replace_tilde(char **str);
 
 /*
-**	各コマンドリストにreplace_tildeなどの関数を適用
+**	iterator for replace_tilde etc.
 */
 void	iter_array(char **cmd, void (*str_operate)(char **line));
 

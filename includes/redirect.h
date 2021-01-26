@@ -6,7 +6,7 @@
 /*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:21 by skohraku          #+#    #+#             */
-/*   Updated: 2020/12/30 16:12:35 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/26 14:52:10 by skohraku         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,20 @@ const char		*skip_redirect_mark(const char *redirect,
 				t_redirect_type *type);
 
 /*
-** cmdの先頭の位置から、リダイレクト処理部の長さを求める
-** 0: リダイレクトに該当しない
-** n: リダイレクトに該当する。記号とファイル名の長さを返す
-** -1: リダイレクト非対応に該当する
+** get redirect syntax length
+** 0: not find redirect
+** n: return redirect mark and filename length
 */
 int				get_redirect_length(const char *redirect);
 
 /*
-** リダイレクト判定をして切り出した文字列を、記号とファイル名に分割する
+** separate redirect type and filename
 */
 void			separate_redirect_info(char **redirect, t_redirect_type *type);
 
 /*
-**	cmdに含まれる文字列から最初のリダイレクトとファイル名を抽出し、cmdと分離する
-**	return : 分離が発生したら1, 無ければ0
+**	separate redirect and filename from command
+**	return : 1-separate is success, 0-redirect is not found.
 */
 int				separate_redirect_word(char **cmd, char **word);
 
