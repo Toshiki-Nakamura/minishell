@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   env_config.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 22:04:34 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:35:13 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:36:50 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ENV_CONFIG_H
 # define ENV_CONFIG_H

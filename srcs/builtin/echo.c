@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:42:42 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 13:20:18 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:52:12 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <sys/param.h>
 #include "libft.h"
 #include "utils_string.h"
-
 
 int			exec_echo(char **args)
 {

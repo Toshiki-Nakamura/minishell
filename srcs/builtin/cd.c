@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:18:31 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 14:10:47 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:41:53 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "utils_string.h"
 #include "env_list.h"
 
-static void	set_pwd()
+static void	set_pwd(void)
 {
 	char		path[MAXPATHLEN];
 	char		*new;

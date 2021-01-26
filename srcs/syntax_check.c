@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 13:24:42 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/22 15:26:27 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/26 10:43:12 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "msutils_syntax.h"
 #include "msutils_env_param.h"
 
-static int	check_quote(const char *line)
+static int		check_quote(const char *line)
 {
 	int		quote;
 
@@ -43,7 +43,7 @@ static int	check_quote(const char *line)
 	return (0);
 }
 
-static int	check_invalid_operator(const char *line)
+static int		check_invalid_operator(const char *line)
 {
 	const char	*p;
 
@@ -80,17 +80,13 @@ static int		check_valid_operator(const char *line)
 	return (1);
 }
 
-int			check_syntax(const char *line)
+int				check_syntax(const char *line)
 {
 	if (check_quote(line)
 		&& check_invalid_operator(line)
-		&& check_valid_operator(line)
-		// && check関数を追加してください
-	)
+		&& check_valid_operator(line))
 	{
 		return (1);
 	}
 	return (0);
 }
-
-

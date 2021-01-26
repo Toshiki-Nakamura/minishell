@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:02:50 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 13:24:43 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/26 10:29:11 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,14 @@ static void		exec_command_line(const char *line)
 	{
 		if (!(cmd_list = util_split(pipe_list[0], COMMAND_SEPARAT_SPACES)))
 			error_force_exit(MALLOC_ERROR);
-		// iter_array(cmd_list, &remove_quote);
-		if (is_builtin(cmd_list[0])) // 単体かつbuiltin(cd, echo, etc..)
+		if (is_builtin(cmd_list[0]))
 			set_exit_code(exec_command(pipe_list[0]));
 		else
 			set_exit_code(fork_exec_commands(pipe_list));
 		if (cmd_list != NULL)
 			array_free(cmd_list);
 	}
-	else if (2 <= i)// pipeコマンド
+	else if (2 <= i)
 		set_exit_code(fork_exec_commands(pipe_list));
 	if (pipe_list != NULL)
 		array_free(pipe_list);

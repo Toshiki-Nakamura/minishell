@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 15:31:45 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/24 22:34:52 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:08:09 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char		*skip_to_next_quote(char *str)
 
 	if (!str || ((*str != '"') && (*str != '\'')))
 	{
-		// perror("head char is not quotation!!!");
 		return (NULL);
 	}
 	target = *str;
@@ -32,7 +31,6 @@ char		*skip_to_next_quote(char *str)
 			return (str);
 		str++;
 	}
-	// perror("pair of quotation is not found!!!");
 	return (str);
 }
 

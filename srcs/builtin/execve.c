@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:48:13 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 13:35:36 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:46:32 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "env_config.h"
 #include "env_list.h"
 
-int		search_dir(char *path_i, char **arg)
+int			search_dir(char *path_i, char **arg)
 {
 	DIR				*dir;
 	struct dirent	*ds;
@@ -33,7 +33,6 @@ int		search_dir(char *path_i, char **arg)
 		return (0);
 	while ((ds = readdir(dir)) != NULL)
 	{
-		/* if (ft_strcmp(ds->d_name , *arg) == 0) */
 		if (ft_cmp_ignore_case(*arg, ds->d_name, ft_strlen(*arg) + 1) == 0)
 		{
 			full_path = ft_join(ft_strdup(path_i), '/');
@@ -47,7 +46,7 @@ int		search_dir(char *path_i, char **arg)
 	return (0);
 }
 
-static int			is_dir(char *arg)
+static int	is_dir(char *arg)
 {
 	DIR				*dir;
 
@@ -79,7 +78,7 @@ int			parse_path(char **arg)
 	return (0);
 }
 
-int		exec_execve(char **args)
+int			exec_execve(char **args)
 {
 	unsigned int	status;
 	char			*err_msg;
@@ -92,9 +91,8 @@ int		exec_execve(char **args)
 	}
 	if ((execve(args[0], args, get_env_param())) == -1)
 	{
-		// ft_putstr_fd("\e[31merror: \e[0m", 2);
 		err_msg = strerror(errno);
-		if (errno == 13) /* permission err */
+		if (errno == 13)
 		{
 			if (!is_dir(args[0]))
 				status = error_handle(args[0], NULL, err_msg, EXIT_PERMIT);

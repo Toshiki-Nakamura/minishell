@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:14:10 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 18:57:23 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:48:55 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	path_check(char **path, char **key)
 	int		i;
 	int		size;
 
-	i= -1;
+	i = -1;
 	array = NULL;
 	while (path[++i])
 	{
@@ -73,54 +73,3 @@ int			exec_env(char **args)
 	show_env_list();
 	return (0);
 }
-
-#if 0
-#include "env_info.h"
-#include "builtin.h"
-
-char		*cpy_content(void *info)
-{
-	t_env_info	*p;
-	char		*key;
-	char		*value;
-
-	p = (t_env_info *)info;
-	key = ft_join(ft_strdup(p->key), '=');
-	value = ft_strdup(p->value);
-	return (ft_strjoin_free(key, value));
-}
-
-char		**envlst_to_array(void)
-{
-	t_list	*lst;
-	char	**envp;
-	int		i;
-
-	lst = g_env_list_top;
-	i = 0;
-	if (!(envp = malloc(sizeof(char *) * (ft_lstsize(lst) + 1))))
-		return (NULL);
-	while (lst != NULL)
-	{
-		if (((t_env_info *)lst->content)->value != NULL)
-			envp[i++] = cpy_content(lst->content);
-		lst = lst->next;
-	}
-	envp[i] = NULL;
-	return (envp);
-}
-
-int			exec_env(char **args, char **env, int fd)
-{
-	char **envp;
-	int		ret;
-
-	(void)env;
-	set_env_value("_=/usr/bin/EnV");
-	envp = envlst_to_array();
-	ret = exec_execve(args, envp, fd);
-	if (envp != NULL)
-		array_free(envp);
-	return (ret);
-}
-#endif

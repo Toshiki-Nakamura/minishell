@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_show.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 18:36:38 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/25 13:03:40 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:58:19 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void			show_env_list(void)
 	ft_lstiter(g_env_list_top, show_info_for_env);
 }
 
-static void		sort_env_list(t_list **env, int (*cmp)(const char *, const char *))
+static void		sort_env_list(t_list **env, \
+			int (*cmp)(const char *, const char *))
 {
 	t_list *tmp_i;
 	t_list *tmp_j;
