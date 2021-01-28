@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_executor.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/22 15:23:53 by skohraku         ###   ########.fr       */
+/*   Updated: 2021/01/28 11:29:02 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <errno.h>
 #include <sys/param.h>
 #include "minishell.h"
+#include "utils.h"
 #include "executor.h"
 #include "my_signal.h"
 
@@ -71,26 +72,30 @@ static void	close_and_dup(int fd[2], int std_fd)
 int			exec_pipe_command(char **pipe_list)
 {
 	int		fd[2];
-	pid_t	pid1;
-	pid_t	pid2;
+	pid_t	pid[2];
 
 	if (pipe_list[1] == NULL)
 		return (exec_command(pipe_list[0]));
-	pipe(fd);
-	pid1 = fork();
-	if (pid1 == 0)
+	if (pipe(fd) == -1)
+		error_force_exit(strerror(errno));
+	pid[0] = fork();
+	if (pid[0] == -1)
+		error_force_exit(strerror(errno));
+	else if (pid[0] == 0)
 	{
 		close_and_dup(fd, STDIN);
 		exit(exec_pipe_command(&pipe_list[1]));
 	}
 	signal(SIGINT, sig_ignore);
-	pid2 = fork();
-	if (pid2 == 0)
+	pid[1] = fork();
+	if (pid[1] == -1)
+		error_force_exit(strerror(errno));
+	else if (pid[1] == 0)
 	{
 		close_and_dup(fd, STDOUT);
 		exit(exec_command(pipe_list[0]));
 	}
-	return (parent_wait(pid1, pid2, fd));
+	return (parent_wait(pid[0], pid[1], fd));
 }
 
 int			fork_exec_commands(char **pipe_list)
@@ -99,10 +104,14 @@ int			fork_exec_commands(char **pipe_list)
 	int		ret_value;
 	int		status;
 
-	ret_value = 0;
 	pid = fork();
+	if (pid == -1)
+		error_force_exit(strerror(errno));
 	signal(SIGINT, in_process);
-	(!pipe_list[1]) ? signal(SIGQUIT, in_process) : signal(SIGQUIT, sig_ignore);
+	if (!pipe_list[1])
+		signal(SIGQUIT, in_process);
+	else
+		signal(SIGQUIT, sig_ignore);
 	if (pid == 0)
 	{
 		ret_value = exec_pipe_command(pipe_list);
