@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 19:58:58 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/28 11:29:02 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/02/05 12:38:48 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,7 @@ int			fork_exec_commands(char **pipe_list)
 	if (pid == -1)
 		error_force_exit(strerror(errno));
 	signal(SIGINT, in_process);
-	if (!pipe_list[1])
-		signal(SIGQUIT, in_process);
-	else
-		signal(SIGQUIT, sig_ignore);
+	(!pipe_list[1]) ? signal(SIGQUIT, in_process) : signal(SIGQUIT, sig_ignore);
 	if (pid == 0)
 	{
 		ret_value = exec_pipe_command(pipe_list);
