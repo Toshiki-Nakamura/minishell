@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 14:03:15 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/25 19:57:34 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:24:45 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int					remove_env_value(const char *key)
 	t_list		*pre;
 
 	cur = g_env_list_top;
+	pre = cur; // initilize
 	while (cur)
 	{
 		if (!cmp_env_key(cur->content, key))
