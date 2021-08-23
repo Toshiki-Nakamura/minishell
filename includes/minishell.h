@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 11:27:17 by tnakamur          #+#    #+#             */
-/*   Updated: 2021/01/26 12:56:43 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/08/23 17:13:58 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define COMMAND_SEPARAT_SPACES " \t"
 # define IS_NOT_REDIRECT_WORD "<>& |;"
 
-# define PROMPT "\033[32mshell$> \033[0m"
+# define PROMPT "\033[32mminishell$ \033[0m"
 
 typedef enum	e_redirec_type {
 	REDIRECT_INPUT,
