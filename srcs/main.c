@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2021/08/23 17:12:56 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/08/23 17:16:26 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "my_signal.h"
 #include "prompt.h"
 
-void	mot_d(void)
+void	init_msg(void)
 {
 	ft_putstr_fd("\033[36m", 2);
 	ft_putendl_fd("███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗     ", 2);
@@ -32,7 +32,7 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	if (ac != 1)
 		return (0);
-	mot_d();
+	init_msg();
 	initialize_env_list(env);
 	while (1)
 	{
