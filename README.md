@@ -13,5 +13,4 @@ shell$ exit
 ```
 
 ## image
-![Image](img/output.gif)
-
+![output](https://user-images.githubusercontent.com/58071775/139569453-0bc9e77a-e9ce-4c1c-8ac9-e3f2e4468561.gif)
