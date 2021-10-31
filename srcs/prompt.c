@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/01/26 12:49:04 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/10/31 13:17:48 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include "msutils_convert.h"
 #include "syntax_check.h"
 #include "cmd_manager.h"
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #ifdef TEST
 # define VAR 1
@@ -27,35 +30,15 @@
 
 char	*g_line;
 
-static void	get_cmd_line(char **line, char c)
-{
-	char	buf;
-	int		ret;
-
-	if (*line == NULL)
-		*line = ft_strdup("");
-	while ((ret = read(0, &buf, 1)) >= VAR)
-	{
-		if (buf == c)
-			break ;
-		if (c == '\n' && ret == 0 && ft_strcmp(*line, "\0") == 0)
-		{
-			free_set(line, ft_strdup("exit"));
-			break ;
-		}
-		else if (ret == 0)
-			write(2, "  \b\b", 4);
-		*line = (ret) ? ft_join(*line, buf) : *line;
-		if (!*line)
-			error_force_exit(MALLOC_ERROR);
-	}
-}
-
 void		input_prompt(void)
 {
 	g_line = NULL;
-	ft_putstr_fd(PROMPT, STDOUT);
-	get_cmd_line(&g_line, '\n');
+	g_line = readline(PROMPT);
+	if (g_line == NULL) // Ctrl + D
+		g_line = ft_strdup("exit");
+	if (ft_strlen(g_line) == 0)
+		return ;
+	add_history(g_line);
 	if (check_syntax(g_line))
 	{
 		replace_env_param(&g_line);
