@@ -1,10 +1,15 @@
 # minishell
-Reimplementing bash with C
+Reimplementing shell with C
 
 ## how to run
 ```
 $ make
 $ ./minishell
+```
+
+## how to EXIT
+```
+shell$ exit
 ```
 
 ## image
