@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skohraku <skohraku@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/26 14:19:48 by skohraku          #+#    #+#              #
-#    Updated: 2021/01/25 13:34:59 by skohraku         ###   ########.fr        #
+#    Updated: 2021/10/31 13:24:23 by tnakamur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,16 +57,19 @@ ifeq ($(MAKECMDGOALS),test)
 CFLAGS  += -D TEST
 endif
 
+RINC = -I $(shell brew --prefix readline)/include
+RLIB = -L$(shell brew --prefix readline)/lib
+
 OBJS	= $(SRCS:.c=.o)
 DEPS	= $(SRCS:.c=.d)
 RM		= rm -f
 LIBFT	= libft/libft.a
 
 .c.o:
-		$(CC) $(CFLAGS) $(INCLUDE) -c -MMD -MP -MF $(<:.c=.d) $< -o $(<:.c=.o)
+		$(CC) $(CFLAGS) $(INCLUDE) -c -MMD -MP -MF $(<:.c=.d) $< -o $(<:.c=.o) $(RINC)
 
 $(NAME):	$(OBJS) $(LIBFT)
-		$(CC) -o $@ $^
+		$(CC) -o $@ $^ -lreadline -lhistory $(RINC) $(RLIB)
 
 -include $(DEPS)
 

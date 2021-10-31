@@ -6,10 +6,13 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2021/08/23 17:16:26 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/10/31 13:15:52 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 #include <stdlib.h>
 #include "env_config.h"
 #include "my_signal.h"
@@ -37,7 +40,8 @@ int		main(int ac, char **av, char **env)
 	while (1)
 	{
 		signal(SIGINT, in_prompt);
-		signal(SIGQUIT, in_prompt);
+		signal(SIGQUIT, SIG_IGN);
+		// rl_event_hook = NULL;
 		input_prompt();
 	}
 	return (0);
