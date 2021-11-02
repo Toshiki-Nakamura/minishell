@@ -3,6 +3,8 @@ Reimplementing shell with C
 
 ## how to run
 ```
+$ git clone https://github.com/Toshiki-Nakamura/minishell.git
+$ cd minishell
 $ make
 $ ./minishell
 ```
