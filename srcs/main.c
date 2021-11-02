@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:42:34 by skohraku          #+#    #+#             */
-/*   Updated: 2021/10/31 13:15:52 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/11/01 21:05:42 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		main(int ac, char **av, char **env)
 	{
 		signal(SIGINT, in_prompt);
 		signal(SIGQUIT, SIG_IGN);
-		// rl_event_hook = NULL;
 		input_prompt();
 	}
 	return (0);

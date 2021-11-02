@@ -6,7 +6,7 @@
 /*   By: tnakamur <tnakamur@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 13:44:31 by skohraku          #+#    #+#             */
-/*   Updated: 2021/10/31 13:17:48 by tnakamur         ###   ########.fr       */
+/*   Updated: 2021/11/01 21:26:45 by tnakamur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,22 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-#ifdef TEST
-# define VAR 1
-#else
-# define VAR 0
-#endif
-
-char	*g_line;
-
-void		input_prompt(void)
+void	input_prompt(void)
 {
-	g_line = NULL;
-	g_line = readline(PROMPT);
-	if (g_line == NULL) // Ctrl + D
-		g_line = ft_strdup("exit");
-	if (ft_strlen(g_line) == 0)
+	char	*cmd_line;
+
+	cmd_line = readline(PROMPT);
+	if (cmd_line == NULL)
+		cmd_line = ft_strdup("exit");
+	if (ft_strlen(cmd_line) == 0)
 		return ;
-	add_history(g_line);
-	if (check_syntax(g_line))
+	add_history(cmd_line);
+	if (check_syntax(cmd_line))
 	{
-		replace_env_param(&g_line);
-		remove_comment(&g_line);
-		exec_one_line(g_line);
+		replace_env_param(&cmd_line);
+		remove_comment(&cmd_line);
+		exec_one_line(cmd_line);
 	}
-	if (g_line != NULL)
-		free(g_line);
+	if (cmd_line != NULL)
+		free(cmd_line);
 }
